@@ -1,0 +1,55 @@
+name: Validate course and deploy main
+
+on:
+  push:
+    branches: [main, 'course/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: python3 tools/build.py --check
+      - run: python3 tools/check.py
+      - run: python3 -m unittest discover -s labs -p 'test_*.py' -v
+      - run: node --check app.js && node --check sw.js && node tools/test_reader.js
+      - name: Run all offline examples
+        run: |
+          for lab in foundations learning attention retrieval platform multimodal experiments electives; do
+            python3 "labs/$lab.py"
+          done
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

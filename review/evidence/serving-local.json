@@ -1,0 +1,144 @@
+{
+  "clock": "time.perf_counter (monotonic)",
+  "kind": "MEASURED LOCAL MOCK SERVICE; no model inference, network, GPU, or token throughput",
+  "limitations": "single short run, OS scheduling noise, shared host, not a capacity certification; rejected requests are excluded from latency distributions and reported separately; synthetic batch cost is an assumption",
+  "percentile_convention": "nearest rank: sorted[ceil(p*n)-1]; accepted requests only",
+  "results": [
+    {
+      "completed": 60,
+      "completed_requests_per_second_including_drain": 100.13617133185504,
+      "configuration": {
+        "arrival_interval_seconds": 0.01,
+        "max_batch": 1,
+        "mock_fixed_service_seconds": 0.004,
+        "mock_per_item_seconds": 0.002,
+        "offered_requests": 60,
+        "queue_capacity": 8,
+        "workers": 2
+      },
+      "drain_window_seconds": 0.5991840830538422,
+      "end_to_end": {
+        "mean_ms": 8.365279839684566,
+        "n": 60,
+        "p50_ms": 9.073917055502534,
+        "p95_ms": 9.1300408821553,
+        "p99_ms": 9.168666088953614
+      },
+      "largest_observed_batch": 1,
+      "max_observed_queue_depth": 1,
+      "observed_offered_requests_per_second": 101.57080675757969,
+      "offer_window_seconds": 0.590720915934071,
+      "offered": 60,
+      "queue": {
+        "mean_ms": 0.03248888533562422,
+        "n": 60,
+        "p50_ms": 0.028292182832956314,
+        "p95_ms": 0.06041582673788071,
+        "p99_ms": 0.08224998600780964
+      },
+      "rejected": 0,
+      "rejection_fraction": 0.0,
+      "scenario": "underload",
+      "service": {
+        "mean_ms": 8.332790954348942,
+        "n": 60,
+        "p50_ms": 9.052249835804105,
+        "p95_ms": 9.08958283253014,
+        "p99_ms": 9.113790933042765
+      }
+    },
+    {
+      "completed": 24,
+      "completed_requests_per_second_including_drain": 244.19485991348884,
+      "configuration": {
+        "arrival_interval_seconds": 0.0005,
+        "max_batch": 1,
+        "mock_fixed_service_seconds": 0.004,
+        "mock_per_item_seconds": 0.002,
+        "offered_requests": 120,
+        "queue_capacity": 8,
+        "workers": 2
+      },
+      "drain_window_seconds": 0.09828216698952019,
+      "end_to_end": {
+        "mean_ms": 32.17714401156021,
+        "n": 24,
+        "p50_ms": 38.96112507209182,
+        "p95_ms": 41.97945795021951,
+        "p99_ms": 42.711750138551
+      },
+      "largest_observed_batch": 1,
+      "max_observed_queue_depth": 8,
+      "observed_offered_requests_per_second": 2010.979373609101,
+      "offer_window_seconds": 0.05967241711914539,
+      "offered": 120,
+      "queue": {
+        "mean_ms": 24.1011630569119,
+        "n": 24,
+        "p50_ms": 30.26887495070696,
+        "p95_ms": 33.65762485191226,
+        "p99_ms": 33.7392499204725
+      },
+      "rejected": 96,
+      "rejection_fraction": 0.8,
+      "scenario": "overload_single",
+      "service": {
+        "mean_ms": 8.075980954648307,
+        "n": 24,
+        "p50_ms": 8.450458059087396,
+        "p95_ms": 9.105833945795894,
+        "p99_ms": 9.10629192367196
+      }
+    },
+    {
+      "completed": 34,
+      "completed_requests_per_second_including_drain": 443.01285908994254,
+      "configuration": {
+        "arrival_interval_seconds": 0.0005,
+        "max_batch": 4,
+        "mock_fixed_service_seconds": 0.004,
+        "mock_per_item_seconds": 0.002,
+        "offered_requests": 120,
+        "queue_capacity": 8,
+        "workers": 2
+      },
+      "drain_window_seconds": 0.07674720790237188,
+      "end_to_end": {
+        "mean_ms": 28.999686261693782,
+        "n": 34,
+        "p50_ms": 32.452458050101995,
+        "p95_ms": 35.21754196844995,
+        "p99_ms": 35.677875159308314
+      },
+      "largest_observed_batch": 4,
+      "max_observed_queue_depth": 8,
+      "observed_offered_requests_per_second": 2009.3925411552866,
+      "offer_window_seconds": 0.05971954087726772,
+      "offered": 120,
+      "queue": {
+        "mean_ms": 12.326118954019073,
+        "n": 34,
+        "p50_ms": 15.324875013902783,
+        "p95_ms": 17.658500000834465,
+        "p99_ms": 17.7137921564281
+      },
+      "rejected": 86,
+      "rejection_fraction": 0.7166666666666667,
+      "scenario": "overload_batch4",
+      "service": {
+        "mean_ms": 16.67356730767471,
+        "n": 34,
+        "p50_ms": 17.846749862655997,
+        "p95_ms": 18.272542161867023,
+        "p99_ms": 18.272542161867023
+      }
+    }
+  ],
+  "runtime": {
+    "architecture": "arm64",
+    "logical_cpus": 12,
+    "python": "3.14.6",
+    "release": "25.6.0",
+    "system": "Darwin"
+  }
+}

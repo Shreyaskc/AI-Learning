@@ -43,3 +43,25 @@ Measure time to first token, inter-token latency, end-to-end latency, throughput
 3. Would you buy more GPUs for slow p99? Solution: first inspect queueing, prompt/output distributions, tenant skew, memory saturation and downstream tools; capacity only helps the actual bottleneck.
 
 Interview: compute weight/KV memory; compare data/tensor/pipeline parallelism; defend a capacity plan with assumptions, benchmarks, headroom, isolation, failure handling and cost per successful task. Vocabulary: FLOP, bandwidth, arithmetic intensity, BF16, collective, sharding, prefill, decode, KV cache, quantization, batching, speculative decoding.
+
+## Practical extension: measure a bounded local service
+
+Run `python3 labs/serving_experiment.py`. This performs a small real-time load experiment with worker threads and a bounded queue, not a mathematical event simulation. It makes no network calls and performs no model inference. The synthetic service hashes a small payload and sleeps for an assumed cost of .004 seconds per batch plus .002 seconds per item. Sleeping approximates an I/O/wait component and preserves CPU for concurrent work; it is not a neural-network kernel model.
+
+The open-loop producer schedules arrivals independently of completions. Queue insertion is nonblocking; when capacity eight is full, the request is counted as rejected. Two workers process batches of at most one or four items. Use a monotonic clock for arrival, start and finish. Queue latency is start-arrival; service latency is finish-start; end-to-end is finish-arrival. Percentiles use nearest rank: sort n values and select index ceil(p*n)-1. Report accepted request counts and rejected fraction alongside latency, because rejecting hard requests can make the remaining latency look attractive.
+
+The committed [local result](../review/evidence/serving-local.json) records Python 3.14.6, Darwin arm64, 12 logical CPUs, workload assumptions, actual observed arrival window and queue depth. No hostname or user prompts are logged. A single short run produced:
+
+| Scenario | Offered / completed / rejected | End-to-end p95 | Mean queue time | Completed requests/s including drain |
+| --- | --- | --- | --- | --- |
+| Underload, batch 1 | 60 / 60 / 0 | 9.13 ms | .032 ms | 100.14 |
+| Overload, batch 1 | 120 / 24 / 96 | 41.98 ms | 24.10 ms | 244.19 |
+| Overload, batch up to 4 | 120 / 34 / 86 | 35.22 ms | 12.33 ms | 443.01 |
+
+These are measured mock-request rates, never tokens/s or GPU throughput. The producer offered roughly 2,010 requests/s in the overload cases, far exceeding the mock workers' capacity. Batching improved accepted throughput in this workload because its assumed fixed cost is amortized. Per-request service time inside a batch increased, and most offered requests were still rejected. This does not establish that batching always reduces latency or that these settings meet a real SLO.
+
+The observed service time can exceed the requested sleep duration because operating-system scheduling and timer resolution add delay. A p99 over 24 completed requests is the largest observation under this convention; it cannot establish a stable production tail. Repeat runs under documented conditions and use larger representative samples for serious capacity claims. The test suite checks accounting, nonnegative decomposition and queue bounds, without brittle assertions that one timing must be faster on every host.
+
+Exercises: (1) Why is 244 completed requests/s not the same as 2,010 offered requests/s? Solution: the queue rejects excess arrivals, and completed throughput includes drain time; both numerator and observation window differ. (2) Can you call batch 4 “safe” from the p95 alone? Solution: no; rejection rate is about 71.7% and accepted-only latency omits those failed requests. (3) Increase the fixed cost while keeping per-item cost unchanged. Solution: larger batches may amortize more work, but filling/waiting and queue fairness can alter end-to-end results. Measure rather than assuming. (4) Replace the mock with a real inference callable. Solution: separately label model/runtime/hardware, prompt and output distributions, cache state, first-token/inter-token metrics and quality; preserve admission and failure accounting.
+
+Mastery gate: reproduce a new report without overwriting the historical evidence, calculate completed+rejected=offered, explain the latency components, and identify the mock cost assumptions. Real-model load tests, token-aware continuous batching, quantization and distributed serving remain beyond the measured evidence here.

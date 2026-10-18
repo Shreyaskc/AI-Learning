@@ -1,4 +1,6 @@
 """Validate generated pages, local links/fragments, syntax and lesson contracts."""
+import hashlib
+import json
 import ast
 import re
 import sys
@@ -59,6 +61,11 @@ for path in build.LESSONS[1:]:
     text=path.read_text().lower()
     for required in ['prerequisite','outcomes:','solution','interview']:
         if required not in text:errors.append(f'missing lesson element {required}: {path.name}')
+evidence=ROOT/'review/evidence/model-comparison.json'
+if evidence.exists():
+    report=json.loads(evidence.read_text())
+    actual=hashlib.sha256((ROOT/'labs/model_comparison.py').read_bytes()).hexdigest()
+    if report.get('implementation_sha256')!=actual:errors.append('model evidence source fingerprint is stale')
 if errors:
     print('\n'.join(errors));sys.exit(1)
 print(f'PASS: {len(parsers)} HTML pages; local links/anchors, generated consistency, lesson elements, Python syntax')

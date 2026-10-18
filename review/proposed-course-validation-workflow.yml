@@ -26,10 +26,7 @@ jobs:
       - run: python3 -m unittest discover -s labs -p 'test_*.py' -v
       - run: node --check app.js && node --check sw.js && node tools/test_reader.js
       - name: Run all offline examples
-        run: |
-          for lab in foundations learning attention retrieval platform multimodal experiments electives; do
-            python3 "labs/$lab.py"
-          done
+        run: python3 tools/run_labs.py
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

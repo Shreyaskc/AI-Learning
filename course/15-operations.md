@@ -39,3 +39,11 @@ Run [platform.py](../labs/platform.py) for version-sensitive cache and idempoten
 3. What belongs in a runbook? Solution: symptom, severity, owner/on-call, diagnostic queries, safe mitigation, rollback/kill-switch instructions, escalation and recovery verification.
 
 Interview: define SLI/SLO/error budget; explain shadow versus canary versus experiment; handle an offline-to-online regression with explicit ownership and recovery. Vocabulary: registry, lineage, reproducibility, SLI, SLO, error budget, shadow, canary, drift, rollback, runbook.
+
+## Practical extension: save the whole fitted prediction path
+
+The model-comparison report now contains each selected model's fitted JSON artifact: family/schema version, feature order, training-fitted scaler, and learned coefficients, tree nodes or MLP weights. It also records implementation SHA-256 and fingerprints for the frozen train/validation/test rows. Unlike an executable pickle, this format stores data and uses an explicit supported-family loader. It is still an educational schema, not a signed or hardened deployment format.
+
+`artifact_predict` takes raw feature values, applies the saved scaler and runs the saved model without retraining. The tests serialize/reload all four families and compare predictions with the original in-memory fitted pipeline. This catches an important train/serve skew: saving weights while forgetting the scaler would change the score despite an identical model family name. A second check replays the committed report's test metrics from its saved artifacts.
+
+A fingerprint helps detect a changed input or implementation; it does not establish that the data is representative, lawful or correctly labeled. For production, add dependency/runtime versions, artifact signing/integrity checks, access controls, deployment compatibility and rollback drills. Treat a changed feature order or scaler schema as a model compatibility change, not a harmless metadata edit.

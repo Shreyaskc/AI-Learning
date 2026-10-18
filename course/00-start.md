@@ -6,6 +6,8 @@ AI Fluency is a self-study course for a software engineer learning AI from first
 
 Read in order on your first pass. Each chapter states prerequisites and outcomes, develops a mechanism, works an example, then asks you to retrieve the idea without looking. Write your answer before opening a solution. Run the linked lab, change an assumption, and explain why the output changed. An explanation that merely repeats a formula is not yet understanding.
 
+The fourteen offline labs include trained logistic/tree/MLP and character models, BM25/answer-evaluation boundaries, cross-process durable recovery and measured mock serving. The [29-module crosswalk](module-crosswalk.md) explains where implementation depth stops.
+
 The examples use invented support tickets, libraries and equipment. They contain no employer data or claimed personal achievements. Python labs require only the standard library and make no network calls. They demonstrate mechanisms on tiny data; they are not trained production models or evidence of real-world accuracy.
 
 From the repository root:
@@ -16,6 +18,7 @@ python3 labs/learning.py
 python3 labs/attention.py
 python3 labs/retrieval.py
 python3 labs/platform.py
+python3 tools/run_labs.py
 python3 -m unittest discover -s labs -p 'test_*.py'
 python3 tools/build.py
 python3 tools/check.py

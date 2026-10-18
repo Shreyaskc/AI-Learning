@@ -1,8 +1,8 @@
 # AI Fluency — from first principles to AI systems
 
-A rebuilt self-study course for software engineers learning AI from zero, with a path toward ML, LLM application and senior AI-platform interviews. Twenty authored chapters combine explanations, derivations, worked numbers, exercises with solutions, eight small offline labs, and four capstone assignments. It does not guarantee interview results or claim uniform specialist depth.
+A rebuilt self-study course for software engineers learning AI from zero, with a path toward ML, LLM application and senior AI-platform interviews. Twenty authored chapters combine explanations, derivations, worked numbers, exercises with solutions, fourteen small offline labs, and four capstone assignments. It does not guarantee interview results or claim uniform specialist depth.
 
-**Start:** [Learning contract and diagnostic](course/00-start.md). **Read in a browser:** open [index.html](index.html), or serve the directory locally. **Inspect actual scope:** [coverage ledger and remaining gaps](course/coverage.md). **Look up terms:** [glossary](course/glossary.md).
+**Start:** [Learning contract and diagnostic](course/00-start.md). **Read in a browser:** open [index.html](index.html), or serve the directory locally. **Inspect actual scope:** [coverage ledger and remaining gaps](course/coverage.md). **Audit every original module:** [29-module crosswalk](course/module-crosswalk.md). **Look up terms:** [glossary](course/glossary.md).
 
 ## Run locally
 
@@ -12,6 +12,7 @@ Python 3.10+ is required; validated in this workspace with the Python version re
 python3 tools/build.py
 python3 tools/check.py
 python3 -m unittest discover -s labs -p 'test_*.py'
+python3 tools/run_labs.py
 python3 labs/foundations.py
 python3 labs/learning.py
 python3 labs/attention.py
@@ -49,7 +50,7 @@ The old JavaScript course and visual assets were replaced with original Markdown
 
 ## Editing and validation
 
-Edit `course/*.md`, `style.css`, `app.js`, or lab sources. Run `python3 tools/build.py`; generated lesson HTML and the index are committed so GitHub Pages needs no dependency install. `tools/check.py` catches stale generated output and broken local links. The proposed workflow in `review/proposed-course-validation-workflow.yml` runs the same checks and all eight labs before a main-branch deploy. Installing it requires an owner credential with workflow permission; the existing live Pages workflow is unchanged. Draft PRs do not deploy the live site.
+Edit `course/*.md`, `style.css`, `app.js`, or lab sources. Run `python3 tools/build.py`; generated lesson HTML and the index are committed so GitHub Pages needs no dependency install. `tools/check.py` catches stale generated output and broken local links. The proposed workflow in `review/proposed-course-validation-workflow.yml` runs the same checks and all fourteen labs before a main-branch deploy. Installing it requires an owner credential with workflow permission; the existing live Pages workflow is unchanged. Draft PRs do not deploy the live site.
 
 The custom renderer supports the intentionally small Markdown subset used in this repository, including code blocks and tables. It escapes source HTML. Derivations use readable inline formulas and code blocks, avoiding external mathematics-rendering dependencies.
 

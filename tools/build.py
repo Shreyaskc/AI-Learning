@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COURSE = ROOT / 'course'
 LESSONS = sorted(COURSE.glob('[0-9][0-9]-*.md'))
-EXTRAS = [COURSE / name for name in ['glossary.md', 'coverage.md', 'sources.md']]
+EXTRAS = [COURSE / name for name in ['glossary.md', 'coverage.md', 'module-crosswalk.md', 'sources.md']]
 
 
 def slug(text):
@@ -124,7 +124,7 @@ def outputs():
             body+=f'<nav class="paging" aria-label="Lesson navigation">{prev}{nxt}</nav>'
         generated[p.with_suffix('.html')]=layout(p,body)
     cards=''.join(f'<a class="card" href="course/{p.stem}.html"><span>{p.stem[:2]}</span><h2>{html.escape(title(p).split(" · ",1)[-1])}</h2><p>{html.escape(next((line for line in p.read_text().splitlines()[1:] if line.strip()),""))}</p></a>' for p in LESSONS)
-    home=f'''<div class="eyebrow">A COURSE FOR SOFTWARE ENGINEERS</div><h1>Build your understanding<br>from the ground up.</h1><p class="lead">Learn what models learn, how they fail, and how to build AI systems you can explain and defend.</p><a class="start" href="course/00-start.html">Begin with the diagnostic →</a><div class="stats"><span><strong>20</strong> authored chapters</span><span><strong>8</strong> offline Python labs</span><span><strong>4</strong> capstone assignments</span></div><p>Start with no AI background. Follow the mathematics and worked examples, run tiny inspectable implementations, then practice evaluation, production design and interview defenses. Read the <a href="course/coverage.html">coverage ledger</a>: specialist topics have different depths and production projects remain assignments.</p><section class="cards" aria-label="Ordered curriculum">{cards}</section>'''
+    home=f'''<div class="eyebrow">A COURSE FOR SOFTWARE ENGINEERS</div><h1>Build your understanding<br>from the ground up.</h1><p class="lead">Learn what models learn, how they fail, and how to build AI systems you can explain and defend.</p><a class="start" href="course/00-start.html">Begin with the diagnostic →</a><div class="stats"><span><strong>20</strong> authored chapters</span><span><strong>14</strong> offline Python labs</span><span><strong>4</strong> capstone assignments</span></div><p>Start with no AI background. Follow the mathematics and worked examples, run tiny inspectable implementations, then practice evaluation, production design and interview defenses. Read the <a href="course/coverage.html">coverage ledger</a>: specialist topics have different depths and production projects remain assignments.</p><section class="cards" aria-label="Ordered curriculum">{cards}</section>'''
     generated[ROOT/'index.html']=layout(None,home,root=True)
     return generated
 

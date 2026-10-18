@@ -1,6 +1,6 @@
 # 11 · Workflows, tools, context, memory and graphs
 
-Prerequisites: 06 and 10; revisit 15 for threat modeling before private retrieval or side effects. Outcomes: implement bounded control flow, reason about retries, and separate stored context from learned weights.
+Prerequisites: 06 and 10; revisit 16 for threat modeling before private retrieval or side effects. Outcomes: implement bounded control flow, reason about retries, and separate stored context from learned weights.
 
 ## Start with a deterministic workflow
 
@@ -41,3 +41,33 @@ Entity resolution decides whether two names refer to one thing; mistakes merge u
 3. When should a workflow replace an agent? Solution: when steps are predictable, strict behavior matters, and evidence shows no benefit from autonomous selection.
 
 Interview depths: define agent and workflow; trace timeout/idempotency recovery; defend memory versus graph versus relational storage for a multi-tenant system. Vocabulary: tool schema, state machine, agent loop, idempotency, durable execution, context, episodic memory, semantic memory, entity resolution, graph traversal.
+
+## Practical extension: crash a worker after a committed effect
+
+Run `python3 labs/durable_agent.py`. This creates two temporary SQLite databases: one for workflow state/audit/memory and another simulating a separate provider with effects. It starts an actual child process, commits a provider effect, exits abruptly with code 73 before local acknowledgement, then starts a new process to reconcile. It costs no API calls and touches no real incident or external account.
+
+A durable operation has `(tenant,operation_id)` as its primary key, canonical validated payload, state, attempt count, persisted maximum attempts and result. Submission binds the key to its payload; reusing it for another incident is rejected. Trusted code permits only `draft_ticket` with a numeric incident ID. The tenant argument is an upstream authenticated identity assumption; the teaching script itself does not implement login or issue credentials.
+
+The provider has its own atomic uniqueness constraint and payload check. Inside a write transaction it either returns the previously committed result for the same key/payload or creates exactly one simulated ticket. A different payload for an existing key fails. [SQLite transaction semantics](https://www.sqlite.org/lang_transaction.html) support these local transactions, but do not make two independent databases one distributed transaction.
+
+Trace: submit writes PENDING and audit SUBMITTED. Before dispatch, a local transaction increments attempts and writes RUNNING. The provider commits its effect. The injected crash prevents the local SUCCEEDED update, leaving an ambiguous RUNNING state. On restart, recovery checks the provider's operation status before retrying. It finds the committed result and writes SUCCEEDED with audit RECONCILED_PROVIDER_EFFECT. The recorded run has one attempt and one provider effect. Repeating recovery returns the same saved result.
+
+If the dispatch fails before an effect exists, retry still uses the same operation key. The attempt budget is stored in the job row: reopening the workflow with a larger default does not silently increase an existing operation's budget. Exhaustion writes STOPPED. Recovery of an already committed effect is allowed before budget rejection, because reading known status does not create a new effect. The tests exercise both paths.
+
+This does not prove exactly-once effects for an arbitrary external tool. Our simulated provider offers definitive status and atomic idempotency. A real provider may have eventually consistent status, limited key retention or no idempotency support. In that case an ambiguous timeout may require waiting, manual reconciliation or a compensating action. A transactional outbox can atomically preserve an intent with local state, but delivery can still repeat; an idempotent consumer/provider or reconciliation remains necessary. Concurrent workers also need leases/fencing or other coordination beyond this serial-recovery lab.
+
+## Persist memory with provenance and deletion
+
+The same local database stores memory records with tenant, ID, statement, source, owner, expiry and a verified flag. Retrieval returns only the requested tenant's unexpired verified records. Marking verified is a trusted ingestion decision; the boolean does not magically establish truth. Generated hypotheses can be stored separately but are not promoted into verified recall by default.
+
+The demo writes one record expiring at t=200. At t=100 recall returns one; at t=201 it returns zero. Source deletion removes its derived record, so recall at t=100 subsequently returns zero as well. Tests include another tenant and an unverified hypothesis to prove those do not bleed into the result. A real deletion process must also handle indexes, caches, backups and retention requirements; this database is only one component.
+
+Exercises: (1) Move the crash to before provider commit. Solution: no provider effect exists; a retry may create one, within the persistent budget. (2) Change payload while retaining operation ID. Solution: reject before execution; a new intended action requires a new authorization decision/key. (3) Remove provider idempotency but leave the local job table. Solution: an effect may commit while the local acknowledgement is lost, so blind retry can duplicate it. (4) Add a second worker. Solution: identify ownership/lease races before claiming safe parallel execution; the current sample intentionally models serial recovery.
+
+Mastery gate: explain every persisted state after the crash, reproduce recovery across process boundaries, and identify the exact provider assumption that makes this demonstration safe. It remains a deterministic workflow, not an executed model-driven autonomous agent.
+
+## A typed graph query you can test
+
+`ownership_paths` performs the worked service→database→team query over explicit DEPENDS_ON and OWNED_BY edges. Each edge has tenant, expiry and source ID; every endpoint must belong to the caller's allowed node set. The test first permits only service/database and gets no owner, then permits team as well and obtains the two-hop path with both source IDs. At expiry the path disappears. This demonstrates why permission to view a starting node is insufficient to authorize every reachable node.
+
+The query uses already resolved entity IDs and a fixed relation pattern. It does not solve entity resolution, infer missing relationships or establish that a graph beats a relational join. Compare that simpler join before adding a graph database. A memory record and a graph edge both need provenance and lifecycle rules; they are stored representations, not updates to model weights.

@@ -47,3 +47,12 @@ For deeper stable foundations, the authors provide [An Introduction to Statistic
 ## Keeping claims current
 
 For each new integration, record exact model/runtime/tokenizer versions, source date, license, workload, metric and reproduction instructions. Recheck claims when those change. Separate “a paper reported this,” “our experiment observed this,” and “we hypothesize this will help.” Speculation about future intelligence, universal agent reliability or guaranteed interviews is not used as evidence in this course.
+
+
+## Practical extension sources
+
+[Lucene BM25Similarity 9.12.1](https://lucene.apache.org/core/9_12_1/core/org/apache/lucene/search/similarities/BM25Similarity.html) documents the IDF convention used in the educational BM25 implementation. This is a versioned reference, not a claim of an installed Lucene integration.
+
+[SQLite transaction documentation](https://www.sqlite.org/lang_transaction.html) and [Python sqlite3 documentation](https://docs.python.org/3/library/sqlite3.html) support explicit transaction and resource-handling semantics used in the two-store durable lab. Local transactions are not a distributed exactly-once guarantee.
+
+[NumPy broadcasting documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html) provides the trailing-axis broadcasting convention discussed in the data bridge; the course's standard-library arrays do not implement NumPy broadcasting.

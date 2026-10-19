@@ -3,6 +3,7 @@ import argparse
 import html
 import re
 import practice
+import terms
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,35 +16,36 @@ def slug(text):
     return re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-')
 
 
-def inline(raw):
+def inline(raw, context=None, prefix='../', link_terms=True):
     pieces = []
-    # Preserve inline code from other formatting substitutions.
-    for i, piece in enumerate(re.split(r'(`[^`]+`)', raw)):
+    pattern = r'(`[^`]+`|\[[^\]]+\]\([^)]+\)|\*\*.+?\*\*)'
+    for piece in re.split(pattern, raw):
         if piece.startswith('`') and piece.endswith('`'):
             pieces.append('<code>'+html.escape(piece[1:-1])+'</code>')
-            continue
-        text = html.escape(piece)
-        def link(match):
-            label, target = match.groups()
-            # Repository-authored links only; do not enable executable URL schemes.
-            if re.match(r'(?i)(javascript|data|vbscript):', target):
-                raise ValueError('unsupported link target')
-            if target.endswith('.md') and not target.startswith(('http:', 'https:')):
-                target = target[:-3]+'.html'
-            return '<a href="'+target+'">'+label+'</a>'
-        text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', link, text)
-        text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-        pieces.append(text)
+        elif piece.startswith('[') and re.fullmatch(r'\[([^\]]+)\]\(([^)]+)\)', piece):
+            label, target = re.fullmatch(r'\[([^\]]+)\]\(([^)]+)\)', piece).groups()
+            if re.match(r'(?i)(javascript|data|vbscript):', target): raise ValueError('unsupported link target')
+            if target.endswith('.md') and not target.startswith(('http:', 'https:')): target = target[:-3]+'.html'
+            pieces.append('<a href="'+html.escape(target, quote=True)+'">'+inline(label, context, prefix, False)+'</a>')
+        elif piece.startswith('**') and piece.endswith('**'):
+            label = piece[2:-2]
+            strong = '<strong>'+html.escape(label)+'</strong>'
+            key = terms.resolve(label, context) if link_terms else None
+            if key:
+                strong = ('<a class="term-link" data-term="'+key+'" href="'+prefix+'course/glossary.html#term-'+key+'" aria-haspopup="dialog" aria-controls="term-dialog" aria-expanded="false" aria-label="'+html.escape(label, quote=True)+': definition">'+strong+'</a>')
+            pieces.append(strong)
+        else: pieces.append(html.escape(piece))
     return ''.join(pieces)
 
 
 def render(markdown, lesson=None):
+    format_inline = lambda raw: inline(raw, lesson.stem if lesson else None)
     lines = markdown.splitlines()
     out, paragraph, code = [], [], []
     in_code = False
     def flush():
         if paragraph:
-            out.append('<p>'+inline(' '.join(paragraph))+'</p>')
+            out.append('<p>'+format_inline(' '.join(paragraph))+'</p>')
             paragraph.clear()
     i=0
     while i < len(lines):
@@ -62,7 +64,7 @@ def render(markdown, lesson=None):
         heading=re.match(r'^(#{1,6}) (.+)$',line)
         if heading:
             flush(); level=len(heading[1]); title=heading[2]
-            out.append(f'<h{level} id="{slug(title)}">{inline(title)}</h{level}>')
+            out.append(f'<h{level} id="{slug(title)}">{format_inline(title)}</h{level}>')
             i+=1; continue
         if line.startswith('|'):
             flush(); rows=[]
@@ -75,13 +77,14 @@ def render(markdown, lesson=None):
             for index,row in enumerate(rows):
                 tag='th' if index==0 else 'td'
                 scope=' scope="col"' if index==0 else ''
-                out.append('<tr>'+''.join(f'<{tag}{scope}>{inline(cell)}</{tag}>' for cell in row)+'</tr>')
+                anchor = ' id="term-'+terms.ALIASES[terms.normalize(row[0])]+'"' if index and terms.normalize(row[0]) in terms.ALIASES and row[0] == terms.ENTRIES[terms.ALIASES[terms.normalize(row[0])]]['name'] else ''
+                out.append('<tr'+anchor+'>'+''.join(f'<{tag}{scope}>{format_inline(cell)}</{tag}>' for cell in row)+'</tr>')
             out.append('</table></div>'); continue
         bullet=re.match(r'^- (.+)',line)
         if bullet:
             flush(); out.append('<ul>')
             while i<len(lines) and lines[i].startswith('- '):
-                out.append('<li>'+inline(lines[i][2:])+'</li>'); i+=1
+                out.append('<li>'+format_inline(lines[i][2:])+'</li>'); i+=1
             out.append('</ul>'); continue
         if lesson and line.startswith('Exercises:'):
             flush()
@@ -90,8 +93,8 @@ def render(markdown, lesson=None):
             for number,exercise in zip(pieces[1::2],pieces[2::2]):
                 pair=re.split(r'\s+Solution:\s*',exercise,maxsplit=1)
                 if len(pair)==2:
-                    out.append('<details class="worked-exercise inline-question"><summary>'+inline(pair[0])+'</summary><div class="inline-solution"><p><strong>Answer and reasoning</strong></p><p>'+inline(pair[1])+'</p></div></details>')
-                else:out.append('<p>'+inline(number+'. '+exercise)+'</p>')
+                    out.append('<details class="worked-exercise inline-question"><summary>'+format_inline(pair[0])+'</summary><div class="inline-solution"><p><strong>Answer and reasoning</strong></p><p>'+format_inline(pair[1])+'</p></div></details>')
+                else:out.append('<p>'+format_inline(number+'. '+exercise)+'</p>')
             out.append('</div>');i+=1;continue
         question = practice.QUESTION.match(line) if lesson else None
         if question:
@@ -99,7 +102,7 @@ def render(markdown, lesson=None):
             prompt, solution = question.groups()
             identity = practice.questions([lesson])
             item = next(q for q in identity if q['question'] == prompt)
-            out.append('<details class="inline-question"><summary>'+inline(prompt)+'</summary><div class="inline-solution"><p><strong>Answer and reasoning</strong></p><p>'+inline(solution)+'</p><a href="../practice.html#topic='+lesson.stem+'&amp;q='+item['id']+'">Practice this question →</a></div></details>')
+            out.append('<details class="inline-question"><summary>'+format_inline(prompt)+'</summary><div class="inline-solution"><p><strong>Answer and reasoning</strong></p><p>'+format_inline(solution)+'</p><a href="../practice.html#topic='+lesson.stem+'&amp;q='+item['id']+'">Practice this question →</a></div></details>')
             i+=1; continue
         paragraph.append(line); i+=1
     flush()
@@ -123,12 +126,12 @@ def layout(current, body, root=False, title_override=None):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A self-study AI course with worked mathematics, offline Python labs and practical system design.">
 <title>{html.escape(page_title)} · AI Fluency</title><link rel="stylesheet" href="{prefix}style.css">
-<script src="{prefix}app.js" defer></script></head>
+<script src="{prefix}app.js" defer></script><script src="{prefix}terms.js" defer></script></head>
 <body data-chapter="{current.stem if current else ''}"><a class="skip" href="#main">Skip to lesson</a>
 <header><a class="brand" href="{prefix}index.html">AI / FLUENCY</a><nav class="mode-nav" aria-label="Learning mode"><a href="{prefix}index.html"{learn_current}>Learn</a><a href="{prefix}practice.html"{practice_current}>Practice Q&amp;A</a></nav><button id="menu" aria-expanded="false" aria-controls="sidebar">Lessons</button></header>
 <div class="layout"><aside id="sidebar"><label for="search">Find a lesson or reference</label><input id="search" type="search" placeholder="Try transformers or security">
 <p id="progress" aria-live="polite">Study progress is stored in this browser.</p><nav aria-label="Course lessons">{nav}</nav><p class="small">Checkboxes track study, not assessed mastery.</p></aside>
-<main id="main" tabindex="-1">{body}<footer>Original explanations · Synthetic examples · <a href="{prefix}course/coverage.html">Evidence and remaining depth</a> · <a href="{prefix}README.md">Repository guide</a></footer></main></div></body></html>'''
+<main id="main" tabindex="-1">{body}<footer>Original explanations · Synthetic examples · <a href="{prefix}course/coverage.html">Evidence and remaining depth</a> · <a href="{prefix}README.md">Repository guide</a></footer></main></div><dialog id="term-dialog" aria-labelledby="term-title" aria-describedby="term-definition term-example-text"><button id="term-close" type="button" aria-label="Close definition">Close ×</button><h2 id="term-title"></h2><p id="term-definition"></p><p><strong>Example:</strong> <span id="term-example-text"></span></p><a id="term-glossary">Read in glossary →</a></dialog><script id="term-data" type="application/json">{terms.data()}</script></body></html>'''
 
 
 def outputs():
@@ -151,7 +154,7 @@ def outputs():
     cards=''.join(f'<a class="card" href="course/{p.stem}.html"><span>{p.stem[:2]}</span><h2>{html.escape(title(p).split(" · ",1)[-1])}</h2><p>{html.escape(next((line for line in p.read_text().splitlines()[1:] if line.strip()),""))}</p></a>' for p in LESSONS)
     home=f'''<div class="eyebrow">A COURSE FOR SOFTWARE ENGINEERS</div><h1>Build your understanding<br>from the ground up.</h1><p class="lead">Learn what models learn, how they fail, and how to build AI systems you can explain and defend.</p><div class="home-actions"><a class="start" href="course/01-foundations.html">Start learning →</a><a class="start secondary" href="practice.html">Practice Q&amp;A →</a></div><p class="home-diagnostic">Already familiar with the basics? <a href="practice.html#topic=00-start">Try the 10-question diagnostic</a>. New here? Start with the first lesson; the diagnostic is optional.</p><div class="stats"><span><strong>20</strong> authored chapters</span><span><strong>14</strong> offline Python labs</span><span><strong>4</strong> capstone assignments</span></div><p>Start with no AI background. Follow the mathematics and worked examples, run tiny inspectable implementations, then practice evaluation, production design and interview defenses. Read the <a href="course/coverage.html">coverage ledger</a>: specialist topics have different depths and production projects remain assignments.</p><section class="cards" aria-label="Ordered curriculum">{cards}</section>'''
     generated[ROOT/'index.html']=layout(None,home,root=True)
-    generated[ROOT/'practice.html']=layout(None,practice.page(practice.questions(LESSONS),inline),root=True,title_override="Practice Q&A")
+    generated[ROOT/'practice.html']=layout(None,practice.page(practice.questions(LESSONS),lambda raw: inline(raw, prefix='')),root=True,title_override="Practice Q&A")
     return generated
 
 

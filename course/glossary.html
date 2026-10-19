@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A self-study AI course with worked mathematics, offline Python labs and practical system design.">
 <title>Glossary and concept index · AI Fluency</title><link rel="stylesheet" href="../style.css">
-<script src="../app.js" defer></script></head>
+<script src="../app.js" defer></script><script src="../terms.js" defer></script></head>
 <body data-chapter="glossary"><a class="skip" href="#main">Skip to lesson</a>
 <header><a class="brand" href="../index.html">AI / FLUENCY</a><nav class="mode-nav" aria-label="Learning mode"><a href="../index.html" aria-current="true">Learn</a><a href="../practice.html">Practice Q&amp;A</a></nav><button id="menu" aria-expanded="false" aria-controls="sidebar">Lessons</button></header>
 <div class="layout"><aside id="sidebar"><label for="search">Find a lesson or reference</label><input id="search" type="search" placeholder="Try transformers or security">
@@ -10,86 +10,90 @@
 <main id="main" tabindex="-1"><h1 id="glossary-and-concept-index">Glossary and concept index</h1>
 <p>Use this index to return to the first explanation. A definition is a retrieval cue, not a replacement for the worked lesson. Symbols are defined locally; a parameter named T in one source need not have the same meaning in another.</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable reference table"><table>
-<tr><th scope="col">Term</th><th scope="col">Meaning</th><th scope="col">First explanation</th></tr>
-<tr><td>AI</td><td>Broad field of search, planning, learning and related intelligent behavior</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Machine learning</td><td>Improving a behavior from data under an objective</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Deep learning</td><td>Learning with multiple neural transformations</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Generative model</td><td>Model of a data distribution used to describe or sample data</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Parameter / hyperparameter</td><td>Fitted model quantity / configuration of the model or training procedure</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Feature / target</td><td>Available input measurement / outcome to predict</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Training / inference</td><td>Selecting parameters / applying selected parameters</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Self-supervised learning</td><td>Deriving training targets from data itself</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Leakage</td><td>Using information unavailable under the intended evaluation/deployment contract</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Baseline / ablation</td><td>Reference behavior / controlled removal of a component</td><td><a href="01-foundations.html">01</a></td></tr>
-<tr><td>Tensor / shape / dtype</td><td>Multi-axis array / dimensions / numeric representation</td><td><a href="02-math.html">02</a></td></tr>
-<tr><td>Dot product</td><td>Sum of coordinate-wise products</td><td><a href="02-math.html">02</a></td></tr>
-<tr><td>Norm / cosine</td><td>Vector magnitude / normalized directional similarity</td><td><a href="02-math.html">02</a></td></tr>
-<tr><td>Rank / SVD / PCA</td><td>Independent-direction count / matrix factorization / variance-preserving projection</td><td><a href="02-math.html">02</a></td></tr>
-<tr><td>Logit</td><td>Unnormalized score; binary log odds in logistic regression</td><td><a href="02-math.html">02</a>, <a href="05-classical-ml.html">05</a></td></tr>
-<tr><td>Softmax</td><td>Exponentiate and normalize scores into positive weights</td><td><a href="02-math.html">02</a></td></tr>
-<tr><td>Gradient / chain rule</td><td>Vector of partial derivatives / derivative rule for composition</td><td><a href="02-math.html">02</a></td></tr>
-<tr><td>Conditional probability</td><td>Probability given an observed event</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Prior / likelihood / posterior</td><td>Before-evidence distribution / probability of evidence under a hypothesis / updated distribution</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Expectation / variance</td><td>Weighted average / average squared centered deviation</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Standard error</td><td>Sampling spread of an estimator, rather than spread of individual outcomes</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Confidence / credible interval</td><td>Frequentist procedure coverage / Bayesian posterior interval</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Entropy / cross-entropy</td><td>Expected self-surprise / expected surprise under predicted distribution</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>KL divergence</td><td>Asymmetric expected log probability ratio between distributions</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Confounding</td><td>A common influence that can make association misleading about intervention effects</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Aleatoric / epistemic</td><td>Outcome variability under information / uncertainty about model knowledge</td><td><a href="03-probability.html">03</a></td></tr>
-<tr><td>Empirical risk</td><td>Average sample loss</td><td><a href="04-optimization.html">04</a></td></tr>
-<tr><td>SGD / batch / epoch</td><td>Stochastic gradient updates / update&#x27;s examples / pass through training data</td><td><a href="04-optimization.html">04</a></td></tr>
-<tr><td>Regularization</td><td>Constraints or penalties favoring selected solution properties</td><td><a href="04-optimization.html">04</a></td></tr>
-<tr><td>Momentum / Adam</td><td>Gradient-history smoothing / adaptive moment-based optimizer</td><td><a href="04-optimization.html">04</a></td></tr>
-<tr><td>Underfitting / overfitting</td><td>Insufficient relevant fit / sample fit failing to generalize</td><td><a href="04-optimization.html">04</a></td></tr>
-<tr><td>Logistic regression</td><td>Sigmoid of an affine score for a binary target</td><td><a href="05-classical-ml.html">05</a></td></tr>
-<tr><td>Margin / kernel</td><td>Separation from a boundary / implicit feature-space similarity construction</td><td><a href="05-classical-ml.html">05</a></td></tr>
-<tr><td>Bagging / boosting</td><td>Averaging resampled learners / sequential objective-improving learners</td><td><a href="05-classical-ml.html">05</a></td></tr>
-<tr><td>Precision / recall</td><td>Fraction of flagged cases truly positive / fraction of positives caught</td><td><a href="06-evaluation.html">06</a></td></tr>
-<tr><td>Calibration</td><td>Predicted event probabilities matching observed rates in a population</td><td><a href="06-evaluation.html">06</a></td></tr>
-<tr><td>Brier score</td><td>Mean squared probability error for a binary outcome</td><td><a href="06-evaluation.html">06</a></td></tr>
-<tr><td>Contamination</td><td>Evaluation content or information entering training/development in a compromising way</td><td><a href="06-evaluation.html">06</a></td></tr>
-<tr><td>Drift / abstention</td><td>Distribution change / choosing not to automate an unsupported case</td><td><a href="06-evaluation.html">06</a></td></tr>
-<tr><td>Activation / residual</td><td>Nonlinear transformation / added identity pathway</td><td><a href="07-neural-networks.html">07</a></td></tr>
-<tr><td>Backprop / autograd</td><td>Reverse chain-rule propagation / software differentiation of a computation graph</td><td><a href="07-neural-networks.html">07</a></td></tr>
-<tr><td>Convolution / recurrence</td><td>Shared local filters / repeated state update over a sequence</td><td><a href="07-neural-networks.html">07</a></td></tr>
-<tr><td>Tokenizer / BPE</td><td>Text-to-ID conversion / learned symbol-pair merge procedure</td><td><a href="08-transformers.html">08</a></td></tr>
-<tr><td>Embedding</td><td>Learned vector representation under an objective</td><td><a href="08-transformers.html">08</a></td></tr>
-<tr><td>Query / key / value</td><td>Projections controlling attention matching / matching / content mixture</td><td><a href="08-transformers.html">08</a></td></tr>
-<tr><td>Causal mask</td><td>Prohibits dependence on future sequence positions</td><td><a href="08-transformers.html">08</a></td></tr>
-<tr><td>Autoregressive / teacher forcing</td><td>Conditional next-step generation / training with known target prefixes</td><td><a href="08-transformers.html">08</a></td></tr>
-<tr><td>Temperature / top-p</td><td>Score scaling / probability-mass-prefix sampling filter</td><td><a href="08-transformers.html">08</a></td></tr>
-<tr><td>Perplexity</td><td>Exponentiated mean token negative log likelihood</td><td><a href="09-llm-training.html">09</a></td></tr>
-<tr><td>SFT / PEFT / LoRA</td><td>Supervised adaptation / limited-parameter adaptation / low-rank update parameterization</td><td><a href="09-llm-training.html">09</a></td></tr>
-<tr><td>Policy / reward / return</td><td>Action distribution / scored feedback / aggregate future reward</td><td><a href="09-llm-training.html">09</a></td></tr>
-<tr><td>RLHF / DPO</td><td>Human-feedback reinforcement-learning family / direct preference objective</td><td><a href="09-llm-training.html">09</a></td></tr>
-<tr><td>Reward hacking</td><td>Improving a proxy without improving intended benefit</td><td><a href="09-llm-training.html">09</a></td></tr>
-<tr><td>BM25 / ANN</td><td>Lexical ranking family / approximate nearest-neighbor search</td><td><a href="10-retrieval-rag.html">10</a></td></tr>
-<tr><td>Bi-encoder / cross-encoder</td><td>Independent query/document representations / joint pair processing</td><td><a href="10-retrieval-rag.html">10</a></td></tr>
-<tr><td>Reranker / hybrid retrieval</td><td>Reordering candidates with more work / combining retrieval signals</td><td><a href="10-retrieval-rag.html">10</a></td></tr>
-<tr><td>RAG / grounding / provenance</td><td>Retrieval-conditioned generation / evidence support / traceable source origin</td><td><a href="10-retrieval-rag.html">10</a></td></tr>
-<tr><td>Tool / workflow / agent</td><td>Callable operation / fixed control flow / model-selected action loop</td><td><a href="11-agents-memory.html">11</a></td></tr>
-<tr><td>Idempotency</td><td>Repeating a logical operation key does not duplicate intended effects</td><td><a href="11-agents-memory.html">11</a></td></tr>
-<tr><td>Context / memory</td><td>Invocation working set / persistent information across interactions</td><td><a href="11-agents-memory.html">11</a></td></tr>
-<tr><td>Knowledge graph / entity resolution</td><td>Typed entity relations / deciding identity across references</td><td><a href="11-agents-memory.html">11</a></td></tr>
-<tr><td>OCR / WER / diarization</td><td>Extracting text from pixels / transcription error rate / who spoke when</td><td><a href="12-multimodal.html">12</a></td></tr>
-<tr><td>VAE / GAN / diffusion</td><td>Probabilistic latent model / adversarial generator training / noise-and-denoise model family</td><td><a href="12-multimodal.html">12</a></td></tr>
-<tr><td>Event / availability time</td><td>When an event happened / when it was known to the system</td><td><a href="13-data-platforms.html">13</a></td></tr>
-<tr><td>Feature store / backfill / skew</td><td>Managed feature definitions/storage / historical materialization / inconsistent train/serve behavior</td><td><a href="13-data-platforms.html">13</a></td></tr>
-<tr><td>FLOP / bandwidth</td><td>Floating-point operation / bytes transferred per unit time</td><td><a href="14-compute-serving.html">14</a></td></tr>
-<tr><td>Data / tensor / pipeline parallelism</td><td>Split examples / split operations / split layer groups</td><td><a href="14-compute-serving.html">14</a></td></tr>
-<tr><td>Collective / sharding</td><td>Coordinated multi-worker communication / partitioned state</td><td><a href="14-compute-serving.html">14</a></td></tr>
-<tr><td>Prefill / decode / KV cache</td><td>Prompt processing / next-token steps / stored prior keys and values</td><td><a href="14-compute-serving.html">14</a></td></tr>
-<tr><td>Quantization</td><td>Reduced-precision representation with numerical and runtime tradeoffs</td><td><a href="14-compute-serving.html">14</a></td></tr>
-<tr><td>Speculative decoding</td><td>Draft proposals plus target verification under an acceptance procedure</td><td><a href="14-compute-serving.html">14</a></td></tr>
-<tr><td>SLI / SLO / error budget</td><td>Measured indicator / target / allowed misses under the target</td><td><a href="15-operations.html">15</a></td></tr>
-<tr><td>Shadow / canary / rollback</td><td>Noncontrolling evaluation / bounded exposure / restore compatible prior behavior</td><td><a href="15-operations.html">15</a></td></tr>
-<tr><td>Injection / poisoning / exfiltration</td><td>Untrusted content redirects control / corrupts learned evidence / unauthorized data transfer</td><td><a href="16-security-responsibility.html">16</a></td></tr>
-<tr><td>Differential privacy</td><td>Formal bounded output-distribution change under neighboring datasets</td><td><a href="16-security-responsibility.html">16</a></td></tr>
-<tr><td>Equalized odds / calibration</td><td>Matched group error rates / probability validity within a population</td><td><a href="16-security-responsibility.html">16</a></td></tr>
-<tr><td>Power / p-value / effect size</td><td>Detection probability under an alternative / null-model incompatibility measure / magnitude of difference</td><td><a href="17-research-experiments.html">17</a></td></tr>
-<tr><td>Horizon / rolling origin</td><td>Forecast distance / sequential historical forecast evaluation</td><td><a href="18-domain-electives.html">18</a></td></tr>
-<tr><td>Implicit feedback / bandit</td><td>Behavioral signal confounded with exposure / action learning with partial feedback</td><td><a href="18-domain-electives.html">18</a></td></tr>
+<tr><th scope="col">Term</th><th scope="col">Meaning</th><th scope="col">First explanation</th><th scope="col">Short example</th><th scope="col">Aliases</th></tr>
+<tr><td>AI</td><td>Broad field of search, planning, learning and related intelligent behavior</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr><td>Machine learning</td><td>Improving a behavior from data under an objective</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr><td>Deep learning</td><td>Learning with multiple neural transformations</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr><td>Generative model</td><td>Model of a data distribution used to describe or sample data</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr id="term-parameter"><td>Parameter</td><td>A number fitted from training data that controls a model’s output.</td><td><a href="01-foundations.html">01</a></td><td>A learned coefficient multiplies package weight when estimating delivery cost.</td><td>parameters; model parameter; model parameters</td></tr>
+<tr id="term-hyperparameter"><td>Hyperparameter</td><td>A setting chosen outside the parameter-fitting process to control a model or its training. It may be selected using validation data.</td><td><a href="01-foundations.html">01</a></td><td>Maximum tree depth is chosen before fitting a delivery-time decision tree.</td><td>hyperparameters</td></tr>
+<tr id="term-feature"><td>Feature</td><td>An input measurement available to a model when it makes a prediction.</td><td><a href="01-foundations.html">01</a></td><td>Package weight can be an input to a delivery-cost model.</td><td>features</td></tr>
+<tr id="term-target"><td>Target</td><td>The outcome a supervised model is trained to predict.</td><td><a href="01-foundations.html">01</a></td><td>Observed delivery duration is the target for a delivery-time model.</td><td>targets</td></tr>
+<tr id="term-example"><td>Example</td><td>One case in a dataset. In supervised learning, a labeled example contains inputs and the corresponding target.</td><td><a href="01-foundations.html">01</a></td><td>One parcel’s measurements together with its observed delivery duration form a labeled example.</td><td>examples; training example; training examples</td></tr>
+<tr id="term-training"><td>Training</td><td>The process of fitting model parameters using data and a learning objective.</td><td><a href="01-foundations.html">01</a></td><td>Training adjusts model coefficients using historical parcel deliveries.</td><td></td></tr>
+<tr id="term-inference"><td>Inference</td><td>Applying a fitted model to inputs to produce outputs.</td><td><a href="01-foundations.html">01</a></td><td>Inference estimates the delivery duration for a new parcel using the fitted model.</td><td></td></tr>
+<tr><td>Self-supervised learning</td><td>Deriving training targets from data itself</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr><td>Leakage</td><td>Using information unavailable under the intended evaluation/deployment contract</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr><td>Baseline / ablation</td><td>Reference behavior / controlled removal of a component</td><td><a href="01-foundations.html">01</a></td><td></td><td></td></tr>
+<tr><td>Tensor / shape / dtype</td><td>Multi-axis array / dimensions / numeric representation</td><td><a href="02-math.html">02</a></td><td></td><td></td></tr>
+<tr><td>Dot product</td><td>Sum of coordinate-wise products</td><td><a href="02-math.html">02</a></td><td></td><td></td></tr>
+<tr><td>Norm / cosine</td><td>Vector magnitude / normalized directional similarity</td><td><a href="02-math.html">02</a></td><td></td><td></td></tr>
+<tr><td>Rank / SVD / PCA</td><td>Independent-direction count / matrix factorization / variance-preserving projection</td><td><a href="02-math.html">02</a></td><td></td><td></td></tr>
+<tr><td>Logit</td><td>Unnormalized score; binary log odds in logistic regression</td><td><a href="02-math.html">02</a>, <a href="05-classical-ml.html">05</a></td><td></td><td></td></tr>
+<tr><td>Softmax</td><td>Exponentiate and normalize scores into positive weights</td><td><a href="02-math.html">02</a></td><td></td><td></td></tr>
+<tr><td>Gradient / chain rule</td><td>Vector of partial derivatives / derivative rule for composition</td><td><a href="02-math.html">02</a></td><td></td><td></td></tr>
+<tr><td>Conditional probability</td><td>Probability given an observed event</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Prior / likelihood / posterior</td><td>Before-evidence distribution / probability of evidence under a hypothesis / updated distribution</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Expectation / variance</td><td>Weighted average / average squared centered deviation</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Standard error</td><td>Sampling spread of an estimator, rather than spread of individual outcomes</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Confidence / credible interval</td><td>Frequentist procedure coverage / Bayesian posterior interval</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Entropy / cross-entropy</td><td>Expected self-surprise / expected surprise under predicted distribution</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>KL divergence</td><td>Asymmetric expected log probability ratio between distributions</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Confounding</td><td>A common influence that can make association misleading about intervention effects</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Aleatoric / epistemic</td><td>Outcome variability under information / uncertainty about model knowledge</td><td><a href="03-probability.html">03</a></td><td></td><td></td></tr>
+<tr><td>Empirical risk</td><td>Average sample loss</td><td><a href="04-optimization.html">04</a></td><td></td><td></td></tr>
+<tr><td>SGD / batch / epoch</td><td>Stochastic gradient updates / update&#x27;s examples / pass through training data</td><td><a href="04-optimization.html">04</a></td><td></td><td></td></tr>
+<tr><td>Regularization</td><td>Constraints or penalties favoring selected solution properties</td><td><a href="04-optimization.html">04</a></td><td></td><td></td></tr>
+<tr><td>Momentum / Adam</td><td>Gradient-history smoothing / adaptive moment-based optimizer</td><td><a href="04-optimization.html">04</a></td><td></td><td></td></tr>
+<tr><td>Underfitting / overfitting</td><td>Insufficient relevant fit / sample fit failing to generalize</td><td><a href="04-optimization.html">04</a></td><td></td><td></td></tr>
+<tr><td>Logistic regression</td><td>Sigmoid of an affine score for a binary target</td><td><a href="05-classical-ml.html">05</a></td><td></td><td></td></tr>
+<tr><td>Margin / kernel</td><td>Separation from a boundary / implicit feature-space similarity construction</td><td><a href="05-classical-ml.html">05</a></td><td></td><td></td></tr>
+<tr><td>Bagging / boosting</td><td>Averaging resampled learners / sequential objective-improving learners</td><td><a href="05-classical-ml.html">05</a></td><td></td><td></td></tr>
+<tr><td>Precision / recall</td><td>Fraction of flagged cases truly positive / fraction of positives caught</td><td><a href="06-evaluation.html">06</a></td><td></td><td></td></tr>
+<tr><td>Calibration</td><td>Predicted event probabilities matching observed rates in a population</td><td><a href="06-evaluation.html">06</a></td><td></td><td></td></tr>
+<tr><td>Brier score</td><td>Mean squared probability error for a binary outcome</td><td><a href="06-evaluation.html">06</a></td><td></td><td></td></tr>
+<tr><td>Contamination</td><td>Evaluation content or information entering training/development in a compromising way</td><td><a href="06-evaluation.html">06</a></td><td></td><td></td></tr>
+<tr><td>Drift / abstention</td><td>Distribution change / choosing not to automate an unsupported case</td><td><a href="06-evaluation.html">06</a></td><td></td><td></td></tr>
+<tr><td>Activation / residual</td><td>Nonlinear transformation / added identity pathway</td><td><a href="07-neural-networks.html">07</a></td><td></td><td></td></tr>
+<tr><td>Backprop / autograd</td><td>Reverse chain-rule propagation / software differentiation of a computation graph</td><td><a href="07-neural-networks.html">07</a></td><td></td><td></td></tr>
+<tr><td>Convolution / recurrence</td><td>Shared local filters / repeated state update over a sequence</td><td><a href="07-neural-networks.html">07</a></td><td></td><td></td></tr>
+<tr><td>Tokenizer / BPE</td><td>Text-to-ID conversion / learned symbol-pair merge procedure</td><td><a href="08-transformers.html">08</a></td><td></td><td></td></tr>
+<tr><td>Embedding</td><td>Learned vector representation under an objective</td><td><a href="08-transformers.html">08</a></td><td></td><td></td></tr>
+<tr><td>Query / key / value</td><td>Projections controlling attention matching / matching / content mixture</td><td><a href="08-transformers.html">08</a></td><td></td><td></td></tr>
+<tr><td>Causal mask</td><td>Prohibits dependence on future sequence positions</td><td><a href="08-transformers.html">08</a></td><td></td><td></td></tr>
+<tr><td>Autoregressive / teacher forcing</td><td>Conditional next-step generation / training with known target prefixes</td><td><a href="08-transformers.html">08</a></td><td></td><td></td></tr>
+<tr><td>Temperature / top-p</td><td>Score scaling / probability-mass-prefix sampling filter</td><td><a href="08-transformers.html">08</a></td><td></td><td></td></tr>
+<tr><td>Perplexity</td><td>Exponentiated mean token negative log likelihood</td><td><a href="09-llm-training.html">09</a></td><td></td><td></td></tr>
+<tr><td>SFT / PEFT / LoRA</td><td>Supervised adaptation / limited-parameter adaptation / low-rank update parameterization</td><td><a href="09-llm-training.html">09</a></td><td></td><td></td></tr>
+<tr><td>Policy / reward / return</td><td>Action distribution / scored feedback / aggregate future reward</td><td><a href="09-llm-training.html">09</a></td><td></td><td></td></tr>
+<tr><td>RLHF / DPO</td><td>Human-feedback reinforcement-learning family / direct preference objective</td><td><a href="09-llm-training.html">09</a></td><td></td><td></td></tr>
+<tr><td>Reward hacking</td><td>Improving a proxy without improving intended benefit</td><td><a href="09-llm-training.html">09</a></td><td></td><td></td></tr>
+<tr><td>BM25 / ANN</td><td>Lexical ranking family / approximate nearest-neighbor search</td><td><a href="10-retrieval-rag.html">10</a></td><td></td><td></td></tr>
+<tr><td>Bi-encoder / cross-encoder</td><td>Independent query/document representations / joint pair processing</td><td><a href="10-retrieval-rag.html">10</a></td><td></td><td></td></tr>
+<tr><td>Reranker / hybrid retrieval</td><td>Reordering candidates with more work / combining retrieval signals</td><td><a href="10-retrieval-rag.html">10</a></td><td></td><td></td></tr>
+<tr><td>RAG / grounding / provenance</td><td>Retrieval-conditioned generation / evidence support / traceable source origin</td><td><a href="10-retrieval-rag.html">10</a></td><td></td><td></td></tr>
+<tr><td>Tool / workflow / agent</td><td>Callable operation / fixed control flow / model-selected action loop</td><td><a href="11-agents-memory.html">11</a></td><td></td><td></td></tr>
+<tr><td>Idempotency</td><td>Repeating a logical operation key does not duplicate intended effects</td><td><a href="11-agents-memory.html">11</a></td><td></td><td></td></tr>
+<tr><td>Context / memory</td><td>Invocation working set / persistent information across interactions</td><td><a href="11-agents-memory.html">11</a></td><td></td><td></td></tr>
+<tr><td>Knowledge graph / entity resolution</td><td>Typed entity relations / deciding identity across references</td><td><a href="11-agents-memory.html">11</a></td><td></td><td></td></tr>
+<tr><td>OCR / WER / diarization</td><td>Extracting text from pixels / transcription error rate / who spoke when</td><td><a href="12-multimodal.html">12</a></td><td></td><td></td></tr>
+<tr><td>VAE / GAN / diffusion</td><td>Probabilistic latent model / adversarial generator training / noise-and-denoise model family</td><td><a href="12-multimodal.html">12</a></td><td></td><td></td></tr>
+<tr><td>Event / availability time</td><td>When an event happened / when it was known to the system</td><td><a href="13-data-platforms.html">13</a></td><td></td><td></td></tr>
+<tr><td>Feature store / backfill / skew</td><td>Managed feature definitions/storage / historical materialization / inconsistent train/serve behavior</td><td><a href="13-data-platforms.html">13</a></td><td></td><td></td></tr>
+<tr><td>FLOP / bandwidth</td><td>Floating-point operation / bytes transferred per unit time</td><td><a href="14-compute-serving.html">14</a></td><td></td><td></td></tr>
+<tr><td>Data / tensor / pipeline parallelism</td><td>Split examples / split operations / split layer groups</td><td><a href="14-compute-serving.html">14</a></td><td></td><td></td></tr>
+<tr><td>Collective / sharding</td><td>Coordinated multi-worker communication / partitioned state</td><td><a href="14-compute-serving.html">14</a></td><td></td><td></td></tr>
+<tr><td>Prefill / decode / KV cache</td><td>Prompt processing / next-token steps / stored prior keys and values</td><td><a href="14-compute-serving.html">14</a></td><td></td><td></td></tr>
+<tr><td>Quantization</td><td>Reduced-precision representation with numerical and runtime tradeoffs</td><td><a href="14-compute-serving.html">14</a></td><td></td><td></td></tr>
+<tr><td>Speculative decoding</td><td>Draft proposals plus target verification under an acceptance procedure</td><td><a href="14-compute-serving.html">14</a></td><td></td><td></td></tr>
+<tr><td>SLI / SLO / error budget</td><td>Measured indicator / target / allowed misses under the target</td><td><a href="15-operations.html">15</a></td><td></td><td></td></tr>
+<tr><td>Shadow / canary / rollback</td><td>Noncontrolling evaluation / bounded exposure / restore compatible prior behavior</td><td><a href="15-operations.html">15</a></td><td></td><td></td></tr>
+<tr><td>Injection / poisoning / exfiltration</td><td>Untrusted content redirects control / corrupts learned evidence / unauthorized data transfer</td><td><a href="16-security-responsibility.html">16</a></td><td></td><td></td></tr>
+<tr><td>Differential privacy</td><td>Formal bounded output-distribution change under neighboring datasets</td><td><a href="16-security-responsibility.html">16</a></td><td></td><td></td></tr>
+<tr><td>Equalized odds / calibration</td><td>Matched group error rates / probability validity within a population</td><td><a href="16-security-responsibility.html">16</a></td><td></td><td></td></tr>
+<tr><td>Power / p-value / effect size</td><td>Detection probability under an alternative / null-model incompatibility measure / magnitude of difference</td><td><a href="17-research-experiments.html">17</a></td><td></td><td></td></tr>
+<tr><td>Horizon / rolling origin</td><td>Forecast distance / sequential historical forecast evaluation</td><td><a href="18-domain-electives.html">18</a></td><td></td><td></td></tr>
+<tr><td>Implicit feedback / bandit</td><td>Behavioral signal confounded with exposure / action learning with partial feedback</td><td><a href="18-domain-electives.html">18</a></td><td></td><td></td></tr>
 </table></div>
 <h2 id="symbols-and-units">Symbols and units</h2>
-<p>n is usually example count, d feature width, w model coefficients, b bias, y target, p predicted probability, eta learning rate, lambda regularization strength. In attention, T is sequence length and d_k key/query head width; tau is sampling/contrastive temperature. Context specifies any different convention. GB means 10^9 bytes; GiB means 2^30 bytes. A probability has no physical unit; latency, throughput and money do.</p><footer>Original explanations · Synthetic examples · <a href="../course/coverage.html">Evidence and remaining depth</a> · <a href="../README.md">Repository guide</a></footer></main></div></body></html>
+<p>n is usually example count, d feature width, w model coefficients, b bias, y target, p predicted probability, eta learning rate, lambda regularization strength. In attention, T is sequence length and d_k key/query head width; tau is sampling/contrastive temperature. Context specifies any different convention. GB means 10^9 bytes; GiB means 2^30 bytes. A probability has no physical unit; latency, throughput and money do.</p><footer>Original explanations · Synthetic examples · <a href="../course/coverage.html">Evidence and remaining depth</a> · <a href="../README.md">Repository guide</a></footer></main></div><dialog id="term-dialog" aria-labelledby="term-title" aria-describedby="term-definition term-example-text"><button id="term-close" type="button" aria-label="Close definition">Close ×</button><h2 id="term-title"></h2><p id="term-definition"></p><p><strong>Example:</strong> <span id="term-example-text"></span></p><a id="term-glossary">Read in glossary →</a></dialog><script id="term-data" type="application/json">{"parameter": {"name": "Parameter", "definition": "A number fitted from training data that controls a model’s output.", "example": "A learned coefficient multiplies package weight when estimating delivery cost."}, "hyperparameter": {"name": "Hyperparameter", "definition": "A setting chosen outside the parameter-fitting process to control a model or its training. It may be selected using validation data.", "example": "Maximum tree depth is chosen before fitting a delivery-time decision tree."}, "feature": {"name": "Feature", "definition": "An input measurement available to a model when it makes a prediction.", "example": "Package weight can be an input to a delivery-cost model."}, "target": {"name": "Target", "definition": "The outcome a supervised model is trained to predict.", "example": "Observed delivery duration is the target for a delivery-time model."}, "example": {"name": "Example", "definition": "One case in a dataset. In supervised learning, a labeled example contains inputs and the corresponding target.", "example": "One parcel’s measurements together with its observed delivery duration form a labeled example."}, "training": {"name": "Training", "definition": "The process of fitting model parameters using data and a learning objective.", "example": "Training adjusts model coefficients using historical parcel deliveries."}, "inference": {"name": "Inference", "definition": "Applying a fitted model to inputs to produce outputs.", "example": "Inference estimates the delivery duration for a new parcel using the fitted model."}}</script></body></html>

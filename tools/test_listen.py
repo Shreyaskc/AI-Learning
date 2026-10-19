@@ -43,6 +43,22 @@ class ListeningTests(unittest.TestCase):
         self.assertNotIn('fetch(',js)
         self.assertNotIn('speechSynthesis',js)
         self.assertIn('5000',js)
+    def test_combined_glossary_and_audio_navigation(self):
+        generated=build.outputs()
+        self.assertEqual(len(generated),27)
+        for page in generated.values():
+            self.assertIn('Listen</a>',page)
+            self.assertIn('id="term-plain"',page)
+            self.assertIn('id="term-analogy-disclosure"',page)
+        foundations=generated[build.COURSE/'01-foundations.html']
+        self.assertEqual(foundations.count('class="term-link"'),7)
+        self.assertIn('listen.html?track=01-foundations-core',foundations)
+        glossary=generated[build.COURSE/'glossary.html']
+        self.assertEqual(glossary.count('class="glossary-entry"'),85)
+        listening=generated[build.ROOT/'listen.html']
+        self.assertIn('id="course-audio"',listening)
+        self.assertIn('Technical definition',listening)
+
     def test_private_voice_binary_not_in_repository(self):
         self.assertFalse(list((build.ROOT/'audio').rglob('*.m4a')))
         self.assertFalse(list((build.ROOT/'audio').rglob('*.aiff')))

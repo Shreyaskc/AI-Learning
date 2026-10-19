@@ -95,3 +95,15 @@ Recreate the local preview after obtaining the private sample:
 python3 tools/make_audio_preview.py --sample ../audio-preview/foundations-samantha.m4a
 node tools/test_podcast.js
 ```
+
+## Integration with layered definitions
+
+PR #5 now includes the definitions draft branch as an ancestor and targets that
+branch for review. The shared CSS conflict was resolved by keeping both features,
+and all 27 generated pages were rebuilt from combined source. An integration test
+asserts Listen navigation plus layered dialogs on every page, seven Foundations
+term links plus its section audio link, 85 glossary sections and the listening player.
+Combined checks passed: 80 Python tests, 14 offline labs, 14 audio behavior groups,
+13 Q&A groups, term lifecycle/disclosure behavior, reader smoke tests, generated
+links and JavaScript syntax. This integrates draft branches only; main and the
+recovery archive are unchanged. Both PRs remain drafts pending approval.

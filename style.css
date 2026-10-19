@@ -25,3 +25,10 @@
 #listen-interactive summary {cursor:pointer;min-height:44px}
 #listen-interactive label {display:inline-block}
 @media(max-width:600px){.mode-nav{flex-wrap:wrap}#audio-track{width:100%}.audio-actions{gap:.5rem}}
+.glossary-entry {padding:1.25rem 0;border-bottom:1px solid #617080}
+.glossary-entry h2 {scroll-margin-top:6rem}
+.glossary-entry p {max-width:75ch}
+#term-dialog .term-label {font-weight:700;margin-bottom:.25rem;color:#a6d4ff}
+#term-dialog .term-label+p {margin-top:0}
+#term-analogy-disclosure {margin:1rem 0;border:1px solid #617080;border-radius:.5rem;padding:.65rem}
+#term-analogy-disclosure summary {cursor:pointer;min-height:2rem}

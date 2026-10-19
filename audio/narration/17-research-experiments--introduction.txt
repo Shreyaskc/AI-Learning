@@ -1,0 +1,5 @@
+Chapter 17: Experiments and reading research. Introduction and prerequisites.
+
+Prerequisites: 03 and 06; use 09 or 14 for domain-specific studies. Outcomes: turn a claim into a falsifiable experiment and distinguish results, explanation and speculation.
+
+You add a reranker and the assistant score rises. Did the reranker help, or did the examples, labels or tuning budget change too? Begin with a comparison that could disprove your claim, then use statistics to describe the remaining uncertainty.

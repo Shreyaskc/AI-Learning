@@ -1,0 +1,11 @@
+Chapter 18: Domain electives: time, recommendations and anomalies. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. Why is random splitting bad for overlapping forecast windows? Pause now and try your answer. When you are ready, continue. Solution: shared history and targets can make test data near-copies and violate the future-prediction question.
+
+Question 2. Why not assign zero relevance to every unclicked item? Pause now and try your answer. When you are ready, continue. Solution: lack of exposure is not evidence of dislike; account for the logging policy and missing feedback.
+
+Question 3. A risk model has better recall but overloads reviewers. Is it an improvement? Pause now and try your answer. When you are ready, continue. Solution: evaluate at a fixed action budget and include queue delay, precision and costs.

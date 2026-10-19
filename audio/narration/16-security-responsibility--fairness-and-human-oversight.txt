@@ -1,0 +1,7 @@
+Chapter 16: Security, privacy and responsible A.I. Fairness and human oversight.
+
+Evaluate error rates and outcomes across meaningful groups with sufficient sample counts and context. Demographic parity compares positive prediction rates; equal opportunity compares true-positive rates; equalized odds compares true- and false-positive rates. Calibration concerns probability validity within groups. When base rates differ, demanding all criteria simultaneously can be incompatible except in special cases. Choosing a criterion requires a justified view of harm and use, not a universal metric switch.
+
+Explainability tools describe model behavior under their assumptions. Feature attribution can vary with baseline, correlated inputs and method; it is not proof of causality. A human reviewer can add expertise but also rubber-stamp suggestions or inherit bias. Measure review quality, workload, override rates and downstream outcomes. Provide contestability and clear escalation where people are affected.
+
+Responsible development also includes licensing and provenance for data, models and outputs; accessibility; environmental and resource cost; misuse analysis; and accountable owners. Governance records decisions and evidence. It is effective only when it changes release and operating behavior.

@@ -1,0 +1,11 @@
+Chapter 12: Multimodal and generative modeling. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. An image-text classifier scores highly on “dog” and “cat.” Does it count dogs correctly? Pause now and try your answer. When you are ready, continue. Solution: not established; category alignment and cardinality require different evidence.
+
+Question 2. A scanner changes resolution. Which layer must be audited? Pause now and try your answer. When you are ready, continue. Solution: input preprocessing, optical character recognition and model behavior, confidence and error slices and downstream exact-field validation, not just the final prompt.
+
+Question 3. Why can generated images not serve as proof of a real event? Pause now and try your answer. When you are ready, continue. Solution: realism measures perceptual plausibility, not provenance or factual occurrence. Track authentic sources and disclose synthetic content.

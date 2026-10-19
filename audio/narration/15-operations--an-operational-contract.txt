@@ -1,0 +1,7 @@
+Chapter 15: MLOps, observability and release discipline. An operational contract.
+
+Suppose we measure the fraction of eligible requests that return a useful response within the latency budget. That measured fraction is a service-level indicator (service level indicator). Its target over a defined window is a service-level objective (service level objective). A service agreement may add contractual consequences. For an internal assistant, define successful request carefully: valid response, within latency budget, with required evidence and no authorization violation. Availability without useful answers can hide product failure.
+
+Worked arithmetic: a hypothetical 99.9% request-success service level objective over one million eligible requests allows 1,000 failures. If 800 failures have occurred halfway through the window, 80% of the error budget is consumed. That suggests investigating burn rate and potentially pausing risky releases. It does not mean authorization violations are an acceptable 0.1% budget; high-severity controls may have independent zero-tolerance release gates and incident handling.
+
+Observability should connect traces across ingestion, retrieval, generation, tools and post-processing. Capture stage timing, version identifiers, token counts, cache status, tool outcomes and evidence identifiers. Avoid indiscriminate logging of private prompts or documents. Sampling, redaction, access controls and retention rules are part of observability design.

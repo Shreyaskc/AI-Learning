@@ -1,0 +1,13 @@
+Chapter 6: Evaluation, leakage and decision quality. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Run learning.py for threshold metrics and Brier score.
+
+Question 1. You improve retrieval recall but answer correctness falls. Explain. Pause now and try your answer. When you are ready, continue. Solution: extra distractors may overwhelm evidence; reranking, context ordering and generator behavior matter. Diagnose with component ablations.
+
+Question 2. A subgroup has 3 divided by 3 correct outputs. Can you call it solved? Pause now and try your answer. When you are ready, continue. Solution: no; interval uncertainty and sampling selection remain large.
+
+Question 3. Give a release gate for a support assistant. Pause now and try your answer. When you are ready, continue. Solution: no unauthorized cross-tenant retrieval on adversarial tests, lower confidence bound on supported-answer correctness above an agreed target, ninety fifth percentile latency within budget, escalation path exercised, and staged online rollout. Targets must come from product risk and capacity, not this example.

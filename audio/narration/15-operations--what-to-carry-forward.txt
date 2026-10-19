@@ -1,0 +1,3 @@
+Chapter 15: MLOps, observability and release discipline. What to carry forward.
+
+Reproducibility, monitoring and rollback are useful when they lead to a safe operating decision. Keep the whole compatible prediction path and a named owner for its failures. Next, challenge its security and responsibility boundaries.

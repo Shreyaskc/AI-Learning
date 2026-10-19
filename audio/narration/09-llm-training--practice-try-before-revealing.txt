@@ -1,0 +1,15 @@
+Chapter 9: large language model pretraining, adaptation and alignment. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. Why might a fine-tuned model still need retrieval? Pause now and try your answer. When you are ready, continue. Solution: current, authorized and attributable facts may change faster than retraining; adaptation and external knowledge serve different purposes.
+
+Question 2. Does high reward establish safety? Pause now and try your answer. When you are ready, continue. Solution: only for what reward and evaluation actually measure, subject to gaming and generalization gaps.
+
+Question 3. Why can lower pretraining loss coexist with worse user behavior? Pause now and try your answer. When you are ready, continue. Solution: objectives, task distributions and output preferences differ.
+
+Exercises: (1) Compute the probability of b given a after adding one more a leads to b transition to the worked example. Pause to try this exercise. Then continue for the solution: (3 plus zero point five) divided by (4 plus 2) equals 7 divided by 12 approximately zero point five eight three three three three. (2) Add a held-out-only character and verify that vocabulary remains unchanged and unknown count increases. (3) Why not pick alpha using test perplexity? Pause to try this exercise. Then continue for the solution: that would make test data choose the fitted procedure. (4) Increase chosen-answer probability for a false but rater-preferred answer. Pause to try this exercise. Then continue for the solution: direct preference optimization's loss may improve while factual utility worsens; evaluation must measure correctness independently.
+
+Mastery gate: explain counts leads to conditional distribution leads to loss leads to sampling, trace one held-out transition, and distinguish a trained bigram, an supervised fine tuning mask and a preference objective from executed large language model fine-tuning. Actual transformer adaptation and its forgetting and privacy tradeoffs remain unexecuted.

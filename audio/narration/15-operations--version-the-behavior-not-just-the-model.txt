@@ -1,0 +1,5 @@
+Chapter 15: MLOps, observability and release discipline. Version the behavior, not just the model.
+
+A prediction depends on data definitions, preprocessing, feature versions, model weights, prompt templates, tokenizer, retriever and reranker, index snapshot, runtime settings and policy. An experiment record ties these to source revision, random seeds, dataset identifiers, training and evaluation configuration and results. A registry records candidate versions and approval and status metadata; it cannot compensate for an untraceable dataset.
+
+For reproducibility, distinguish bitwise identical output from statistically similar results and functionally equivalent behavior. Hardware kernels, parallel order and stochastic generation can introduce differences. Pin integration versions and run regression checks; do not promise exact reproducibility on every device from a seed alone. These core labs intentionally avoid external dependencies to keep their checks reproducible and cheap.

@@ -1,0 +1,7 @@
+Chapter 4: Optimization: how learning changes parameters. Generalization and regularization.
+
+Underfitting means the model or procedure cannot fit relevant structure; both train and validation errors can be high. Overfitting means training fit improves while validation performance worsens. More parameters are not the only cause: repeated hyperparameter search can overfit validation, and clean labels matter.
+
+Regularization options include L2, L1 (which can induce sparse coefficients), early stopping using validation, data augmentation that preserves the target, and dropout in neural networks. The train and validation gap is a clue, not a diagnosis by itself. Distribution shift and mislabeled validation data can create similar symptoms.
+
+For regression with both X and y centered (recover the intercept as mean(y) minus mean(X) dot w), solving normal equations X transposed times X times w equals X transposed times y is possible when the system is suitably nonsingular. Avoid computing a literal matrix inverse in numerical software; factorization or least-squares solvers are typically more stable. Gradient methods matter when data or models make direct solvers inappropriate.

@@ -1,0 +1,7 @@
+Chapter 5: Classical machine learning and useful baselines. Linear and probabilistic models.
+
+Linear regression predicts The predicted target equals the dot product of weights w and inputs x plus bias b and often minimizes squared error. It assumes a linear form for the conditional mean if interpreted statistically; the input may contain nonlinear basis features such as x squared. Outliers receive a large squared penalty. Absolute error instead has a median interpretation and is less sensitive to extreme residuals.
+
+Logistic regression maps a linear score through sigmoid to a binary probability. “Regression” in its name does not make it a continuous-target model. Its decision boundary at p equals zero point five is The dot product of w and x plus bias b equals zero, but the chosen action threshold need not be zero point five. Naive Bayes combines a class prior with feature likelihoods while assuming conditional feature independence given the class. The assumption is often false, yet the model can be a useful fast baseline. Correlated evidence can produce overconfident probabilities.
+
+A support vector machine seeks a large-margin boundary; kernels allow implicit nonlinear features. Margin is separation from the decision surface, not calibrated probability. A nearest-neighbor model stores examples and predicts from nearby cases; its distance metric and serving cost become critical as dimension and dataset size grow.

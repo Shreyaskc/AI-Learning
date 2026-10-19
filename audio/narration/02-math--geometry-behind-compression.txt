@@ -1,0 +1,11 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Geometry behind compression.
+
+This is an optional deeper pass. You can continue to probability and return here before studying embeddings or low-rank updates.
+
+Imagine centered points (1,1) and (negative 1,negative 1). Both lie on the same diagonal, so one coordinate along that line describes each point. The unit direction is u equals (1,1) divided by square root of 2. Their dot products with u are square root of 2 and -square root of 2; multiplying those coordinates by u reconstructs the original points. This is projection: keep coordinates along selected directions. Keeping only the first ordinary coordinate instead loses the second.
+
+Principal component analysis (P C A) chooses orthogonal directions capturing the most sample variation. That is a compression objective, not a guarantee of preserving what a prediction target needs. Fit the projection using training data only. The next section estimates one direction numerically; it does not derive a full P C A solver.
+
+An eigenvector of a square transformation keeps its direction: Av equals lambda times v. The eigenvalue lambda gives the scale along that direction. Singular value decomposition (S V D) extends the direction-and-scale view to a rectangular matrix: U times sigma times V transposed separates input directions, scales and output directions. These terms are recognition-level here; a full factorization derivation is further work.
+
+Rank counts independent directions. Constraining a d by d update to a product of a d by r and r by d matrix uses two times d times r coefficients instead of d squared when r is small. This previews low-rank adapters in 09. It is a structural restriction, not proof that the best update for every task has low rank.

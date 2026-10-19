@@ -1,0 +1,13 @@
+Chapter 3: Probability, statistics and uncertainty. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Run foundations.py, then alter prevalence from zero point zero one to zero point one zero while retaining detector rates. Expected precision becomes Zero point zero nine divided by the sum of zero point zero nine and zero point zero nine equals zero point five. A detector's precision depends on the deployment population.
+
+Question 1. Can two uncorrelated variables be dependent? Pause now and try your answer. When you are ready, continue. Solution: yes; let X be uniform on {negative 1,0,1} and Y equals X squared. Their covariance can be zero while Y is determined by X.
+
+Question 2. A test has no errors in 20 cases. Is error probability zero? Pause now and try your answer. When you are ready, continue. Solution: no. Small samples permit substantial uncertainty; report counts, intervals and sample selection.
+
+Question 3. Why do logs appear in language-model training? Pause now and try your answer. When you are ready, continue. Solution: joint sequence probabilities factor into conditional probabilities; negative logs turn their product into an additive objective with gradients that penalize assigned low probability on observed outcomes.

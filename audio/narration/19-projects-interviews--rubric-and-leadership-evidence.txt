@@ -1,0 +1,5 @@
+Chapter 19: Projects, mastery gates and interview practice. Rubric and leadership evidence.
+
+Score each from 0 (absent and wrong) to 3 (clear, tested and defended): problem framing, mechanism and math, evaluation, implementation and debugging, capacity and cost, security and privacy, operations, tradeoffs and communication. A useful rehearsal target is at least 2 in every category, then strengthen weak areas; this is a study rubric, not an employer's hiring bar. A serious leakage or authorization error requires correction regardless of total score.
+
+For leadership questions use only actual experience. Explain context, your specific decision, alternatives, evidence, outcome and what you would change. Do not invent achievements to match a role. Practice disagreement about quality targets, build-versus-buy, migration ownership and incident response. The senior signal is clear judgment under constraints, including knowing what evidence is missing.

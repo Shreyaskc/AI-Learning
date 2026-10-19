@@ -1,0 +1,3 @@
+Chapter 1: What A.I. systems learn. What to carry forward.
+
+A model learns a pattern from information available at a defined time. Its prediction is useful only through the decision it improves. Next, turn those inputs into numbers so you can follow the calculation instead of treating the score as magic.

@@ -1,0 +1,7 @@
+Chapter 5: Classical machine learning and useful baselines. Trees and ensembles.
+
+A decision tree partitions feature space by questions such as the number of prior contacts is greater than two. At a leaf it predicts a value or class distribution. A split can reduce Gini impurity One minus the sum of squared class probabilities for classification. A leaf with equal class fractions has impurity zero point five in the binary case; a pure leaf has zero. Greedy split selection does not guarantee the best entire tree. Deep trees can memorize noise.
+
+Bagging trains models on resampled datasets and averages them, reducing variance when errors are not perfectly correlated. Random forests also randomize feature choices. Boosting fits successive learners to improve the current ensemble objective; gradient boosting uses loss gradients as directions for correction. Boosting is not simply another name for bagging. Trees naturally capture nonlinear thresholds and interactions, but extrapolate poorly outside learned regions and need care with missing values and high-cardinality categories.
+
+A practical tabular workflow starts with a constant baseline, a regularized linear model, and a tree ensemble. Compare with consistent splits and tuning budgets. Deep models become attractive for learned representations across high-dimensional unstructured data, but “more advanced” is not a measured advantage.

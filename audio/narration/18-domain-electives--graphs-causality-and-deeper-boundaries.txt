@@ -1,0 +1,5 @@
+Chapter 18: Domain electives: time, recommendations and anomalies. Graphs, causality and deeper boundaries.
+
+Probabilistic graphical models represent factorization and dependencies; a knowledge graph records explicit relations. They are not interchangeable. Bayesian modeling puts distributions over uncertain quantities; it is more than applying Bayes' rule to one detector. Causal inference needs assumptions about interventions, confounding and selection. Mechanistic interpretability investigates internal computations, while ordinary feature attribution often explains behavior relative to a baseline. These topics merit dedicated derivations and experiments beyond this orientation.
+
+Run electives.py for the forecasting baseline, ranking metrics and a matrix-factorization score. Change history and ranking order, then reason about the new result before running.

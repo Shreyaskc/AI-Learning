@@ -1,0 +1,5 @@
+Chapter 6: Evaluation, leakage and decision quality. Introduction and prerequisites.
+
+Prerequisites: 01, 03 and 05. Outcomes: select metrics from actions, quantify uncertainty, detect contamination, and define abstention.
+
+Imagine an urgency detector flags 170 tickets: 80 are genuinely urgent and 90 are not. It also misses 20 urgent tickets. Is that useful for a team with limited review time? We will calculate several views of the same outcomes before choosing a metric.

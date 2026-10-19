@@ -1,0 +1,5 @@
+Chapter 13: Data and feature platforms. Introduction and prerequisites.
+
+Prerequisites: 01, 06 and 10 to 11. Outcomes: construct historical features without future knowledge, design feature and index lifecycles, and reason about training-serving consistency.
+
+A historical event says it happened before a prediction, but the system received it afterward. Could the original model have used it? Work through that timing question before designing a feature store or migration; it determines whether offline evaluation represents the real service.

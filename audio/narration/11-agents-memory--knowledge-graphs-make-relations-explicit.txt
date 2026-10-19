@@ -1,0 +1,5 @@
+Chapter 11: Workflows, tools, context, memory and graphs. Knowledge graphs make relations explicit.
+
+A graph has nodes (entities) and edges (relationships). A knowledge graph adds typed relations and provenance. For example, service A DEPENDS sub ON database B, and team C OWNS database B. “Who should respond when A loses its database?” can traverse A leads to B leads to C. Vector similarity can find descriptions; it does not by itself enforce typed dependency reasoning. A relational join may solve the same task more simply.
+
+Entity resolution decides whether two names refer to one thing; mistakes merge unrelated owners or split the same service. Store edge source, validity interval and confidence. Graph retrieval can combine entity linking, bounded traversal and text evidence. Limit traversal depth and access at every step; a permitted starting node does not authorize every reachable node. Graphs add schema, synchronization and governance work and should earn that cost in measured task quality.

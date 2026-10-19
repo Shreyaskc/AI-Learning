@@ -1,0 +1,5 @@
+Chapter 6: Evaluation, leakage and decision quality. large language model systems need layered evaluation.
+
+Evaluate retrieval recall against known relevant documents, ranking quality such as reciprocal rank, answer correctness against an explicit rubric, citation support at claim level, refusal and abstention behavior, tool success, and end-to-end user outcomes separately. A judge model is a noisy measurement instrument: calibrate against blinded human samples, check order and style bias, pin its version, and report disagreement. String overlap can miss paraphrases; fluent prose can conceal incorrect claims.
+
+Abstention sends uncertain or unsupported cases to another path. Plot coverage (fraction automatically handled) against error among handled cases. A model's self-reported confidence is not automatically calibrated. Use validation evidence and an explicit fallback. Human review itself has latency, cost and error rates.

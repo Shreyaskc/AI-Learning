@@ -1,0 +1,5 @@
+Chapter 19: Projects, mastery gates and interview practice. Introduction and prerequisites.
+
+Prerequisites: the relevant core chapters; 06 and 16 are mandatory for every project. Outcomes: produce inspectable evidence, defend a design, and communicate uncertainty. Reading completion is not demonstrated mastery.
+
+Choose one system you want to explain and defend, not four projects to rush through. A working slice with a baseline, failure evidence and an honest limitation teaches more than a large unexamined demo. Start with the project that matches your role, then use the gates and interview rubric to find what needs another pass.

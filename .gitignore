@@ -7,3 +7,8 @@ __pycache__/
 *.py[cod]
 .venv/
 .env
+
+# Optional local narration dependencies and weights (never deploy these).
+.venv-audio/
+.audio-model/
+.audio-cache/

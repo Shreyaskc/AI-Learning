@@ -1,0 +1,5 @@
+Chapter 14: Training compute, hardware and inference serving. When requests arrive together.
+
+A request can wait before the model starts processing it. Latency is elapsed time per request; throughput is work completed per unit time. Concurrency counts work currently in the system. A service-level objective (service level objective) states a target, such as a response-time percentile within an agreed budget. Adding users can increase the queue even when individual computations do not change.
+
+Measure time to first token, inter-token latency, end-to-end latency, throughput, errors and quality for realistic length distributions. Little's law N equals arrival rate lambda times average time W relates average in-system concurrency N, arrival rate lambda and average response time W in a stable system. At 20 requests per second and mean 2 s, average in-flight requests is 40. This does not prove 40 slots can satisfy tail SLOs under bursts.

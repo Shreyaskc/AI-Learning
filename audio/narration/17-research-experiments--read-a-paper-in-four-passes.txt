@@ -1,0 +1,7 @@
+Chapter 17: Experiments and reading research. Read a paper in four passes.
+
+First identify the question, setting and claimed contribution. Second trace the method's inputs, outputs, objective, assumptions and resource needs. Third audit evidence: datasets, baselines, tuning budgets, compute, uncertainty, ablations and negative results. Fourth try a small reproduction or changed-condition test. Ask what would falsify your interpretation.
+
+For Attention Is All You Need, distinguish the architecture definition from translation benchmark results. The equation can be implemented directly; the reported benchmark result depends on training and evaluation setup. For FlashAttention, separate exact-attention semantics from hardware-dependent speed claims. For a scaling study, ask which data, compute range and loss were fit before extrapolating to a different deployment objective.
+
+Maintain a claim ledger with source version and date, exact claim, evidence type, limits and next verification date. A preprint is not invalid because it is a preprint, but peer review is also not proof of correctness. Replication, transparent artifacts and independent evaluations add evidence.

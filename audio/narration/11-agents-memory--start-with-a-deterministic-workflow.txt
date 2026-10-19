@@ -1,0 +1,7 @@
+Chapter 11: Workflows, tools, context, memory and graphs. Start with a deterministic workflow.
+
+A workflow fixes the major control steps in software: validate request leads to retrieve evidence leads to propose response leads to check policy leads to return or escalate. A tool is a callable operation with a schema and trusted implementation. A model may propose arguments; code validates type, bounds, identity and authorization before execution. A request can be valid J son yet forbidden: it might name a real incident but ask to restart a server when the user authorized only a draft. Parsing checks format; trusted code must separately check the requested action, the user’s authority and the arguments.
+
+An agent adds model-selected next actions inside a loop: observe state, choose action, call tool, incorporate result, decide whether to continue. It helps when useful steps vary with observations, but increases uncertainty, cost and failure surface. First compare it with the fixed workflow. More agents add communication, coordination and state-management costs; splitting roles does not automatically improve correctness.
+
+ReAct explored interleaving reasoning and actions in particular tasks. Production reliability also needs controls outside the model: a step limit, wall-clock deadline, token and cost budget, allowlisted tools, scoped credentials, durable state and explicit terminal states. A failed step should not silently restart the entire plan.

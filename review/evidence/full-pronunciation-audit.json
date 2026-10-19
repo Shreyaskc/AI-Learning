@@ -1,0 +1,14 @@
+{
+  "sections": 179,
+  "paragraphs": 714,
+  "alphanumeric_tokens": 32703,
+  "acronym_probes": {
+    "A.I.": "ˌAˈI",
+    "A.P.I.": "ˌApˌiˈI",
+    "PCA": "pˌisˌiˈA",
+    "GPU": "ʤˌipˌijˈu",
+    "CPU": "sˌipˌijˈu"
+  },
+  "missing": [],
+  "human_listening_review": false
+}

@@ -1,0 +1,21 @@
+Chapter 8: Tokens, embeddings and transformers. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. With T equals 10,d sub k equals 4,d sub v equals 6, what are shapes of S and A times V? Pause now and try your answer. When you are ready, continue. Solution: 10 by 10 and 10 by 6.
+
+Question 2. Why can teacher forcing train positions together while decoding is sequential? Pause now and try your answer. When you are ready, continue. Solution: training already knows target prefixes; inference must obtain each newly generated prefix.
+
+Question 3. Does lower temperature solve hallucinations? Pause now and try your answer. When you are ready, continue. Solution: no; it can make a wrong high-probability answer more repeatable.
+
+Question 1. Change X at position 1 from (0,1) to (4,negative 3), recompute Q,K,V and the entire block. Which previous outputs may change? Pause now and try your answer. When you are ready, continue. Solution: position zero cannot change under the causal mask because all permitted dependencies originate at position zero; position 1 can change. Test all output coordinates, not just row-weight sums. Without the mask, earlier outputs can change; the lab tests that counterexample too.
+
+Question 2. An all-masked row produces NaNs. Diagnose it. Pause now and try your answer. When you are ready, continue. Solution: softmax of all negative infinity is undefined because no allowed value exists. Ensure a valid attention pattern (for example each valid decoder position can see itself), and handle padded query rows explicitly. Do not turn NaNs into arbitrary probabilities and call it fixed.
+
+Question 3. You need a document classifier, not generation. Is a causal decoder mandatory? Pause now and try your answer. When you are ready, continue. Solution: no. A bidirectional encoder can represent complete input context efficiently for classification; compare quality and latency with simpler baselines. For translation or conditional generation, encoder-decoder can be appropriate; for next-token generation, causal decoder is natural. Architecture follows task and evidence.
+
+Question 4. A colleague reads attention weights as “the causal reason.” What would test that interpretation? Pause now and try your answer. When you are ready, continue. Solution: intervene on inputs or components under a controlled analysis, compare alternative paths and evaluate output changes. Even interventions have assumptions; the weight matrix alone is insufficient.
+
+Mastery gate: reconstruct shapes and the first row by hand; run the projection and block tests; explain future-input invariance; then solve the changed-input exercise before reading output. Completing these tasks demonstrates a minimal attention implementation, not mastery of training a full transformer or interpreting a large model.

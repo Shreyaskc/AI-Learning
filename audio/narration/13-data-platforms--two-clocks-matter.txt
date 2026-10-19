@@ -1,0 +1,7 @@
+Chapter 13: Data and feature platforms. Two clocks matter.
+
+Event time records when something happened. Availability and ingestion time records when the system knew it. Historical prediction at decision time t must use only events both eligible by event time and available by t. Labels also need an observation horizon and maturity delay.
+
+Worked example: predict a machine's fault at t equals 10. Event A occurred at 8 and arrived at 9 with value 5. Event B occurred at 7 but arrived at 12 with value 100. Event C occurs at 11 and arrives at 11 with value 20. A correct “prior observed total” at t equals 10 is 5: B arrived too late, C is in the future. A query checking only event sub time less than or equal to 10 incorrectly gives 105. A backfill may later include B in a corrected event history, but must not pretend B was available for the original online decision.
+
+Run platform.py for this exact point-in-time filter. Extend it to a per-entity time-window aggregate and test boundary inclusion. Document whether events at the exact decision timestamp are available before or after the decision; real ordering may require sequence numbers.

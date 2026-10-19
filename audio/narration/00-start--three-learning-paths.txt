@@ -1,0 +1,7 @@
+Chapter 0: Start here: learn, build, explain. Three learning paths.
+
+First principles: work through 00 to 19, roughly 100 to 150 hours including exercises and projects. This is a planning estimate, not a measured completion time. Allocate more time if probability or calculus is new.
+
+Practicing engineer: take the diagnostic below; still read 01 and 06. Review 02 to 05 where you cannot derive the answers, then complete 07 to 19 and two projects. Existing Python ability is useful but does not replace evaluation skills.
+
+Architect interview rehearsal: after the first pass, use 06, 10, 11 and 13 to 19. Spend 45 minutes on a design, 15 on a capacity estimate, and 15 on a failure analysis. Ask another person to challenge assumptions. Keep a log of errors rather than memorizing polished scripts.

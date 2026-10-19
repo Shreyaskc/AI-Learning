@@ -1,0 +1,9 @@
+Chapter 9: large language model pretraining, adaptation and alignment. Preferences and reinforcement learning.
+
+A common preference pipeline starts with demonstrations, collects comparisons between candidate answers, trains a reward model, then optimizes the policy with a penalty for departing too far from a reference. InstructGPT is one concrete human-feedback recipe; it is not a mandatory universal sequence for all language models.
+
+Reinforcement learning vocabulary: state is information available to choose; action changes the interaction; policy maps state to action distribution; reward scores a transition or outcome; return aggregates future rewards, often with discount gamma. A value function estimates expected return. Policy gradients adjust action probabilities according to estimated advantage (better or worse than a baseline). Credit assignment asks which earlier decisions contributed to later outcomes. Exploration can discover successful strategies but may be costly or unsafe in a real system.
+
+Preference optimization can also use paired chosen and rejected responses without an explicit online reward-learning loop. direct preference optimization derives a specific objective involving policy and reference log-probability ratios. It still depends on preference data, reference and optimization assumptions. Preferences are measurements from particular raters and tasks, not a guarantee of truth or a universal social objective.
+
+Reward hacking occurs when an optimized proxy improves without the intended benefit. If a judge prefers longer answers, a policy may inflate length. Separate reward training data from evaluation, audit failure slices, and use external task checks where possible. Outcome-verifiable domains can support rewards such as passing independent code tests; passing tests still does not prove all desired behavior.

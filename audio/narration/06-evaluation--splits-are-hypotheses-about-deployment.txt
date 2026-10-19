@@ -1,0 +1,7 @@
+Chapter 6: Evaluation, leakage and decision quality. Splits are hypotheses about deployment.
+
+An untouched test set estimates only the distribution and measurement process it represents. Hold out future time for forecasting; separate people or entities for cold-start questions; preserve groups during cross-validation. Deduplicate near-duplicate documents and template-derived answers across training and testing. For large language models, public benchmark inclusion in pretraining is often unknown, so treat possible contamination as a limitation rather than claiming clean causal comparison.
+
+Leakage can occur through preprocessing, future labels, target encoding, retrieval indexes containing test answers, prompts tuned on test cases, and human adjudicators who know the candidate model. Delayed targets require waiting for label maturity. A model evaluated one day after checkout cannot have complete 30 minus day lateness labels.
+
+Distribution shift includes changes in input frequency, label frequency and the relationship between inputs and targets. These are often called covariate, prior and label and concept shift; terminology varies, so define the actual change. Drift alerts identify symptoms, not necessarily business damage. Validate against new labels when possible.

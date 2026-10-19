@@ -1,0 +1,9 @@
+Chapter 15: MLOps, observability and release discipline. Release and rollback.
+
+Offline gates use frozen evaluation and safety tests. Shadow traffic runs a candidate without controlling user actions; it can compare outputs and timings but cannot measure all effects of changed actions. Canary rollout exposes a bounded population, watches quality and cost and latency and preserves a fast rollback. An A B experiment tests an effect under controlled assignment; it is not synonymous with canary risk containment.
+
+Rollback requires compatible model, feature, prompt and index versions. If a migration destroyed old data or changed tool side effects, flipping a model pointer may be insufficient. Use reversible data migrations, dual reads and writes where justified, and practice a rollback drill. Define kill switches for tools separately from ordinary model release switches.
+
+Worked incident: urgency recall drops after a feature service migration. Immediate steps: limit harm through a fallback queue, identify affected versions and time window, compare online values with replay, verify labels and logging, then restore a compatible path. Retraining immediately on suspect features may preserve the defect. The postmortem should identify causal evidence, failed safeguards, ownership and preventive tests rather than blame an individual.
+
+Run platform.py for version-sensitive cache and idempotency examples. This is not a production deployment or live load test. Use its invariants when implementing a real service.

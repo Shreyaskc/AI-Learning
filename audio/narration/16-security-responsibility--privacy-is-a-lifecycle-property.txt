@@ -1,0 +1,7 @@
+Chapter 16: Security, privacy and responsible A.I. Privacy is a lifecycle property.
+
+Minimize collection, classify sensitivity, restrict purpose, define retention, encrypt transport and storage and audit access. De-identification is not a blanket anonymity guarantee; combinations of quasi-identifiers can reidentify people. Training can memorize rare sensitive strings. Decide whether private data may leave a boundary before building an integration, and use verified contracts and policies rather than assumptions about a provider.
+
+The next two privacy methods are optional recognition-level material, not controls implemented by these labs. Differential privacy limits how much an output distribution can change when one person's data changes, under a formal neighboring-dataset definition. Parameters epsilon and delta describe the guarantee, not a simple percent-privacy score. Composition accumulates privacy loss; noise, clipping and accounting affect utility. This course introduces the concept only; applying it requires dedicated implementation and accounting expertise. Federated learning keeps some raw data distributed, but gradients and updates can still leak information without additional protections.
+
+Deletion must cover raw sources, derived features, vector indexes, caches, memories and documented backup retention. Updating a retrieval store is different from removing influence from trained weights; machine unlearning remains technically and empirically demanding. Avoid promising immediate exact erasure from weights without a validated method.

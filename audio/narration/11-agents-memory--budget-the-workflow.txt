@@ -1,0 +1,5 @@
+Chapter 11: Workflows, tools, context, memory and graphs. Budget the workflow.
+
+A request gets 4 tool attempts at a measured average zero point eight seconds each plus 1.5 seconds of generation and zero point three seconds of fixed overhead: optimistic expected path approximately 5 seconds, before queueing and tail effects. Set a hard deadline independently; mean-time arithmetic does not establish ninety ninth percentile latency.
+
+This arithmetic is a planning estimate. Enforce a deadline outside the model and measure the actual request distribution before promising a latency target.

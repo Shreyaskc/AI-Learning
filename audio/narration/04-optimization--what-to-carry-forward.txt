@@ -1,0 +1,3 @@
+Chapter 4: Optimization: how learning changes parameters. What to carry forward.
+
+Training repeats a measured update; it does not establish that future predictions are good. Keep optimization error separate from evaluation mistakes and generalization. Next, compare concrete model families using these same inputs, losses and updates.

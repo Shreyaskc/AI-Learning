@@ -1,0 +1,9 @@
+Chapter 11: Workflows, tools, context, memory and graphs. A state machine with a failure trace.
+
+Suppose a maintenance assistant can look up an incident and draft a ticket, but cannot execute repairs. These high-level product states are RECEIVED, RETRIEVED, DRAFTED, WAITING sub APPROVAL, COMPLETED or FAILED. The durable lab below tracks one tool operation at a lower level with PENDING, RUNNING, SUCCEEDED or STOPPED; the two lists describe different levels of the same workflow. Transitions validate prior state and preserve a trace. A model-proposed restart server call is rejected because that capability is absent, even if a retrieved document demands it.
+
+If a tool times out, the operation may still have executed. Query its status using a stable operation identifier before retrying an irreversible action.
+
+Idempotency means repeated requests with the same logical key have the same intended effect rather than duplicate effects. The tool and backend must enforce it atomically. A prompt saying “do not repeat” cannot prevent duplicates after a crash. Distinguish transport retries from new user-authorized operations. Use exponential backoff with jitter and a bounded retry budget; uncontrolled retries amplify outages.
+
+Run platform.py for a deterministic, bounded tool workflow with an allowlist and an in-memory idempotency record. It models control semantics; it is not durable storage or a general autonomous agent. The lab rejects instruction-like untrusted content and unknown actions as data and control separation examples, not a complete prompt-injection defense.

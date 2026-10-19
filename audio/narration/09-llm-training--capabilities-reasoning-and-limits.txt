@@ -1,0 +1,5 @@
+Chapter 9: large language model pretraining, adaptation and alignment. Capabilities, reasoning and limits.
+
+Posttraining may improve instruction following, tool use and task performance. Reasoning-oriented training and test-time search spend compute to improve certain tasks; transfer, cost and reliability must be measured. Do not treat a displayed reasoning narrative as a faithful trace of internal causation. Unsupported generation has multiple causes: missing knowledge, ambiguous prompts, misleading context, optimization incentives and decoding behavior. Next-token prediction describes a common objective, not a complete explanation of every failure.
+
+Run the loss and low-rank parameter calculations in attention.py. No large neural-model pretraining or G P U fine-tuning is executed in this course. Such experiments require separate data, licensing, hardware and evaluation plans.

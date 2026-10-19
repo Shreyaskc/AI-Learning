@@ -1,0 +1,11 @@
+Chapter 17: Experiments and reading research. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. A paper improves a score after using 10 by more compute. Does it establish a better algorithm? Pause now and try your answer. When you are ready, continue. Solution: it establishes a result under that resource allocation; compare controlled compute and data budgets to isolate efficiency.
+
+Question 2. Why include a negative ablation? Pause now and try your answer. When you are ready, continue. Solution: it shows where an added mechanism fails or adds no value, preventing a universal story from one favorable case.
+
+Question 3. Design a replication with limited compute. Pause now and try your answer. When you are ready, continue. Solution: reproduce a core mechanism on a small public and synthetic setup, declare deviations, compare to a baseline and avoid claiming full original-scale replication.

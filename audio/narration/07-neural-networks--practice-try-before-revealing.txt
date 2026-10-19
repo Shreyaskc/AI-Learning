@@ -1,0 +1,15 @@
+Chapter 7: Neural networks and representation learning. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. Why can a network with zero hidden activations stop learning some weights? Pause now and try your answer. When you are ready, continue. Solution: a rectified linear unit inactive for all observed inputs passes zero gradient through that path.
+
+Question 2. What does transfer learning freeze? Pause now and try your answer. When you are ready, continue. Solution: selected pretrained parameters remain fixed; trainable layers or adapters still update. Frozen does not imply unbiased or appropriate for the new task.
+
+Question 3. Is universal approximation a training guarantee? Pause now and try your answer. When you are ready, continue. Solution: no; representational existence says little about finite data, optimization, compute or generalization.
+
+Exercises: (1) Set the output weights to zero and inspect first-step hidden gradients. Pause to try this exercise. Then continue for the solution: delta can be nonzero, but the factor v sub j makes initial hidden-weight gradients zero; output weights may learn first and later enable hidden updates. (2) Negate the hidden-bias gradient in a temporary copy. Pause to try this exercise. Then continue for the solution: the all-parameter finite-difference check should fail, even if some training loss still decreases. (3) Replace hyperbolic tangent with a purely linear activation. Pause to try this exercise. Then continue for the solution: the composition collapses to an affine score, losing the nonlinear representational mechanism needed by the XOR-shaped task. Re-derive the activation derivative rather than changing only the forward pass.
+
+Mastery gate: identify the shapes and all 33 parameters, derive a hidden bias gradient, run the checks, and diagnose why correct gradients do not guarantee useful deployment. Framework autograd, convolutional training and large-model numerical debugging remain further practice.

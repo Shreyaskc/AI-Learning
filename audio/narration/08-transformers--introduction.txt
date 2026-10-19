@@ -1,0 +1,5 @@
+Chapter 8: Tokens, embeddings and transformers. Introduction and prerequisites.
+
+Prerequisites: 02 to 03 and 07. Outcomes: trace text into next-token logits, calculate masked attention, and distinguish architecture from training objective.
+
+Follow a short text through one prediction: text leads to token identifiers leads to vectors leads to attention and other transformations leads to next-token scores. At every stage we will ask what changed and which positions were allowed to contribute. You need dot products, matrix shapes and softmax from 02, plus the layer and residual ideas from 07.

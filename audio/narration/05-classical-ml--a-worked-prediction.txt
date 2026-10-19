@@ -1,0 +1,5 @@
+Chapter 5: Classical machine learning and useful baselines. A worked prediction.
+
+Let urgency score z equals negative 2 plus 1.5 by prior sub contacts plus zero point five by has sub outage sub word. A ticket with one prior contact and an outage word gets z equals 0 and p equals zero point five. Another with zero prior contacts and the word gets z equals negative 1.5 and p approximately zero point one eight two. If missing an urgent ticket costs 20 units and unnecessary review costs 1, the equal-cost threshold zero point five may be inappropriate. Under calibrated probabilities and these simplified costs, act when Twenty times probability p is greater than one times the quantity one minus p, so p greater than 1 divided by 21 approximately zero point zero four seven six. Capacity limits and downstream effects complicate this rule.
+
+Run learning.py to fit logistic regression on synthetic one-dimensional cases. Inspect the analytic gradient, fitted weight, held-out probabilities and log loss. Because the dataset is tiny and deliberately simple, high classification accuracy is not evidence that the algorithm will work on real tickets.

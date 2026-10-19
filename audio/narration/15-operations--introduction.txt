@@ -1,0 +1,5 @@
+Chapter 15: MLOps, observability and release discipline. Introduction and prerequisites.
+
+Prerequisites: 06, 10 to 14. Outcomes: version a complete A.I. behavior, define actionable monitors, and plan rollout and recovery.
+
+A model is reloaded in a service but its saved scaler is missing. The weights are identical and the predictions change. Start with this concrete compatibility failure; it explains why a release must version the whole behavior, not just one model file.

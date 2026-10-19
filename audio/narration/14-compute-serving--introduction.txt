@@ -1,0 +1,5 @@
+Chapter 14: Training compute, hardware and inference serving. Introduction and prerequisites.
+
+Prerequisites: 07 to 09 and 13. Outcomes: estimate memory and capacity with explicit assumptions, separate prefill from decode, and reason about parallelism and efficiency. Numeric estimates here are hypothetical arithmetic, not hardware benchmarks.
+
+Will the model fit in memory, and will requests finish fast enough? Follow one request from prompt processing to generated tokens, then add other users and a queue. Hardware and distributed training come later as a deeper pass, after the capacity questions they help answer.

@@ -1,0 +1,19 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Vectors are ordered measurements.
+
+A scalar is one number, such as two prior contacts. A vector is an ordered list of measurements. For one ticket, let x equals (2,1): two prior contacts and an outage-word indicator equal to one. If the weights are w equals (3,negative 1), the weighted score is Two times three plus one times negative one equals five. The dot product x dot w is the name for this add-the-products operation.
+
+The order matters: swapping the measurements while keeping the weights would change their meaning. A feature's units matter too. “Age in days” and “age in years” describe the same quantity but require different coefficients to produce the same score.
+
+A matrix organizes several vectors. Here are two tickets with the same two feature columns:
+
+Read this matrix by rows. X has first row two, one, and second row zero, one. The weight vector has first coordinate three and second coordinate negative one. For the first row, two times three plus one times negative one gives five. For the second, zero times three plus one times negative one gives negative one. Matrix-vector multiplication therefore produces the column vector five, negative one. The written block places these arrays side by side so you can check each multiplication.
+
+X has shape 2 by 2: two rows and two columns. Multiplying it by the two weights produces one score for each row. A scalar bias b can shift every score: with b equals zero point five, the predictions are 5.5 and negative zero point five.
+
+Now generalize the notation. If n is the number of examples and d is the number of features, X has shape n by d and w has d coordinates. The score for row i is the sum over features j of matrix entry X sub i j times weight j, plus scalar bias b. Here i selects an example, j selects a feature, and sum over feature index j means add all the feature contributions. This is the same calculation as the two-row example, with compact names for the rows and columns.
+
+A transpose swaps rows and columns. Matrix multiplication combines a row from the first matrix with a column from the second using a dot product. If A has shape m by k and B has shape k by n, A times B has shape m by n; the inner widths k must match. A times B and B times A generally differ, and B times A may not even be defined. Later, attention uses Q times K transposed: with Q and K each T by d, the result has T by T entries, one comparison for every position pair.
+
+To measure magnitude, square each coordinate, add the squares and take their square root. This gives the Euclidean norm: the square root of the sum of its squared coordinates. Cosine similarity divides a dot product by both magnitudes: The dot product of x and y divided by the product of their Euclidean norms for nonzero vectors. With x equals (1,0),y equals (1,1), the result is 1 divided by square root of 2 approximately zero point seven zero seven. Scaling y by ten changes a raw dot product but leaves this directional comparison unchanged. Cosine is not a calibrated probability of shared meaning.
+
+Raw distance can be dominated by units. Standardization subtracts a training mean and divides by a training standard deviation: The standardized value z is x minus training mean mu, divided by training standard deviation s. For now, read s as a typical spread in the data; 03 develops that measure. Learn mu and s only from training data, handle s equals 0 explicitly, and apply the same transform at inference. This operation does not remove outliers or force a Gaussian distribution.

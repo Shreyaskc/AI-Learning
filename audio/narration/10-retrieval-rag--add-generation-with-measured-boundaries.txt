@@ -1,0 +1,7 @@
+Chapter 10: Retrieval, ranking and grounded generation. Add generation with measured boundaries.
+
+A retrieval augmented generation pipeline ingests and version-controls sources, retrieves candidates, reranks, assembles context and generates an answer with provenance. The original retrieval augmented generation paper studied combining a pretrained generator with non-parametric retrieval. Modern retrieve-then-prompt systems may use different training and inference mechanisms; avoid treating every design as the identical original model.
+
+A useful answer contract says: answer only what the evidence supports, attach source identifiers to factual claims, express conflicts and abstain when the evidence is missing. Enforce structured fields in code, then evaluate their semantics. A schema-valid citation can still point at the wrong paragraph. Query rewriting may improve recall but can drift from user intent or inject unauthorized terms; preserve the original query and compare both paths.
+
+retrieval augmented generation, long context and fine-tuning solve overlapping problems. Retrieval offers source freshness and permission-aware selection. Long context can avoid some retrieval misses but consumes tokens and does not guarantee uniform evidence use. Fine-tuning changes behavior and representations but has update and validation costs. Lost in the Middle reports context-position sensitivity in tested models and tasks; this is evidence to test ordering in your system, not a timeless claim that every model fails identically.

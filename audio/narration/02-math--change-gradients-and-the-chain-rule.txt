@@ -1,0 +1,7 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Change, gradients and the chain rule.
+
+A derivative measures a local rate of change. For f(w) equals w squared, the difference quotient is The difference between w plus h squared and w squared, divided by h, equals two w plus h; taking h toward zero gives 2 times w. A partial derivative changes one coordinate while holding others fixed. A gradient collects all partial derivatives into a vector pointing toward steepest local increase under Euclidean geometry.
+
+The chain rule handles composition: if L depends on z and z depends on w, The derivative of loss with respect to w is the derivative of loss with respect to z times the derivative of z with respect to w. Let z equals w times x plus b and L equals (z minus y) squared divided by 2. Then the derivative of loss with respect to z equals z minus y, the derivative of z with respect to w equals x, and the derivative of loss with respect to w equals (z minus y)x. At x equals 2, y equals 5, w equals 1, b equals 0, prediction is 2, residual negative 3 and gradient negative 6. Increasing w slightly lowers the loss. This is a local statement, not a guarantee for any step size.
+
+Run foundations.py for stable softmax, cosine and a finite-difference gradient check. The finite difference The function at w plus h minus the function at w minus h, all divided by two h approximates a derivative. Too large h causes approximation error; too small h causes floating-point cancellation.

@@ -1,0 +1,5 @@
+Chapter 3: Probability, statistics and uncertainty. From association to decisions.
+
+If customers receiving reminders return books later, reminders may be targeted at patrons already late. The association does not establish that reminders cause delay. Covariance and correlation describe co-variation; they do not tell us what would happen if we changed one measurement or policy. A causal claim compares interventions: what would happen if reminder policy changed, holding the relevant comparison valid? Random assignment can identify a policy effect under assumptions about compliance, interference and measurement. Observational adjustment requires causal assumptions; adding many features does not automatically remove confounding.
+
+Aleatoric uncertainty is variability in outcomes given available information. Epistemic uncertainty concerns what is unknown about the model or parameters. More representative data may reduce the latter; it cannot remove irreducible ambiguity from omitted information. These categories are useful models, not perfectly separable observable labels.

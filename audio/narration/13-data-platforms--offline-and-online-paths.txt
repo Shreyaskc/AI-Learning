@@ -1,0 +1,7 @@
+Chapter 13: Data and feature platforms. Offline and online paths.
+
+An offline store supports large historical scans for training and backfills. An online store supports low-latency feature lookup at inference. Time to live (TTL) describes how long a stored value is eligible before expiry. A feature store coordinates definitions and materialization; it does not automatically guarantee point-in-time correctness. Shared transformation logic reduces skew, but parity tests must compare sampled online values against historical reconstruction under matching timestamps and versions.
+
+Training-serving skew arises from different preprocessing, stale online values, entity-key bugs, incompatible feature versions or different availability assumptions. A model version should declare required feature schema and transformation version. A rolling update may need dual writes, backfill, parity checks, shadow reads and rollback to avoid mixing incompatible data.
+
+For embeddings, the model and version, tokenizer, normalization and dimension are part of the contract. Vectors from different embedding spaces should not silently share one index. Re-embedding requires cost estimates, incremental backfill, dual indexes, evaluation and an atomic read-path switch. Indexing, metadata and permissions can lag each other; define consistency and fail-closed behavior when access state is uncertain.

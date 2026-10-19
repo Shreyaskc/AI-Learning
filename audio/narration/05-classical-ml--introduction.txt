@@ -1,0 +1,5 @@
+Chapter 5: Classical machine learning and useful baselines. Introduction and prerequisites.
+
+Prerequisites: 01 to 04. Outcomes: select a model family from assumptions, fit a simple classifier, and recognize when a neural network is unnecessary.
+
+We can now compute a score and adjust it. The next choice is the shape of the model: is a straight boundary enough, or does the task need interacting rules or learned features? Start with logistic prediction and a complete update, then compare it with a tree and a small neural network on the same frozen data.

@@ -1,0 +1,23 @@
+const assert = require('assert');
+const mount = require('../terms.js');
+function element(extra={}) { return Object.assign({textContent:'',attrs:{},isConnected:true,parentElement:null,handlers:{},dataset:{},setAttribute(k,v){this.attrs[k]=v;},getAttribute(k){return this.attrs[k];},closest(){return null;},focus(){focused=this;},addEventListener(k,v){this.handlers[k]=v;}},extra); }
+let focused;
+const ids = Object.fromEntries(['term-dialog','term-data','term-close','term-title','term-definition','term-example-text','term-glossary','main'].map(id=>[id,element()]));
+ids['term-data'].textContent=JSON.stringify({feature:{name:'Feature',definition:'Input measurement.',example:'Package weight.'},target:{name:'Target',definition:'Outcome.',example:'Duration.'}});
+const d=ids['term-dialog']; let shown=0;
+d.showModal=()=>{d.open=true;shown++;};d.close=()=>{d.open=false;d.handlers.close();};d.getBoundingClientRect=()=>({left:10,right:100,top:10,bottom:100});
+const doc=element({getElementById:id=>ids[id]});const win=element();const api=mount(doc,win);
+const a=element({dataset:{term:'feature'},attrs:{href:'course/glossary.html#term-feature'}}), b=element({dataset:{term:'target'},attrs:{href:'course/glossary.html#term-target'}});
+assert(api.open(a));assert(d.open);assert.equal(focused,ids['term-close']);assert.equal(a.attrs['aria-expanded'],'true');
+api.open(a);api.open(b);assert.equal(shown,1);assert.equal(a.attrs['aria-expanded'],'false');assert.equal(ids['term-title'].textContent,'Target');
+d.handlers.cancel({preventDefault(){}});assert(!d.open);assert.equal(focused,b);
+api.open(a);d.handlers.click({target:d,clientX:50,clientY:50});assert(d.open);d.handlers.click({target:d,clientX:0,clientY:0});assert(!d.open);
+assert.equal(api.open(element({dataset:{term:'missing'}})),false);
+assert.equal(api.open(element({dataset:{term:'feature'},closest(){return {};}})),false);
+const details=element({tagName:'DETAILS',open:false,querySelector(){return {contains(){return false;}};}});
+assert.equal(api.open(element({dataset:{term:'feature'},parentElement:details})),false);
+api.open(a);a.isConnected=false;api.close();assert.equal(focused,ids.main);
+a.isConnected=true;api.open(a);win.handlers.popstate();assert(!d.open);assert.equal(focused,a);
+let prevented=false;doc.handlers.click({target:{closest(){return a;}},preventDefault(){prevented=true;}});assert(prevented);assert(d.open);api.close();
+d.showModal=undefined;assert.equal(mount(doc,win),null);
+console.log('PASS: definition open/repeat/switch, native Escape, dismissal, focus, unavailable/hidden terms, history closure and no-dialog fallback (DOM doubles)');

@@ -24,7 +24,8 @@ jobs:
       - run: python3 tools/build.py --check
       - run: python3 tools/check.py
       - run: python3 -m unittest discover -s labs -p 'test_*.py' -v
-      - run: node --check app.js && node --check sw.js && node tools/test_reader.js
+      - run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+      - run: node --check app.js && node --check sw.js && node tools/test_reader.js && node --check practice.js && node tools/test_practice.js
       - name: Run all offline examples
         run: python3 tools/run_labs.py
 

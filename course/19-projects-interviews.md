@@ -2,7 +2,11 @@
 
 Prerequisites: the relevant core chapters; 06 and 16 are mandatory for every project. Outcomes: produce inspectable evidence, defend a design, and communicate uncertainty. Reading completion is not demonstrated mastery.
 
+Choose one system you want to explain and defend, not four projects to rush through. A working slice with a baseline, failure evidence and an honest limitation teaches more than a large unexamined demo. Start with the project that matches your role, then use the gates and interview rubric to find what needs another pass.
+
 ## Four projects with concrete deliverables
+
+The following are learner assignments. The included synthetic labs give you starting mechanisms and recorded examples, not completed production capstones. Pick one project, produce its evidence, then use the rubric for feedback.
 
 **Project A — A trustworthy tabular predictor.** Use synthetic support tickets or a documented public dataset. Define decision time, target maturity and costs. Implement a constant/rule baseline, logistic model and a tree-family comparison using an optional pinned library environment. Split by time or entity as justified; fit preprocessing inside training only. Deliver data contract, model comparison, uncertainty, slices, threshold selection on validation, a frozen final test report, and a script that reruns it. This extends the standard-library lab; the repository now includes a synthetic trained tree/logistic/MLP comparison; extend it to public data/library implementations rather than treating the synthetic report as real-world validation.
 
@@ -57,3 +61,7 @@ For leadership questions use only actual experience. Explain context, your speci
 Solutions architects emphasize requirements, integration, permissions and build/buy. ML engineers deepen modeling, data and reproducible evaluation. LLM application engineers deepen retrieval, tools and error analysis. Platform engineers deepen scheduling, hardware, distributed failure and observability. Applied scientists deepen statistics, controlled experiments and causal assumptions. Research scientists require sustained mathematics, paper replication and novel research beyond this course.
 
 Choose two projects, record a mock defense, review mistakes a week later, and solve a changed scenario. Vocabulary becomes useful when it lets you derive an answer and revise a decision, not when it replaces either.
+
+## What to carry forward
+
+A useful defense connects mechanism, evidence and constraints, and revises the decision when those change. Keep your own evidence log and revisit weak explanations. Return to [the learning map](00-start.md) or use Practice Q&A to test recall without confusing it with demonstrated project mastery.

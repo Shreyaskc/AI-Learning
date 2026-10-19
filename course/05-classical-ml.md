@@ -2,6 +2,8 @@
 
 Prerequisites: 01–04. Outcomes: select a model family from assumptions, fit a simple classifier, and recognize when a neural network is unnecessary.
 
+We can now compute a score and adjust it. The next choice is the shape of the model: is a straight boundary enough, or does the task need interacting rules or learned features? Start with logistic prediction and a complete update, then compare it with a tree and a small neural network on the same frozen data.
+
 ## Linear and probabilistic models
 
 Linear regression predicts `y_hat=w·x+b` and often minimizes squared error. It assumes a linear form for the conditional mean if interpreted statistically; the input may contain nonlinear basis features such as x². Outliers receive a large squared penalty. Absolute error instead has a median interpretation and is less sensitive to extreme residuals.
@@ -10,6 +12,18 @@ Logistic regression maps a linear score through sigmoid to a binary probability.
 
 A support vector machine seeks a large-margin boundary; kernels allow implicit nonlinear features. Margin is separation from the decision surface, not calibrated probability. A nearest-neighbor model stores examples and predicts from nearby cases; its distance metric and serving cost become critical as dimension and dataset size grow.
 
+## A worked prediction
+
+Let urgency score z=-2+1.5×prior_contacts+.5×has_outage_word. A ticket with one prior contact and an outage word gets z=0 and p=.5. Another with zero prior contacts and the word gets z=-1.5 and p≈.182. If missing an urgent ticket costs 20 units and unnecessary review costs 1, the equal-cost threshold .5 may be inappropriate. Under calibrated probabilities and these simplified costs, act when `20p > 1(1-p)`, so p>1/21≈.0476. Capacity limits and downstream effects complicate this rule.
+
+Run [learning.py](../labs/learning.py) to fit logistic regression on synthetic one-dimensional cases. Inspect the analytic gradient, fitted weight, held-out probabilities and log loss. Because the dataset is tiny and deliberately simple, high classification accuracy is not evidence that the algorithm will work on real tickets.
+
+## One complete logistic update
+
+Start with scalar x=2, positive target y=1, w=0,b=0 and learning rate eta=.1. Forward: z=wx+b=0, p=sigmoid(0)=.5, loss=-log(.5)=.693147. From chapter 04, dL/dz=p-y=-.5. Therefore dL/dw=-.5×2=-1 and dL/db=-.5. Gradient descent gives w=.1 and b=.05. The new z=.1×2+.05=.25, so p≈.562177 and positive-label loss≈.575939. One sample update improved its own loss; it says nothing by itself about held-out generalization.
+
+If instead y=0 while inputs/initial parameters stay fixed, the gradients are +1 and +.5, giving w=-.1,b=-.05 and p≈.437823. This symmetric changed-target exercise checks the sign. Do not confuse the coefficient .1, the score .25, the probability .562 and a thresholded action: they have different meanings. A numeric coefficient's interpretation also depends on feature units and correlated inputs; it is not a causal effect.
+
 ## Trees and ensembles
 
 A decision tree partitions feature space by questions such as `prior_contacts > 2`. At a leaf it predicts a value or class distribution. A split can reduce Gini impurity `1-sum_k p_k²` for classification. A leaf with equal class fractions has impurity .5 in the binary case; a pure leaf has zero. Greedy split selection does not guarantee the best entire tree. Deep trees can memorize noise.
@@ -17,31 +31,6 @@ A decision tree partitions feature space by questions such as `prior_contacts > 
 Bagging trains models on resampled datasets and averages them, reducing variance when errors are not perfectly correlated. Random forests also randomize feature choices. Boosting fits successive learners to improve the current ensemble objective; gradient boosting uses loss gradients as directions for correction. Boosting is not simply another name for bagging. Trees naturally capture nonlinear thresholds and interactions, but extrapolate poorly outside learned regions and need care with missing values and high-cardinality categories.
 
 A practical tabular workflow starts with a constant baseline, a regularized linear model, and a tree ensemble. Compare with consistent splits and tuning budgets. Deep models become attractive for learned representations across high-dimensional unstructured data, but “more advanced” is not a measured advantage.
-
-## A worked prediction
-
-Let urgency score z=-2+1.5×prior_contacts+.5×has_outage_word. A ticket with one prior contact and an outage word gets z=0 and p=.5. Another with zero prior contacts and the word gets z=-1.5 and p≈.182. If missing an urgent ticket costs 20 units and unnecessary review costs 1, the equal-cost threshold .5 may be inappropriate. Under calibrated probabilities and these simplified costs, act when `20p > 1(1-p)`, so p>1/21≈.0476. Capacity limits and downstream effects complicate this rule.
-
-Run [learning.py](../labs/learning.py) to fit logistic regression on synthetic one-dimensional cases. Inspect the analytic gradient, fitted weight, held-out probabilities and log loss. Because the dataset is tiny and deliberately simple, high classification accuracy is not evidence that the algorithm will work on real tickets.
-
-## Unsupervised structure
-
-K-means assigns points to k centers and alternates assignment with center updates to reduce within-cluster squared distances. It assumes that this geometry is useful; clusters can be unstable, differently scaled, or socially meaningless. PCA compresses variance directions rather than discovering labels. Anomaly detection flags departures from a reference pattern; rare does not mean harmful, and harmful behavior can resemble common behavior.
-
-## Practice and solutions
-
-1. Explain why duplicating a feature can hurt naive Bayes confidence. Solution: the conditional independence model can count the same evidence twice, making likelihood ratios too extreme.
-2. A tree performs well on delays 0–10 days; will it extrapolate linearly to 100-day delays? Solution: ordinary regression trees predict leaf averages, so they do not naturally extrapolate a trend.
-3. A model beats a baseline by .2% after 1,000 trials. What next? Solution: account for selection and uncertainty, use a preserved evaluation set, inspect slices and compare value and complexity before adoption.
-
-Interview depths: describe linear versus tree assumptions; derive logistic gradient and a cost threshold; defend a baseline choice under latency, interpretability and maintenance constraints. Misconception: feature importance is not a causal effect. Vocabulary: margin, kernel, tree, ensemble, bagging, boosting, cluster, anomaly, interpretability.
-
-
-## One complete logistic update
-
-Start with scalar x=2, positive target y=1, w=0,b=0 and learning rate eta=.1. Forward: z=wx+b=0, p=sigmoid(0)=.5, loss=-log(.5)=.693147. From chapter 04, dL/dz=p-y=-.5. Therefore dL/dw=-.5×2=-1 and dL/db=-.5. Gradient descent gives w=.1 and b=.05. The new z=.1×2+.05=.25, so p≈.562177 and positive-label loss≈.575939. One sample update improved its own loss; it says nothing by itself about held-out generalization.
-
-If instead y=0 while inputs/initial parameters stay fixed, the gradients are +1 and +.5, giving w=-.1,b=-.05 and p≈.437823. This symmetric changed-target exercise checks the sign. Do not confuse the coefficient .1, the score .25, the probability .562 and a thresholded action: they have different meanings. A numeric coefficient's interpretation also depends on feature units and correlated inputs; it is not a causal effect.
 
 ## Practical extension: train and compare four families
 
@@ -64,9 +53,9 @@ These are recorded outputs for one synthetic split, not population estimates wit
 
 A subtle failure: a perfectly balanced four-point XOR dataset has zero immediate Gini gain at each first axis split. This greedy tree stops before seeing the useful two-level interaction, even though a depth-2 tree could express it. The test suite demonstrates this limitation. On the noisy finite sample above, an immediate gain exists, permitting deeper splits. Expressiveness and a greedy training procedure are not identical.
 
-Exercises: (1) Change the label to `x1>0` and define new splits before running. Predict which model should improve. Solution: a linear score and shallow tree can represent this boundary; complexity is no longer required, although finite data/noise still matter. (2) Increase maximum depth until training fit approaches perfection. What evidence would justify retaining it? Solution: validation improvement and useful error behavior under an unchanged protocol, not training accuracy. (3) Remove scaling for all models. Solution: trees are largely invariant to monotonic per-feature rescaling when thresholds transform correspondingly; gradient optimization is sensitive to scales. Compare convergence and loss with controlled training budgets rather than assuming every model changes identically.
+## Unsupervised structure
 
-Mastery gate: explain the four rows, reproduce the report, locate the training-only scaler, and defend a model using both metric and operational constraints. The next deeper gap is a public-data/library comparison with uncertainty over repeated valid splits.
+K-means assigns points to k centers and alternates assignment with center updates to reduce within-cluster squared distances. It assumes that this geometry is useful; clusters can be unstable, differently scaled, or socially meaningless. PCA compresses variance directions rather than discovering labels. Anomaly detection flags departures from a reference pattern; rare does not mean harmful, and harmful behavior can resemble common behavior.
 
 ## Identifiability, density and misleading geometry
 
@@ -75,3 +64,23 @@ If two input columns are identical, the linear score depends on their coefficien
 K-means is not the only definition of a cluster. DBSCAN groups points connected through sufficiently dense neighborhoods, using a radius epsilon and minimum-neighbor count. With points at 0,.1,.2,5 on a line, radius .15 and minimum count 2 including the point itself, the first three connect through neighborhoods while 5 is isolated. This can capture non-spherical structure and identify noise, but results depend strongly on scaling, density variation and epsilon. This lesson explains the mechanism; it does not claim an executed DBSCAN implementation.
 
 In high dimensions, many irrelevant coordinates can dominate distance, and local neighborhoods become sparse at a fixed sample size. A nearest-neighbor method may need more data, better representations or task-informed metric choices. Adding dimensions is not automatically adding useful information. Two-dimensional visualizations such as t-SNE/UMAP can distort global distances and vary with settings; separated blobs do not establish real-world categories or causal subpopulations. Confirm conclusions with original-space evaluation and task evidence.
+
+## Practice: try before revealing
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+1. Explain why duplicating a feature can hurt naive Bayes confidence. Solution: the conditional independence model can count the same evidence twice, making likelihood ratios too extreme.
+2. A tree performs well on delays 0–10 days; will it extrapolate linearly to 100-day delays? Solution: ordinary regression trees predict leaf averages, so they do not naturally extrapolate a trend.
+3. A model beats a baseline by .2% after 1,000 trials. What next? Solution: account for selection and uncertainty, use a preserved evaluation set, inspect slices and compare value and complexity before adoption.
+
+Exercises: (1) Change the label to `x1>0` and define new splits before running. Predict which model should improve. Solution: a linear score and shallow tree can represent this boundary; complexity is no longer required, although finite data/noise still matter. (2) Increase maximum depth until training fit approaches perfection. What evidence would justify retaining it? Solution: validation improvement and useful error behavior under an unchanged protocol, not training accuracy. (3) Remove scaling for all models. Solution: trees are largely invariant to monotonic per-feature rescaling when thresholds transform correspondingly; gradient optimization is sensitive to scales. Compare convergence and loss with controlled training budgets rather than assuming every model changes identically.
+
+Mastery gate: explain the four rows, reproduce the report, locate the training-only scaler, and defend a model using both metric and operational constraints. The next deeper gap is a public-data/library comparison with uncertainty over repeated valid splits.
+
+## Interview rehearsal and vocabulary
+
+Interview depths: describe linear versus tree assumptions; derive logistic gradient and a cost threshold; defend a baseline choice under latency, interpretability and maintenance constraints. Misconception: feature importance is not a causal effect. Vocabulary: margin, kernel, tree, ensemble, bagging, boosting, cluster, anomaly, interpretability.
+
+## What to carry forward
+
+Model families make different assumptions, and a fitting procedure can fail even when a family could represent the answer. Choose from evidence on the intended decision, not from a hierarchy of impressive names. Next, [check that the comparison itself is trustworthy](06-evaluation.md).

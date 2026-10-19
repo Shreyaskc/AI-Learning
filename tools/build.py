@@ -73,6 +73,17 @@ def render(markdown, lesson=None):
                 if not all(re.fullmatch(r':?-+:?', cell) for cell in row):
                     rows.append(row)
                 i+=1
+            if rows and rows[0][0] == 'Term' and len(rows[0]) == 8:
+                out.append('<div class="glossary-entries">')
+                for row in rows[1:]:
+                    name, definition, plain, analogy, example, lesson_link, aliases, sources = row
+                    key = terms.key_for(name)
+                    out.append('<section class="glossary-entry" aria-labelledby="term-'+key+'"><h2 id="term-'+key+'">'+format_inline(name)+'</h2>')
+                    for label, value in [('Technical definition', definition), ('In plain language', plain), ('Analogy and its limit', analogy), ('Concrete example', example)]:
+                        out.append('<p><strong>'+label+':</strong> '+format_inline(value)+'</p>')
+                    out.append('<p class="small">First explanation: '+format_inline(lesson_link)+' · Sources: '+format_inline(sources)+'</p></section>')
+                out.append('</div>')
+                continue
             out.append('<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable reference table"><table>')
             for index,row in enumerate(rows):
                 tag='th' if index==0 else 'td'
@@ -116,6 +127,7 @@ def title(path):
 
 def layout(current, body, root=False, title_override=None):
     prefix='' if root else '../'
+    term_data=terms.data(re.findall(r'data-term="([^"]+)"', body))
     nav=''.join(f'<a data-lesson="{p.stem}" href="{prefix}course/{p.stem}.html"'+
                 (' aria-current="page"' if p==current else '')+'>'+html.escape(title(p))+'</a>'
                 for p in LESSONS+EXTRAS)
@@ -131,7 +143,7 @@ def layout(current, body, root=False, title_override=None):
 <header><a class="brand" href="{prefix}index.html">AI / FLUENCY</a><nav class="mode-nav" aria-label="Learning mode"><a href="{prefix}index.html"{learn_current}>Learn</a><a href="{prefix}practice.html"{practice_current}>Practice Q&amp;A</a></nav><button id="menu" aria-expanded="false" aria-controls="sidebar">Lessons</button></header>
 <div class="layout"><aside id="sidebar"><label for="search">Find a lesson or reference</label><input id="search" type="search" placeholder="Try transformers or security">
 <p id="progress" aria-live="polite">Study progress is stored in this browser.</p><nav aria-label="Course lessons">{nav}</nav><p class="small">Checkboxes track study, not assessed mastery.</p></aside>
-<main id="main" tabindex="-1">{body}<footer>Original explanations · Synthetic examples · <a href="{prefix}course/coverage.html">Evidence and remaining depth</a> · <a href="{prefix}README.md">Repository guide</a></footer></main></div><dialog id="term-dialog" aria-labelledby="term-title" aria-describedby="term-definition term-example-text"><button id="term-close" type="button" aria-label="Close definition">Close ×</button><h2 id="term-title"></h2><p id="term-definition"></p><p><strong>Example:</strong> <span id="term-example-text"></span></p><a id="term-glossary">Read in glossary →</a></dialog><script id="term-data" type="application/json">{terms.data()}</script></body></html>'''
+<main id="main" tabindex="-1">{body}<footer>Original explanations · Synthetic examples · <a href="{prefix}course/coverage.html">Evidence and remaining depth</a> · <a href="{prefix}README.md">Repository guide</a></footer></main></div><dialog id="term-dialog" aria-labelledby="term-title" aria-describedby="term-definition term-plain"><button id="term-close" type="button" aria-label="Close definition">Close ×</button><h2 id="term-title"></h2><p class="term-label">Technical definition</p><p id="term-definition"></p><p class="term-label">In plain language</p><p id="term-plain"></p><details id="term-analogy-disclosure"><summary>Analogy and its limit</summary><p id="term-analogy"></p></details><p><strong>Concrete example:</strong> <span id="term-example-text"></span></p><a id="term-glossary">Read in glossary →</a></dialog><script id="term-data" type="application/json">{term_data}</script></body></html>'''
 
 
 def outputs():

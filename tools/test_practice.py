@@ -42,7 +42,7 @@ class PracticeContentTests(unittest.TestCase):
         self.assertNotIn('required',ids['practice-attempt'][1])
         self.assertEqual(ids['practice-reveal'][1]['aria-expanded'],'false')
         self.assertEqual(ids['practice-reveal'][1]['aria-controls'],'practice-answer')
-        self.assertEqual(parser.details,69) # native no-JS fallback
+        self.assertEqual(sum(tag=='details' and attrs.get('id')!='term-analogy-disclosure' for tag,attrs in parser.elements),69) # native no-JS questions
     def test_home_has_direct_optional_diagnostic_and_practice(self):
         parser=Markup();parser.feed((ROOT/'index.html').read_text())
         self.assertIn('practice.html#topic=00-start',parser.links)

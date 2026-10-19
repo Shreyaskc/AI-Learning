@@ -1,0 +1,11 @@
+Chapter 7: Neural networks and representation learning. Composition creates features.
+
+Each hidden unit first makes a weighted score, then applies a nonlinear function to that score. For x equals (2,1), rows (1,negative 1) and (zero point five,zero point five) with zero biases give scores 1 and 1.5. rectified linear unit keeps these positive scores, giving hidden outputs (1,1.5).
+
+The compact layer notation is Hidden representation h equals activation function phi applied to W times x plus b: W contains one weight row per output unit, b its bias, phi the activation function and h the resulting hidden vector. W is output-width by input-width under column-vector convention; b has output width. phi is a nonlinear activation. With no nonlinearity, stacking affine layers collapses into one affine map: Applying two affine layers without a nonlinear activation gives a single affine layer: the combined weight is W two times W one, and the combined bias is W two times b one plus b two. Depth alone would not create a more expressive nonlinear boundary.
+
+rectified linear unit is max(0,z); it keeps positive values and blocks negatives. Its derivative is 1 for z greater than 0 and 0 for z less than 0; software chooses a convention at zero, where the derivative is not unique. Sigmoid saturates for large positive or negative scores; repeatedly multiplying small derivatives can make early-layer gradients tiny. Residual connections add an identity path, letting layers learn a correction rather than the entire transformation.
+
+Some universal-approximation results say a sufficiently capable network can represent broad classes of functions under stated conditions. They do not show that finite data and an optimizer will find that representation or generalize.
+
+Representation learning trains intermediate features that make an objective easier. These features can transfer to other tasks if useful structure overlaps, but can also encode spurious shortcuts. A picture classifier may learn a background watermark rather than the object. Training loss alone cannot distinguish the intended mechanism.

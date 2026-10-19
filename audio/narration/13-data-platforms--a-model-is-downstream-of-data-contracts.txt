@@ -1,0 +1,5 @@
+Chapter 13: Data and feature platforms. A model is downstream of data contracts.
+
+An ingestion contract defines schema, units, entity keys, timestamp semantics, ownership and quality expectations. Batch ingestion favors reproducible snapshots; streaming favors low-latency updates but must handle duplicates, out-of-order events and partial failures. Track source offsets, transformation version and lineage so a training dataset can be reconstructed. A model hash without a data snapshot is insufficient reproducibility.
+
+Missingness has meaning. A missing sensor value may indicate an outage, not a typical reading. Impute using training data and often include a missingness indicator. Do not assume zero means absent in every schema. Category dictionaries and vocabularies are fitted artifacts; define behavior for unseen categories rather than silently dropping rows. A schema change from milliseconds to seconds can produce valid numbers with invalid meaning.

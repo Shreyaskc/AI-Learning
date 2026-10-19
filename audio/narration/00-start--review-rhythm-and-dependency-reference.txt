@@ -1,0 +1,5 @@
+Chapter 0: Start here: learn, build, explain. Review rhythm and dependency reference.
+
+01 defines the problem and splitting contract. 02 leads to 03 leads to 04 supplies math. Those plus 01 feed 05 leads to 06 leads to 07 leads to 08 leads to 09. Then 06 plus 08 plus 09 leads to 10 leads to 11; 07 plus 08 plus 09 leads to 12. 06 plus 10 plus 11 leads to 13 leads to 14 leads to 15. Chapter 16 deepens security. Chapter 17 uses 03 plus 06 for experiments; 03 plus 05 plus 06 plus 13 leads to 18 covers electives and 19 integrates projects and interviews. Chapter 16's threat modeling should also be revisited while building 10 and 11.
+
+After every chapter, close the page and explain its mechanism in 90 seconds. Review the next day, one week later and one month later. On each review: define three terms, redo one calculation, solve one changed example, and name one failure mode. If you fail, reread the relevant section and schedule another next-day attempt. Spacing dates are a practical study convention, not a universal optimal schedule.

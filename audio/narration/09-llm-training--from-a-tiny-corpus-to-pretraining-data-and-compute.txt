@@ -1,0 +1,7 @@
+Chapter 9: large language model pretraining, adaptation and alignment. From a tiny corpus to pretraining data and compute.
+
+These are scale-up considerations, after the small learning mechanism above.
+
+Data pipelines select, deduplicate, filter, license, tokenize and mix documents. They define what the model can learn and what sensitive material it may memorize. Contamination control and dataset documentation belong before a final benchmark. More raw data is not automatically more useful data. Synthetic data can provide targeted examples but can also amplify teacher errors, reduce diversity or leak evaluation content.
+
+Empirical scaling studies fit relationships between loss, parameters, tokens and compute within tested regimes. Chinchilla studied compute allocation between model size and training tokens. Treat the observed tradeoff as a study result under its setup, not a permanent universal tokens-per-parameter law or a direct deployment-cost optimum.

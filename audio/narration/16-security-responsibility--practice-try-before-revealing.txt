@@ -1,0 +1,11 @@
+Chapter 16: Security, privacy and responsible A.I. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. Is tenant identifier supplied inside a large language model prompt sufficient isolation? Pause now and try your answer. When you are ready, continue. Solution: no; enforce identity and access control list in trusted storage and service layers and test cache and index boundaries.
+
+Question 2. A fairness metric improves while all groups become worse. Can that happen? Pause now and try your answer. When you are ready, continue. Solution: yes; equalizing a rate does not guarantee improving outcomes. Report absolute performance and harm alongside gaps.
+
+Question 3. A model refuses every request. Is it safe and useful? Pause now and try your answer. When you are ready, continue. Solution: it may reduce some harms but fails utility; evaluate the intended task and calibrated refusal rather than a single safety score.

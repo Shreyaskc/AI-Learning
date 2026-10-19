@@ -1,0 +1,5 @@
+Chapter 7: Neural networks and representation learning. Introduction and prerequisites.
+
+Prerequisites: 02 to 06. Outcomes: trace forward and backward passes, distinguish architectures, and understand why learned representations help.
+
+The nonlinear task in 05 could not be captured by one straight boundary. A neural network creates intermediate features before making its final prediction. First trace one small layer, then one backward pass, and only then train the full small network.

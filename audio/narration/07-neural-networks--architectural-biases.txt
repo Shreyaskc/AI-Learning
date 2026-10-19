@@ -1,0 +1,7 @@
+Chapter 7: Neural networks and representation learning. Architectural biases.
+
+Convolutional networks share local filters across spatial positions. This encodes a useful locality and translation bias for images and signals. A 3 by 3 convolution from 3 input channels to 16 output channels has 3 by 3 by 3 by 16 equals 432 weights, plus 16 biases if used. Spatial dimensions and padding alter output size, not this count.
+
+Recurrent networks update a state across sequence steps; long short term memory and GRU gates help manage information flow and gradients. They naturally process variable-length sequences but sequential computation can limit parallel training. Transformers use attention to mix positions; they have different compute and memory tradeoffs. Graph neural networks aggregate neighbor information on graph structures, with risks including oversmoothing, noisy edges and graph leakage across splits.
+
+An autoencoder compresses input to a latent representation then reconstructs it. A variational autoencoder learns a probabilistic latent model using reconstruction and a distribution regularizer. Contrastive learning brings related views closer and separates negatives according to its objective; “negative” may be an accidentally related example, so sampling matters.

@@ -1,0 +1,9 @@
+Chapter 19: Projects, mastery gates and interview practice. Evidence-based phase gates.
+
+After 01 to 06: repair a leaky split, calculate Bayes and one gradient, and justify a cost-aware metric. Pass only when calculations and availability logic are correct without referring to a solution.
+
+After 07 to 09: trace a two-layer backward pass and masked attention, explain autoregressive loss and contrast supervised fine tuning and low rank adaptation and preferences. Pass when gradient checks and future-input invariance tests work and you can explain their limits.
+
+After 10 to 13: deliver the Project B vertical slice with explicit provenance, permissions and memory lifecycle. Pass when missing evidence and unsupported output are diagnosed separately and adversarial tests exercise boundaries.
+
+After 14 to 18: defend capacity, rollout, threat and experiment plans under a changed requirement. Pass when assumptions are revised coherently, not by adding vocabulary. Keep status as unattempted divided by attempted divided by passed divided by needs review and attach evidence; the reader's completion checkbox records study progress only.

@@ -15,7 +15,7 @@ def main():
     sample=args.sample.resolve()
     if sample.is_relative_to(build.ROOT): raise SystemExit('Keep the private System Voice sample outside the public repository.')
     if not sample.is_file() or sample.stat().st_size<10000: raise SystemExit('A nonempty generated recording is required.')
-    items=copy.deepcopy(listen.tracks(build.LESSONS))
+    items=copy.deepcopy(listen.sample_tracks(build.LESSONS))
     for item in items:
         item['lesson']='https://shreyaskc.github.io/AI-Learning/'+item['lesson']
         if item['id']=='01-foundations-core':

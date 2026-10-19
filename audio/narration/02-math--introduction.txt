@@ -1,0 +1,5 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Introduction and prerequisites.
+
+Prerequisite: 01. Outcomes: track dimensions, compute similarity, interpret logarithms, and apply the chain rule. These tools describe computations; notation should expose mistakes rather than hide them.
+
+How can a ticket become a calculation? We will start with two measurable inputs, build one weighted score, and then learn the tools needed to change that score. The optional compression section is a later revisit; it is not required to understand your first training update.

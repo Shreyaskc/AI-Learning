@@ -1,0 +1,5 @@
+Chapter 11: Workflows, tools, context, memory and graphs. Persist memory with provenance and deletion.
+
+The same local database stores memory records with tenant, identifier, statement, source, owner, expiry and a verified flag. Retrieval returns only the requested tenant's unexpired verified records. Marking verified is a trusted ingestion decision; the boolean does not magically establish truth. Generated hypotheses can be stored separately but are not promoted into verified recall by default.
+
+The demo writes one record expiring at t equals 200. At t equals 100 recall returns one; at t equals 201 it returns zero. Source deletion removes its derived record, so recall at t equals 100 subsequently returns zero as well. Tests include another tenant and an unverified hypothesis to prove those do not bleed into the result. A real deletion process must also handle indexes, caches, backups and retention requirements; this database is only one component.

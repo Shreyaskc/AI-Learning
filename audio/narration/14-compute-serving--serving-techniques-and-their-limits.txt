@@ -1,0 +1,5 @@
+Chapter 14: Training compute, hardware and inference serving. Serving techniques and their limits.
+
+Batching amortizes model execution across requests but can add waiting and mix lengths. Continuous batching lets requests enter and leave generation batches over time. Admission control and per-tenant quotas protect the queue from overload. Prefix caching reuses compatible prompt work; cache correctness depends on model, exact prefix, tokenization and access scope. PagedAttention studies block-based key value memory management. FlashAttention reduces memory traffic for exact attention through input output-aware tiling; it does not abolish the dense attention arithmetic dependency on sequence length.
+
+Speculative decoding proposes tokens using a cheaper draft and verifies them with a target. Correct acceptance procedures can preserve the target sampling distribution under their assumptions. Benefit depends on acceptance rate, draft overhead, batch shape and hardware; verification is not proof that proposed statements are factually true.

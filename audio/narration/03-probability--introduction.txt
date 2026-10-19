@@ -1,0 +1,5 @@
+Chapter 3: Probability, statistics and uncertainty. Introduction and prerequisites.
+
+Prerequisites: 02, especially logs. Outcomes: reason with base rates, distinguish distributions from samples, and interpret uncertainty without turning correlation into causation.
+
+A detector raises an alert. Before trusting it, ask how often alerts correspond to actual faults. Count cases first; probability notation will give us a shorter way to express the same reasoning. You need only the log and weighted-sum ideas from 02, not the optional S V D section.

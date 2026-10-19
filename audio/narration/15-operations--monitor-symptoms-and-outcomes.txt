@@ -1,0 +1,5 @@
+Chapter 15: MLOps, observability and release discipline. Monitor symptoms and outcomes.
+
+Data checks detect missing fields, schema changes, unexpected category rates and freshness violations. Model checks detect score-distribution changes, slice-specific errors, calibration loss and uncertainty. Application checks measure unsupported answers, citation coverage, abstention, duplicate tool effects and task completion. Infrastructure checks measure saturation, queue age, memory and latency tails.
+
+Drift is a change in a monitored distribution; performance degradation is a change in task quality. Drift can occur without harm, and quality can drop without visible input drift if labels or policies change. Delayed ground truth requires leading indicators plus later outcome reconciliation. Every alert should name an owner, expected response and decision; a dashboard without an action is not operational readiness.

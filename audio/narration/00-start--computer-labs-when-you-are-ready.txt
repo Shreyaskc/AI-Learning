@@ -1,0 +1,9 @@
+Chapter 0: Start here: learn, build, explain. Computer labs: when you are ready.
+
+These commands are for a terminal on a computer, opened in the downloaded repository folder. They are not needed to begin reading on a phone. The examples use synthetic data and need no paid A.P.I. or G P U.
+
+From the repository root:
+
+The written terminal block runs the Foundations, learning, attention, retrieval and platform labs with Python three. Then it runs all offline examples, runs the lab unit tests, rebuilds the reader and checks the generated files. These are commands to execute from the repository root, not statements to paste into a Python interpreter. Each command and its exact spelling are available in the linked written section.
+
+Open index dot H T M L for the generated reader. Markdown in course slash is the source of truth. No G P U, paid A.P.I., external library or account is needed. A web server is optional: Run the Python three local web server on port eight thousand. and visit localhost port 8000. Browser progress is local to that browser and is not an assessment credential.

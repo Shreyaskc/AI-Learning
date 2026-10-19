@@ -1,0 +1,11 @@
+Chapter 4: Optimization: how learning changes parameters. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. Add L2 with coefficient lambda to the one-feature update. Pause now and try your answer. When you are ready, continue. Solution: gradient becomes The quantity w times x minus y, multiplied by x, plus lambda times w; usually specify separately whether bias is penalized.
+
+Question 2. Why not tune learning rate on the final test set? Pause now and try your answer. When you are ready, continue. Solution: that turns the test into a validation set and biases the final estimate.
+
+Question 3. Loss is not a number after a few steps. Investigate? Pause now and try your answer. When you are ready, continue. Solution: check invalid inputs, overflow and log-zero, learning rate, gradient magnitudes and precision before adding more model capacity.

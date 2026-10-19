@@ -1,0 +1,12 @@
+{
+  "18eb135538e2bcc4969f178ff6ba210025fc14fa9621890aba81710f6b91b490": {
+    "chapter": "00-start",
+    "source": "python3 labs/foundations.py\npython3 labs/learning.py\npython3 labs/attention.py\npython3 labs/retrieval.py\npython3 labs/platform.py\npython3 tools/run_labs.py\npython3 -m unittest discover -s labs -p 'test_*.py'\npython3 tools/build.py\npython3 tools/check.py",
+    "spoken": "The written terminal block runs the Foundations, learning, attention, retrieval and platform labs with Python three. Then it runs all offline examples, runs the lab unit tests, rebuilds the reader and checks the generated files. These are commands to execute from the repository root, not statements to paste into a Python interpreter. Each command and its exact spelling are available in the linked written section."
+  },
+  "4d01b717969199cef4c1babdd9b61ab5a8458c5ff234b208666b8c4346fabe12": {
+    "chapter": "02-math",
+    "source": "X = [ [2, 1],      w = [ 3 ]      Xw = [ 5 ]\n      [0, 1] ]        [-1 ]           [-1 ]",
+    "spoken": "Read this matrix by rows. X has first row two, one, and second row zero, one. The weight vector has first coordinate three and second coordinate negative one. For the first row, two times three plus one times negative one gives five. For the second, zero times three plus one times negative one gives negative one. Matrix-vector multiplication therefore produces the column vector five, negative one. The written block places these arrays side by side so you can check each multiplication."
+  }
+}

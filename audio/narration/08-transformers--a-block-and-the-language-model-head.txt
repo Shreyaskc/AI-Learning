@@ -1,0 +1,7 @@
+Chapter 8: Tokens, embeddings and transformers. A block and the language-model head.
+
+A typical decoder block uses normalization, attention, residual addition, then a position-wise feedforward network with another residual path. Exact order and activation vary. The feedforward network transforms each position separately; attention mixes across positions. Repeating blocks produces contextual representations. A final projection produces vocabulary logits: one unnormalized score per possible next token. Softmax turns those scores into next-token probabilities.
+
+Decoder-only models use causal masks for autoregressive generation. Encoder models can attend bidirectionally to input positions and are useful for representation tasks. Encoder-decoder models let a decoder attend to an encoded source as well as earlier outputs. The original Transformer was encoder-decoder; “transformer” does not mean every model is a decoder-only chat model.
+
+During teacher-forced training, a shifted input and target sequence supplies many next-token losses in parallel, with masks preventing future-target leakage. During ordinary autoregressive generation, sample or select one next token, append it, and repeat. The sampling distribution may use temperature: softmax(z divided by tau). Smaller positive temperature tau sharpens it; this does not guarantee correctness. Top-p retains a probability-mass prefix and renormalizes; decoding changes output statistics and may affect evaluation.

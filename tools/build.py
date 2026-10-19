@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COURSE = ROOT / 'course'
 LESSONS = sorted(COURSE.glob('[0-9][0-9]-*.md'))
+COURSES = [('AI Fluency','https://shreyaskc.github.io/AI-Learning/'),('System Design Fluency','https://shreyaskc.github.io/system-design-fluency/'),('DSA Fluency','https://shreyaskc.github.io/dsa-fluency/'),('Principal Leadership Fluency','https://shreyaskc.github.io/principal-leadership-fluency/'),('Production Platforms Fluency','https://shreyaskc.github.io/production-platforms-fluency/'),('Practical Engineering Fluency','https://shreyaskc.github.io/practical-engineering-fluency/')]
 EXTRAS = [COURSE / name for name in ['glossary.md', 'coverage.md', 'module-crosswalk.md', 'sources.md']]
 
 
@@ -66,8 +67,9 @@ def render(markdown, lesson=None):
         if heading:
             flush(); level=len(heading[1]); title=heading[2]
             out.append(f'<h{level} id="{slug(title)}">{format_inline(title)}</h{level}>')
-            if lesson and lesson.stem=='01-foundations' and slug(title)=='from-rules-to-learned-functions':
-                out.append('<p><a href="../listen.html?track=01-foundations-core">Listen to this section · sample preview →</a></p>')
+            if lesson and level in range(1,7):
+                identity=lesson.stem+'--'+('introduction' if level==1 else slug(title))
+                out.append('<p class="section-audio"><a data-audio-section="'+identity+'" href="../listen.html?track='+identity+'">Listen to this section →</a></p>')
             i+=1; continue
         if line.startswith('|'):
             flush(); rows=[]
@@ -130,6 +132,7 @@ def title(path):
 
 def layout(current, body, root=False, title_override=None):
     prefix='' if root else '../'
+    course_links='<nav class="course-switcher" aria-label="Courses"><strong>Courses</strong>'+''.join('<a href="'+url+'"'+(' aria-current="true"' if name=='AI Fluency' else '')+'>'+name+'</a>' for name,url in COURSES)+'</nav>'
     term_data=terms.data(re.findall(r'data-term="([^"]+)"', body))
     nav=''.join(f'<a data-lesson="{p.stem}" href="{prefix}course/{p.stem}.html"'+
                 (' aria-current="page"' if p==current else '')+'>'+html.escape(title(p))+'</a>'
@@ -137,7 +140,7 @@ def layout(current, body, root=False, title_override=None):
     page_title=title_override or (title(current) if current else 'AI Fluency · From first principles to AI systems')
     learn_current=' aria-current="true"' if not title_override else ''
     practice_current=' aria-current="true"' if title_override=='Practice Q&A' else ''
-    listen_current=' aria-current="true"' if title_override=='Listen' else ''
+    listen_current=' aria-current="true"' if title_override in ('Listen','Audio coverage') else ''
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A self-study AI course with worked mathematics, offline Python labs and practical system design.">
@@ -145,9 +148,9 @@ def layout(current, body, root=False, title_override=None):
 <script src="{prefix}app.js" defer></script><script src="{prefix}terms.js" defer></script></head>
 <body data-chapter="{current.stem if current else ''}"><a class="skip" href="#main">Skip to lesson</a>
 <header><a class="brand" href="{prefix}index.html">AI / FLUENCY</a><nav class="mode-nav" aria-label="Learning mode"><a href="{prefix}index.html"{learn_current}>Learn</a><a href="{prefix}practice.html"{practice_current}>Practice Q&amp;A</a><a href="{prefix}listen.html"{listen_current}>Listen</a></nav><button id="menu" aria-expanded="false" aria-controls="sidebar">Lessons</button></header>
-<div class="layout"><aside id="sidebar"><label for="search">Find a lesson or reference</label><input id="search" type="search" placeholder="Try transformers or security">
+<div class="layout"><aside id="sidebar">{course_links}<label for="search">Find a lesson or reference</label><input id="search" type="search" placeholder="Try transformers or security">
 <p id="progress" aria-live="polite">Study progress is stored in this browser.</p><nav aria-label="Course lessons">{nav}</nav><p class="small">Checkboxes track study, not assessed mastery.</p></aside>
-<main id="main" tabindex="-1">{body}<footer>Original explanations · Synthetic examples · <a href="{prefix}course/coverage.html">Evidence and remaining depth</a> · <a href="{prefix}README.md">Repository guide</a></footer></main></div><dialog id="term-dialog" aria-labelledby="term-title" aria-describedby="term-definition term-plain"><button id="term-close" type="button" aria-label="Close definition">Close ×</button><h2 id="term-title"></h2><p class="term-label">Technical definition</p><p id="term-definition"></p><p class="term-label">In plain language</p><p id="term-plain"></p><details id="term-analogy-disclosure"><summary>Analogy and its limit</summary><p id="term-analogy"></p></details><p><strong>Concrete example:</strong> <span id="term-example-text"></span></p><a id="term-glossary">Read in glossary →</a></dialog><script id="term-data" type="application/json">{term_data}</script></body></html>'''
+<main id="main" tabindex="-1">{body}<footer>{course_links}Original explanations · Synthetic examples · <a href="{prefix}course/coverage.html">Evidence and remaining depth</a> · <a href="{prefix}README.md">Repository guide</a></footer></main></div><dialog id="term-dialog" aria-labelledby="term-title" aria-describedby="term-definition term-plain"><button id="term-close" type="button" aria-label="Close definition">Close ×</button><h2 id="term-title"></h2><p class="term-label">Technical definition</p><p id="term-definition"></p><p class="term-label">In plain language</p><p id="term-plain"></p><details id="term-analogy-disclosure"><summary>Analogy and its limit</summary><p id="term-analogy"></p></details><p><strong>Concrete example:</strong> <span id="term-example-text"></span></p><a id="term-glossary">Read in glossary →</a></dialog><script id="term-data" type="application/json">{term_data}</script></body></html>'''
 
 
 def outputs():
@@ -168,10 +171,12 @@ def outputs():
             body+=f'<nav class="paging" aria-label="Lesson navigation">{prev}{nxt}</nav>'
         generated[p.with_suffix('.html')]=layout(p,body)
     cards=''.join(f'<a class="card" href="course/{p.stem}.html"><span>{p.stem[:2]}</span><h2>{html.escape(title(p).split(" · ",1)[-1])}</h2><p>{html.escape(next((line for line in p.read_text().splitlines()[1:] if line.strip()),""))}</p></a>' for p in LESSONS)
-    home=f'''<div class="eyebrow">A COURSE FOR SOFTWARE ENGINEERS</div><h1>Build your understanding<br>from the ground up.</h1><p class="lead">Learn what models learn, how they fail, and how to build AI systems you can explain and defend.</p><div class="home-actions"><a class="start" href="course/01-foundations.html">Start learning →</a><a class="start secondary" href="practice.html">Practice Q&amp;A →</a></div><p class="home-diagnostic">Already familiar with the basics? <a href="practice.html#topic=00-start">Try the 10-question diagnostic</a>. New here? Start with the first lesson; the diagnostic is optional.</p><div class="stats"><span><strong>20</strong> authored chapters</span><span><strong>14</strong> offline Python labs</span><span><strong>4</strong> capstone assignments</span></div><p>Start with no AI background. Follow the mathematics and worked examples, run tiny inspectable implementations, then practice evaluation, production design and interview defenses. Read the <a href="course/coverage.html">coverage ledger</a>: specialist topics have different depths and production projects remain assignments.</p><section class="cards" aria-label="Ordered curriculum">{cards}</section>'''
+    home=f'''<div class="eyebrow">A COURSE FOR SOFTWARE ENGINEERS</div><h1>Build your understanding<br>from the ground up.</h1><p class="lead">Learn what models learn, how they fail, and how to build AI systems you can explain and defend.</p><div class="home-actions"><a class="start" href="course/01-foundations.html">Start learning →</a><a class="start secondary" href="practice.html">Practice Q&amp;A →</a></div><p class="home-diagnostic">Already familiar with the basics? <a href="practice.html#topic=00-start">Try the 10-question diagnostic</a>. New here? Start with the first lesson; the diagnostic is optional.</p><div class="stats"><span><strong>{len(LESSONS)}</strong> authored chapters</span><span><strong>14</strong> offline Python labs</span><span><strong>4</strong> capstone assignments</span></div><p>Start with no AI background. Follow the mathematics and worked examples, run tiny inspectable implementations, then practice evaluation, production design and interview defenses. Read the <a href="course/coverage.html">coverage ledger</a>: specialist topics have different depths and production projects remain assignments.</p><section class="cards" aria-label="Ordered curriculum">{cards}</section>'''
     generated[ROOT/'index.html']=layout(None,home,root=True)
     generated[ROOT/'practice.html']=layout(None,practice.page(practice.questions(LESSONS),lambda raw: inline(raw, prefix='')),root=True,title_override="Practice Q&A")
-    generated[ROOT/'listen.html']=layout(None,listen.page(listen.tracks(LESSONS)),root=True,title_override='Listen')
+    audio_items=listen.tracks(LESSONS)
+    generated[ROOT/'listen.html']=layout(None,listen.page(audio_items),root=True,title_override='Listen')
+    generated[ROOT/'audio/coverage.html']=layout(None,listen.coverage_page(audio_items),title_override='Audio coverage')
     return generated
 
 
@@ -183,7 +188,7 @@ def main():
             if not path.exists() or path.read_text()!=content: stale.append(str(path.relative_to(ROOT)))
         else:path.write_text(content)
     if stale: raise SystemExit('Stale generated pages: '+', '.join(stale))
-    print(f'{"Checked" if args.check else "Built"} {len(LESSONS)+len(EXTRAS)+3} static pages')
+    print(f'{"Checked" if args.check else "Built"} {len(LESSONS)+len(EXTRAS)+4} static pages')
 
 
 if __name__=='__main__':main()

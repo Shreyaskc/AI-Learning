@@ -1,0 +1,5 @@
+Chapter 9: large language model pretraining, adaptation and alignment. Introduction and prerequisites.
+
+Prerequisites: 04, 06 and 08. Outcomes: separate training stages, compute language-model loss, and reason about adaptation and reward limitations.
+
+The previous chapter explained one forward prediction. How do parameters become useful, and why might a useful predictor still be a poor assistant? Start with the training target and a tiny language model you can fully inspect, then distinguish behavioral adaptation and preference learning.

@@ -1,0 +1,13 @@
+Chapter 3: Probability, statistics and uncertainty. Expectations and variation.
+
+Suppose an outcome is equally likely to be 0 or 1. Its probability-weighted average is zero point five. Each outcome differs from zero point five by zero point five in magnitude, so the average squared deviation is zero point two five. These are the expectation and variance. The standard deviation is square root of zero point two five equals zero point five, back in the original units.
+
+For a discrete variable, The expectation of X is the sum over possible values x of x times the probability that X equals x means multiply each possible value by its chance and add. Variance is The expected squared difference between X and its expectation. A 0 divided by 1 variable with probability p of 1 is called Bernoulli; its mean is p and variance is p(1 minus p). The name adds no new mechanism beyond our two-outcome example.
+
+Now take a sample and estimate the average. Another small sample can give a different result even when the population has not changed. Under independent, identically distributed observations with finite population variance sigma squared, the sample mean has variance sigma squared divided by n. Its standard error therefore falls like 1 divided by square root of n: four times the data approximately halves this sampling uncertainty. That is not a promise to halve every kind of model error. Repeated sessions or time dependence can invalidate naive independence.
+
+A bootstrap approximates repeated sampling by resampling the observed units with replacement and recomputing a statistic. If customers contribute multiple rows, resample whole customers when that is the independent unit. A bootstrap cannot repair unrepresentative sampling and can behave poorly with rare events, severe bias or tiny samples.
+
+An interval makes the uncertainty more explicit. A frequentist 95% confidence-interval procedure covers the fixed parameter in 95% of repeated samples under its assumptions. It is not automatically a 95% probability statement about that fixed parameter after this particular sample. A Bayesian credible interval makes a posterior probability statement under its prior and model. This distinction is a second-pass topic; first be able to explain why repeated samples vary.
+
+Covariance describes how centered measurements vary together, and correlation divides it by their standard deviations. Neither establishes an intervention effect. The reminder example below shows why describing an observed association is different from changing a policy.

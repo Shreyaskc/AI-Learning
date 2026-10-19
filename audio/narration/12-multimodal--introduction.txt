@@ -1,0 +1,5 @@
+Chapter 12: Multimodal and generative modeling. Introduction and prerequisites.
+
+Prerequisites: 03, 07 to 09. Outcomes: distinguish alignment from generation, calculate a contrastive example, and identify modality-specific failures. This chapter provides orientation and toy calculations, not full vision and audio training competence.
+
+A support ticket includes a screenshot and a voice note. A useful assistant must turn pixels and sound into information without silently misreading an identifier or speaker. A modality is simply an input and output form, such as text, image or audio; start by tracking what each conversion preserves and loses.

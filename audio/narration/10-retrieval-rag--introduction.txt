@@ -1,0 +1,5 @@
+Chapter 10: Retrieval, ranking and grounded generation. Introduction and prerequisites.
+
+Prerequisites: 02, 06, 08 to 09. Outcomes: implement lexical retrieval, separate ranking from generation quality, and design authorized evidence assembly.
+
+A user asks how to reset a password. The policy is in a document, so first find an authorized passage; then decide whether it actually supports an answer. This separates two failures that a fluent response can hide: missing evidence and misusing evidence.

@@ -1,32 +1,43 @@
 # Synthetic narration credit
 
-The Foundations section sample is synthetic speech generated locally using
-**Kokoro-82M v1.0, voice af_heart**, with the official `kokoro` Python package 0.9.4.
-The script is original AI Fluency course material; it is not a book excerpt or a
-recording of a person. No custom voice cloning, paid service or remote inference
-was used. This is one voice/pacing review sample, not complete chapter narration.
+Course section recordings use **Kokoro-82M v1.0, voice af_heart**, generated locally
+with the official `kokoro` Python package 0.9.4. Scripts adapt the original AI Fluency
+lessons into listening-friendly explanations, including equations, worked examples
+and practice. They are not book excerpts or recordings of a person. No custom voice
+cloning, paid speech service or remote inference is used.
 
 - Official model: https://huggingface.co/hexgrad/Kokoro-82M
 - Official engine: https://github.com/hexgrad/kokoro
 - Official voice list: https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md
 - Engine license copy: [Apache-2.0](licenses/Kokoro-Apache-2.0.txt)
 
-The model card declares Apache-2.0 and welcomes deployment. The supplied voice is
-listed in that model repository; no output-publication restriction was found in
-those upstream materials. This records the basis for using the sample, not a
-blanket warranty concerning every upstream right or use case. No model weights or
-voice tensors are distributed in this repository.
+The official model and engine declare Apache-2.0, and the supplied voice is listed
+in the model repository. No output-publication restriction was found in those
+upstream materials. This records the basis for using these recordings, not a blanket
+warranty about every upstream right or use case. No model weights, voice tensors or
+optional synthesis dependencies are distributed in this repository.
+
+## Provenance and validation
 
 Model revision: `f3ff3571791e39611d31c381e3a41a3af07b4987`.
-The downloaded model SHA-256 was verified against the author-published value:
+The downloaded model SHA-256 matches the author-published value:
 `496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4`.
+The configuration and voice checksums are also pinned in `tools/audio_model.py`.
 
-The 208-word matching transcript is
-[01-foundations-core.txt](transcripts/01-foundations-core.txt).
-Generation used paragraph chunks, speed 1.0, two CPU threads and 24 kHz mono audio.
-The M4A is about 90 seconds and 800 KB, AAC with fast-start metadata; ffmpeg loudness
-processing targeted -19 LUFS and -1.5 dBTP. Decoded checks measured -19.13 LUFS and
--1.48 dBTP. Human listening, pronunciation and device playback review remain needed.
+The [section inventory](sections.json) binds source sections to
+[matching transcripts](narration/). The [recording manifest](recordings.json) records
+per-paragraph grapheme/phoneme checks, duration, silence bounds, media hashes,
+decoding validation and the actual dependency versions. The
+[coverage report](../review/AUDIO-COVERAGE.md) summarizes readiness by chapter.
 
-The earlier Samantha/System Voice test recording remains outside the repository
-and is not included, published or uploaded to Library.
+Synthesis runs in paragraph chunks on CPU, speed 1.0, with 24 kHz mono output.
+Encoding uses AAC/M4A with fast-start metadata and requested 64 kbit/s; loudness
+processing targets -19 LUFS and -1.5 dBTP. These automated checks do not establish
+flawless pronunciation, human listening approval or uninterrupted device playback.
+Pronunciation rules spell out notation and acronyms, and the written section remains
+the reference for code, exact commands and visual arrays.
+
+The earlier [89.8-second Foundations review sample](samples/foundations-kokoro-af-heart-v1.m4a)
+and its [original sample transcript](transcripts/01-foundations-core.txt) are retained
+as provenance; they are not an extra episode in the ordered full-course playlist.
+The Apple Samantha/System Voice test remains outside Git, Pages and Library.

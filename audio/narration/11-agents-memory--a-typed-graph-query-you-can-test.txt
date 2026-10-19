@@ -1,0 +1,5 @@
+Chapter 11: Workflows, tools, context, memory and graphs. A typed graph query you can test.
+
+ownership paths performs the worked service leads to database leads to team query over explicit DEPENDS sub ON and OWNED sub BY edges. Each edge has tenant, expiry and source identifier; every endpoint must belong to the caller's allowed node set. The test first permits only service and database and gets no owner, then permits team as well and obtains the two-hop path with both source identifiers. At expiry the path disappears. This demonstrates why permission to view a starting node is insufficient to authorize every reachable node.
+
+The query uses already resolved entity identifiers and a fixed relation pattern. It does not solve entity resolution, infer missing relationships or establish that a graph beats a relational join. Compare that simpler join before adding a graph database. A memory record and a graph edge both need provenance and lifecycle rules; they are stored representations, not updates to model weights.

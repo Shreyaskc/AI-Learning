@@ -1,0 +1,9 @@
+Chapter 14: Training compute, hardware and inference serving. Prefill and decode.
+
+For memory units, gigabytes means 10 raised to the power 9 bytes and gibibytes means 2 raised to the power 30 bytes. VRAM is a G P U’s device memory. A 7 minus billion-parameter model at two bytes and parameter has a 14 gigabytes weight payload, about 13.04 gibibytes; that is not total VRAM required. Quantization can lower weight memory and alter bandwidth and compute demands, but introduces accuracy, kernel availability and scale and zero-point overhead. Quantize, evaluate and benchmark the actual workload rather than treating compression as a free lunch.
+
+Prefill processes the prompt and builds attention state. Decode generates new tokens step by step. key value caching stores prior keys and values so ordinary autoregressive decode avoids recomputing them every step; it consumes memory that grows with active sequences and context length. It does not make all attention work disappear.
+
+Count one key cache and one value cache, across layers, cached positions, key value heads and coordinates in each head. Then multiply by bytes per stored value. With L layers, T cached positions, H sub kv key and value heads, head width d and b bytes and value, the idealized single-sequence key value size is Two times the number of layers, times sequence length, times the number of key-value heads, times head width, times bytes per stored number. The 2 accounts for keys and values. With L equals 32,T equals 4096,H sub kv equals 8,d equals 128,b equals 2, size is 536,870,912 bytes, zero point five gibibytes. Sixteen such sequences need 8 gibibytes before weights, allocator overhead, temporary buffers and other state. Grouped-query attention uses fewer key value heads than query heads, changing this estimate.
+
+Run platform.py to reproduce these estimates and modify batch and context assumptions. It does not load or benchmark a G P U model.

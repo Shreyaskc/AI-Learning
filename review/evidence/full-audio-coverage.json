@@ -1,0 +1,31 @@
+{
+  "sections": 179,
+  "ready": 179,
+  "duration_seconds": 14887.7,
+  "bytes": 132058259,
+  "words": 32682,
+  "settings": {
+    "model": "Kokoro-82M v1.0",
+    "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "model_sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+    "voice": "af_heart",
+    "speed": 1.0,
+    "sample_rate": 24000,
+    "codec": "aac",
+    "bitrate": "64k",
+    "loudness_target_lufs": -19,
+    "true_peak_target_dbtp": -1.5,
+    "paragraph_pause_ms": 250,
+    "voice_sha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+    "engine": "kokoro==0.9.4",
+    "pronunciation_engine": "misaki==0.9.4"
+  },
+  "source_files": {
+    "tools/audio.py": "62bf4dcee7bf378a4f8d5b5cba9c08c9441211baf30d3839188882be4a29f822",
+    "tools/narration.py": "27d2a60ba09af3095932f56e94a2369308fee086458932d721224540ce199895",
+    "audio/speech-math.json": "d5e4d44633153d7f95bcec019517383ca7bf42a8fc720bd255b9be8203ae3f5a",
+    "audio/pronunciations.json": "af4bf6d828c1e690461071c4e0f1795919eca4836b5ce0fe5217f97044070032",
+    "audio/code-narration.json": "24e8445ae890ed8c0a03b519cabff1fa47f1839b790dc3ba45d5dabddde1e287",
+    "audio/editorial.json": "7feeeae68350af3dfae2020d3ca0f9d8978a9c3244417fa569fcaab3f8560cf0"
+  }
+}

@@ -1,0 +1,5 @@
+Chapter 10: Retrieval, ranking and grounded generation. Chunking and access are part of correctness.
+
+Chunking divides sources into units that fit retrieval and context budgets. Preserve headings, tables and identifiers; arbitrary character cuts may separate a claim from its qualification. Overlap can recover boundaries but increases duplicate tokens and index size. Store source identifier, version, offsets, timestamp, ownership, tenant and access policy alongside each chunk.
+
+Enforce authorization in trusted application and database logic before content enters a prompt. Post-filtering a small candidate list can reduce authorized recall; measure this under realistic permission distributions. Never rely on a large language model to decide which private documents a user may see. Cache keys must include authorization scope and source and model versions. A deleted source should disappear from indexes, caches, summaries and derived memory according to a documented lifecycle.

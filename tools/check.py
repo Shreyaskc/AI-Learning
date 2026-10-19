@@ -8,6 +8,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit, parse_qs
 import build
+import listen
+import narration
 
 ROOT = build.ROOT
 errors = []
@@ -30,6 +32,9 @@ class Page(HTMLParser):
 expected=build.outputs()
 for path,content in expected.items():
     if not path.exists() or path.read_text()!=content:errors.append(f'stale generated output: {path.relative_to(ROOT)}')
+audio_items=listen.tracks(build.LESSONS)
+audio_ids={q['id'] for q in audio_items}|{alias for q in audio_items for alias in q.get('aliases',[])}
+audio_chapters={q['chapter'] for q in audio_items}
 parsers={}
 for path in ROOT.rglob('*.html'):
     if '.git' in path.parts:continue
@@ -43,6 +48,10 @@ for path,parser in parsers.items():
         resolved=(path.parent/unquote(url.path)).resolve() if url.path else path
         if not resolved.is_relative_to(ROOT):errors.append(f'link escapes repo: {path}: {target}');continue
         if not resolved.exists():errors.append(f'broken link: {path.relative_to(ROOT)}: {target}');continue
+        if resolved == ROOT/'listen.html' and url.query:
+            params=parse_qs(url.query)
+            if params.get('track',[None])[0] is not None and params['track'][0] not in audio_ids:errors.append('unknown audio section: '+target)
+            if params.get('chapter',[None])[0] is not None and params['chapter'][0] not in audio_chapters:errors.append('unknown audio chapter: '+target)
         if url.fragment and resolved == ROOT/'practice.html' and '=' in url.fragment:
             import practice
             bank=practice.questions(build.LESSONS); by_id={q['id']:q for q in bank}
@@ -64,7 +73,8 @@ for path in (ROOT/'course').glob('*.md'):
 for path in list((ROOT/'labs').glob('*.py'))+list((ROOT/'tools').glob('*.py')):
     try:ast.parse(path.read_text(),filename=str(path))
     except SyntaxError as exc:errors.append(str(exc))
-if len(build.LESSONS)!=20:errors.append('expected 20 numbered lessons')
+if [int(path.stem[:2]) for path in build.LESSONS]!=list(range(len(build.LESSONS))):errors.append('numbered chapters must be contiguous from 00')
+errors.extend(narration.coverage())
 for path in build.LESSONS[1:]:
     text=path.read_text().lower()
     for required in ['prerequisite','outcomes:','solution','interview']:

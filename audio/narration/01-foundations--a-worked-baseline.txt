@@ -1,0 +1,7 @@
+Chapter 1: What A.I. systems learn. A worked baseline.
+
+Imagine 100 tickets, 10 urgent. An always-normal classifier is 90% accurate and catches zero urgent cases. If humans can review only 15 tickets daily, a useful objective could be urgent cases found in the top 15, with a strict latency budget. Compare against a simple keyword rule, existing queue order, and human-only processing before building a large language model agent.
+
+The baseline is a reference behavior. To learn whether an added feature helps, compare the same system with that feature removed; this controlled removal is an ablation.
+
+A prediction is only one part of the process. If people can inspect only 15 tickets, a higher test score helps only if it improves which tickets they review. Evaluate the full chain: what data arrives, what the model predicts, what action follows, and who handles mistakes. This combined human and software process is often called a socio-technical system.

@@ -1,0 +1,7 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Data representation bridge and depth boundary.
+
+An array's shape tells us how entries are arranged; its numeric representation, or data type, tells us how each entry is stored. A float thirty two normally uses four bytes. A tensor in ordinary library code is a multi-axis array: a batch of 8 red green blue images of height and width 32 may use shape (8,3,32,32), with channels second, or (8,32,32,3), with channels last. Both contain 24,576 values, or 98,304 float thirty two bytes before overhead. A layer expecting one convention cannot silently accept the other.
+
+Array libraries sometimes expand compatible dimensions automatically; this is broadcasting. It saves writing repeated values, but can hide shape mistakes. Under common trailing-axis rules, subtracting an (n,) target from an (n,1) prediction can produce an unintended (n,n) array. A scalar loss computed afterward may still look plausible. Check the intended axes at each boundary rather than accepting any calculation that runs.
+
+Missing values also need a meaning. Zero is not a universal missing-value marker, and not a number is not a valid class label. Use explicit validity information or a documented imputation rule. Finally, computer floats approximate real numbers: Whether zero point one plus zero point two is exactly equal to zero point three in computer arithmetic can be false. Compare numeric results using justified tolerances rather than expecting every identity to be bitwise exact.

@@ -1,0 +1,5 @@
+Chapter 17: Experiments and reading research. A paired evaluation lab.
+
+Run experiments.py. It compares two systems' correctness on the same tiny cases and bootstraps paired differences. The same sampled indices feed both systems. Resampling each system independently would discard useful pairing and estimate a different variability structure. With very small, hand-constructed data the result is an illustration, not a meaningful product confidence interval.
+
+For an online test, choose randomization unit based on interference: user and session and team may be better than request. Check sample-ratio mismatch, missing outcomes, novelty effects, exposure logging and guardrails. An intent-to-treat estimate compares assigned groups; filtering to “users who adopted the feature” can introduce selection bias.

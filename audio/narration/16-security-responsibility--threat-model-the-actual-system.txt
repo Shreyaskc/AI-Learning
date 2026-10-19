@@ -1,0 +1,7 @@
+Chapter 16: Security, privacy and responsible A.I. Threat-model the actual system.
+
+List assets (documents, credentials, user state), actors, entry points, trust boundaries and side effects. An assistant reads untrusted user input, retrieved content and tool outputs; those channels can contain instruction-like text. Prompt injection attempts to redirect behavior through such content. A system prompt is useful behavioral context, not an authorization boundary.
+
+Controls include least-privilege credentials, trusted access control list checks before retrieval content enters context, tool allowlists, argument validation, sandboxed execution, restricted network egress, scoped secrets and explicit approval for sensitive effects. Keep tool results as data and distinguish their provenance. An output filter alone cannot recover a secret already sent to an unauthorized model or endpoint. No single prompt or classifier guarantees elimination of injection.
+
+Data poisoning changes training and retrieval content to influence behavior. Supply-chain compromise can alter model artifacts or dependencies. Model extraction seeks to approximate a model through queries; membership inference probes whether specific data participated in training. Threats and mitigations differ by access, adversary capability and business stakes. Integrity checks and a signed artifact help trace origin, but do not establish model quality or safety.

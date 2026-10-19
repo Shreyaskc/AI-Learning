@@ -1,0 +1,3 @@
+Chapter 12: Multimodal and generative modeling. What to carry forward.
+
+Cross-modal similarity, transcription and generated media answer different questions. Check the exact task and provenance rather than equating plausible output with reality. Next, manage the histories and features behind a system.

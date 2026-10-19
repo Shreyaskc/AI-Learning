@@ -1,0 +1,5 @@
+Chapter 19: Projects, mastery gates and interview practice. Interview tracks and boundaries.
+
+Solutions architects emphasize requirements, integration, permissions and build and buy. M L engineers deepen modeling, data and reproducible evaluation. large language model application engineers deepen retrieval, tools and error analysis. Platform engineers deepen scheduling, hardware, distributed failure and observability. Applied scientists deepen statistics, controlled experiments and causal assumptions. Research scientists require sustained mathematics, paper replication and novel research beyond this course.
+
+Choose two projects, record a mock defense, review mistakes a week later, and solve a changed scenario. Vocabulary becomes useful when it lets you derive an answer and revise a decision, not when it replaces either.

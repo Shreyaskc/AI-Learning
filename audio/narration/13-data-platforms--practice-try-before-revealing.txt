@@ -1,0 +1,11 @@
+Chapter 13: Data and feature platforms. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. A late event corrects last month's historical aggregate. Should a reproduced old score change? Pause now and try your answer. When you are ready, continue. Solution: distinguish “replay what was known then” from “recompute with corrected truth.” Store versions and availability to support both explicitly.
+
+Question 2. A feature TTL expires before its materialized replacement. What should serving do? Pause now and try your answer. When you are ready, continue. Solution: apply a documented fallback and missingness path compatible with training or refuse and escalate; never silently use a semantically different default.
+
+Question 3. A deleted document persists in a vector cache. Is deleting the source sufficient? Pause now and try your answer. When you are ready, continue. Solution: no; trace derived chunks, embeddings, summaries and caches and verify propagation within the promised deletion window.

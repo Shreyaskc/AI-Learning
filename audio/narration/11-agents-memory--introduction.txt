@@ -1,0 +1,5 @@
+Chapter 11: Workflows, tools, context, memory and graphs. Introduction and prerequisites.
+
+Prerequisites: 06 and 10; revisit 16 for threat modeling before private retrieval or side effects. Outcomes: implement bounded control flow, reason about retries, and separate stored context from learned weights.
+
+An incident assistant may draft a ticket, but it is not allowed to restart a server. Follow that single request through validation, execution, a crash and recovery. Then ask which observations should persist and who may retrieve them; memory and graphs serve that same controlled workflow.

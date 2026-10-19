@@ -1,0 +1,17 @@
+Chapter 10: Retrieval, ranking and grounded generation. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Track ingestion omissions, stale versions, retrieval misses, reranker mistakes, truncated qualifiers, unsupported generation and wrong citation attachment separately. A single “answer quality” score obscures repair choices.
+
+Question 1. If relevant A ranks third and k equals 2, is the generator at fault for not using it? Pause now and try your answer. When you are ready, continue. Solution: first fix or measure candidate recall; the generator never received A.
+
+Question 2. Design a conflicting-policy response. Pause now and try your answer. When you are ready, continue. Solution: compare timestamps and authority metadata; state the conflict and route to the policy owner if authority cannot be resolved. Never silently blend inconsistent instructions.
+
+Question 3. When is graph retrieval useful? Pause now and try your answer. When you are ready, continue. Solution: when queries require typed relationships and traversal, such as ownership chains; compare against metadata joins and ordinary search before adding graph complexity.
+
+Exercises: (1) Return the correct office-hours text with the reset source identifier. Pause to try this exercise. Then continue for the solution: the support check fails despite correct-looking words because the cited source does not support that claim. (2) Retrieve no evidence for an answerable paraphrase and abstain. Pause to try this exercise. Then continue for the solution: abstention is appropriate for the supplied context, yet end-to-end retrieval and answer coverage fails. (3) Return only a true but irrelevant fact. Pause to try this exercise. Then continue for the solution: groundedness and required-answer completeness must be separate gates. (4) Rewrite facts into paraphrases. Pause to try this exercise. Then continue for the solution: the exact-match evaluator will reject some legitimate answers; add blinded human labels or a validated semantic judge before drawing conclusions about model quality.
+
+Mastery gate: reproduce the failure taxonomy, hand-compute the B M twenty five example, identify the authorization boundary and explain which reported scores come from mock fixtures versus actual inference. Dense retrieval, approximate nearest neighbor tradeoffs and real generator evaluation remain explicit deeper work.

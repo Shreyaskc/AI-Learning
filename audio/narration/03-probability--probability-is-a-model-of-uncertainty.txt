@@ -1,0 +1,11 @@
+Chapter 3: Probability, statistics and uncertainty. Probability is a model of uncertainty.
+
+A machine fault occurs in 1% of cases. A detector catches 90% of faults, but also flags 10% of normal machines. Is a positive alert usually a real fault? Count 10,000 machines: 100 have faults, of which 90 are flagged. Of the 9,900 normal machines, 990 are also flagged. Only 90 of 1,080 alerts are real faults: 90 divided by 1080 approximately zero point zero eight three three.
+
+The conditions distinguish two questions. The probability of a positive result given a fault is zero point nine asks how often a faulty machine triggers the detector. The probability of a fault given a positive result is approximately zero point zero eight three three asks how often a triggered alert corresponds to a fault. The vertical bar means “given.” Reversing that condition changes the denominator and the answer.
+
+An event is a set of outcomes. Write P(A and B) for the chance that both occur. Conditional probability is The probability of A given B equals the probability of both A and B divided by the probability of B when P(B) greater than 0. Write the same joint event in the opposite order and obtain Bayes' rule: The probability of A given B equals the probability of B given A, times the probability of A, divided by the probability of B. The formula expresses the count calculation above; it does not remove the need to know the population's base rate.
+
+The prior describes uncertainty before this evidence. A likelihood describes how probable the evidence is under a hypothesis; the posterior is the updated distribution after using it. Independence is another assumption: The probability of both A and B equals the probability of A times the probability of B. Do not multiply marginal probabilities without establishing that assumption or using the correct conditional factorization.
+
+A random variable maps an outcome to a number, such as fault equals 1 or normal equals 0. Its distribution describes how probability is allocated. Our examples so far are discrete. For a continuous measurement, probability is assigned to intervals using a density; adding density over an interval becomes integration. A density value at one point is not itself a point probability. You do not need integration to follow the fault example or the binary losses below.

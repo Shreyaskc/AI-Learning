@@ -1,0 +1,9 @@
+Chapter 1: What A.I. systems learn. The first contract: what information exists when?.
+
+Suppose each row is a checkout. You predict lateness at checkout time. number of past late returns may be legitimate if computed using history then available. final reminder count is not: reminders happen after checkout. A model can learn the latter perfectly and still be unusable. This is target leakage.
+
+Before training, write: unit of prediction, decision time, target definition, target observation delay, eligible population, action taken, and success measure. For a support queue, the unit might be a ticket at arrival, target urgent and not-urgent adjudicated within two days, and action ordering human review. Customer satisfaction is a downstream outcome, not interchangeable with classification accuracy.
+
+Separate training data (fit parameters), validation data (select model and thresholds), and a test set (final estimate after choices are frozen). If deployment predicts the future, split chronologically. If multiple rows belong to one customer, consider group separation to measure generalization to unseen customers. The right split mirrors the intended use; there is no universally correct random split.
+
+Learn preprocessing only from training data. A mean, vocabulary, feature selector or imputation value is a fitted parameter too. Cross-validation repeatedly holds out one portion of the development data while fitting on the others. Each held-out portion is a fold. Repeat the entire fitted pipeline inside each training fold so even preprocessing cannot learn from its held-out examples. See the scikit-learn leakage guide for this distinction.

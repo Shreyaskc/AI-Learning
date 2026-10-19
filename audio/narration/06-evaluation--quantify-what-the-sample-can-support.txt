@@ -1,0 +1,5 @@
+Chapter 6: Evaluation, leakage and decision quality. Quantify what the sample can support.
+
+Suppose 80 divided by 100 independent positives are caught. A rough normal standard error is square root of zero point eight by zero point two divided by 100 equals zero point zero four, so an approximate 95% interval is zero point eight plus or minus zero point zero seven eight. Small counts or extreme rates call for better intervals such as Wilson or exact methods. Repeated observations from the same customer invalidate naive independence; resample by customer or use a suitable clustered model. Report counts and intervals per important slice, not only the aggregate.
+
+Model A and B should usually be compared on the same cases. A paired bootstrap resamples case indices and recomputes their score difference, preserving pairing. It measures sampling variability under the chosen resampling assumptions; it does not fix biased labels or deployment mismatch.

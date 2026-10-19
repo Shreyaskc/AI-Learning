@@ -1,0 +1,17 @@
+Chapter 14: Training compute, hardware and inference serving. Practical extension: measure a bounded local service.
+
+Run the Python three serving experiment lab command shown in the written section. This performs a small real-time load experiment with worker threads and a bounded queue, not a mathematical event simulation. It makes no network calls and performs no model inference. The synthetic service hashes a small payload and sleeps for an assumed cost of zero point zero zero four seconds per batch plus zero point zero zero two seconds per item. Sleeping approximates an I divided by O divided by wait component and preserves C P U for concurrent work; it is not a neural-network kernel model.
+
+The open-loop producer schedules arrivals independently of completions. Queue insertion is nonblocking; when capacity eight is full, the request is counted as rejected. Two workers process batches of at most one or four items. Use a monotonic clock for arrival, start and finish. Queue latency is start-arrival; service latency is finish-start; end-to-end is finish-arrival. Percentiles use nearest rank: sort n values and select index ceil(p times n) minus 1. Report accepted request counts and rejected fraction alongside latency, because rejecting hard requests can make the remaining latency look attractive.
+
+The committed local result records Python 3.14.6, Darwin arm64, 12 logical central processors, workload assumptions, actual observed arrival window and queue depth. No hostname or user prompts are logged. A single short run produced:
+
+Table row. Scenario: Underload, batch 1. Offered divided by completed divided by rejected: 60 divided by 60 divided by 0. End-to-end ninety fifth percentile: 9.13 ms. Mean queue time: zero point zero three two ms. Completed requests per second including drain: 100.14.
+
+Table row. Scenario: Overload, batch 1. Offered divided by completed divided by rejected: 120 divided by 24 divided by 96. End-to-end ninety fifth percentile: 41.98 ms. Mean queue time: 24.10 ms. Completed requests per second including drain: 244.19.
+
+Table row. Scenario: Overload, batch up to 4. Offered divided by completed divided by rejected: 120 divided by 34 divided by 86. End-to-end ninety fifth percentile: 35.22 ms. Mean queue time: 12.33 ms. Completed requests per second including drain: 443.01.
+
+These are measured mock-request rates, never tokens per second or G P U throughput. The producer offered roughly 2,010 requests per second in the overload cases, far exceeding the mock workers' capacity. Batching improved accepted throughput in this workload because its assumed fixed cost is amortized. Per-request service time inside a batch increased, and most offered requests were still rejected. This does not establish that batching always reduces latency or that these settings meet a real service level objective.
+
+The observed service time can exceed the requested sleep duration because operating-system scheduling and timer resolution add delay. A ninety ninth percentile over 24 completed requests is the largest observation under this convention; it cannot establish a stable production tail. Repeat runs under documented conditions and use larger representative samples for serious capacity claims. The test suite checks accounting, nonnegative decomposition and queue bounds, without brittle assertions that one timing must be faster on every host.

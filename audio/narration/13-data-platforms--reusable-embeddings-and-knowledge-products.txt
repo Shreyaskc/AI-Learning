@@ -1,0 +1,5 @@
+Chapter 13: Data and feature platforms. Reusable embeddings and knowledge products.
+
+A shared representation can reduce duplicate modeling effort across recommendation, search and anomaly tasks. But a representation trained for one objective may fail another, leak sensitive attributes or become stale. Define downstream evaluation tasks, cold-start behavior, ownership, allowed uses and drift and refresh triggers. A broad “universal embedding” claim needs broad evidence; reuse alone does not prove semantic sufficiency.
+
+Synthetic transaction-like events can illustrate entity histories without exposing proprietary systems. Keep identifiers, labels and target definitions invented. Evaluate label delay and selection bias before generalizing to risk decisions. A reusable data product includes documentation, lineage, version policy and support ownership, not merely a vector column.

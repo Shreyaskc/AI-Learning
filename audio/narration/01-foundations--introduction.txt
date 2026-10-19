@@ -1,0 +1,5 @@
+Chapter 1: What A.I. systems learn. Introduction and prerequisites.
+
+Prerequisite: basic programming. Outcomes: distinguish A.I. terms, frame a learning problem, and make a split before fitting anything.
+
+A support team receives 100 tickets but can review only 15 today. Can a learned score help it find urgent cases sooner? Begin with that decision; the names of model families will make more sense once you can trace inputs, predictions and actions.

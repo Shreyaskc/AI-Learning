@@ -1,0 +1,15 @@
+Chapter 14: Training compute, hardware and inference serving. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. Doubling context doubles the idealized key value size. Does it double total runtime? Pause now and try your answer. When you are ready, continue. Solution: not necessarily; prefill and decode composition, attention work, batch efficiency and other operations differ.
+
+Question 2. Why does tensor parallelism across a slow network disappoint? Pause now and try your answer. When you are ready, continue. Solution: frequent layer communication can dominate saved compute. Measure topology and collectives.
+
+Question 3. Would you buy more graphics processors for slow ninety ninth percentile? Pause now and try your answer. When you are ready, continue. Solution: first inspect queueing, prompt and output distributions, tenant skew, memory saturation and downstream tools; capacity only helps the actual bottleneck.
+
+Exercises: (1) Why is 244 completed requests per second not the same as 2,010 offered requests per second? Pause to try this exercise. Then continue for the solution: the queue rejects excess arrivals, and completed throughput includes drain time; both numerator and observation window differ. (2) Can you call batch 4 “safe” from the ninety fifth percentile alone? Pause to try this exercise. Then continue for the solution: no; rejection rate is about 71.7% and accepted-only latency omits those failed requests. (3) Increase the fixed cost while keeping per-item cost unchanged. Pause to try this exercise. Then continue for the solution: larger batches may amortize more work, but filling and waiting and queue fairness can alter end-to-end results. Measure rather than assuming. (4) Replace the mock with a real inference callable. Pause to try this exercise. Then continue for the solution: separately label model and runtime and hardware, prompt and output distributions, cache state, first-token and inter-token metrics and quality; preserve admission and failure accounting.
+
+Mastery gate: reproduce a new report without overwriting the historical evidence, calculate completed plus rejected equals offered, explain the latency components, and identify the mock cost assumptions. Real-model load tests, token-aware continuous batching, quantization and distributed serving remain beyond the measured evidence here.

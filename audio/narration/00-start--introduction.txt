@@ -1,0 +1,9 @@
+Chapter 0: Start here: learn, build, explain. Introduction and prerequisites.
+
+New to A.I.? Start with the first lesson, where a support-ticket example introduces a learned prediction. You do not need to pass a quiz or install anything first.
+
+Already familiar with some ideas? Use the optional diagnostic below to find topics to revisit. It includes concepts taught later, so an unfamiliar question is a route into learning, not a failed entrance exam.
+
+You can begin on your phone: read the explanation, think through the question, reveal the answer and compare the reasoning. When you have a computer, run the small lab to inspect the same mechanism in code. Browser study checkboxes and Q&A self-checks are stored separately in that browser; they do not sync across devices or certify mastery.
+
+The destination is the ability to explain, implement, evaluate and design A.I. systems. Interview practice helps reveal weak reasoning; no course guarantees every interview result.

@@ -1,0 +1,21 @@
+Chapter 5: Classical machine learning and useful baselines. Practical extension: train and compare four families.
+
+Question: when does a flexible representation help more than a linear boundary? Run the Python three model comparison lab command shown in the written section. This trains a constant predictor, vector logistic regression, a greedy CART-style classification tree and a small hyperbolic tangent multilayer perceptron. Unlike the earlier one-dimensional trace, these are actually fitted models compared on the same nonlinear task. The full implementation and recorded result are inspectable.
+
+Generate 320 independent examples with seed 31. Features x1 and x2 have different units: x1 is uniform on [negative 1,1], x2 on [negative 100,100]. The target is 1 when exactly one feature is positive, with 3% independent label flips. This XOR-shaped relationship has two disjoint positive quadrants. A single affine score cannot represent it exactly. The label noise deliberately prevents interpreting perfect training fit as the goal.
+
+Freeze 160 training, 80 validation and 80 final-test rows before fitting. The data generator is independent and identically distributed here; this split is not a prescription for time series. Fit feature means and standard deviations on the training rows only, then apply that same transformation to all three sets. The constant predicts training prevalence. Logistic regression minimizes log loss with L2. The tree tests midpoint thresholds and chooses the greatest immediate weighted-Gini improvement, stopping by depth and minimum leaf size. It uses smoothed leaf probabilities The positive count plus one, divided by the leaf count plus two to avoid exact zero and one probabilities on tiny leaves. That smoothing is an explicit design choice affecting log loss.
+
+Train depths 2 and 4 as tree candidates and hidden widths 4 and 8 as multilayer perceptron candidates; select the candidate within each family with lowest validation log loss. Logistic has one fixed configuration. Finally evaluate the selected instances once on the untouched test rows with threshold zero point five. Family tuning budgets differ, so this is an educational comparison, not a fair compute-efficiency benchmark.
+
+Table row. Selected model: Constant. Test accuracy: zero point four seven five zero. Test log loss: zero point six nine eight two. Test Brier: zero point two five two five.
+
+Table row. Selected model: Logistic. Test accuracy: zero point four seven five zero. Test log loss: zero point seven zero zero four. Test Brier: zero point two five three six.
+
+Table row. Selected model: Tree, depth 4. Test accuracy: zero point eight six two five. Test log loss: zero point three one nine seven. Test Brier: zero point one zero one zero.
+
+Table row. Selected model: multilayer perceptron, width 8. Test accuracy: zero point nine two five zero. Test log loss: zero point three two three five. Test Brier: zero point zero eight five seven.
+
+These are recorded outputs for one synthetic split, not population estimates with strong uncertainty guarantees. The multilayer perceptron catches more thresholded cases, yet the tree has slightly lower log loss. Accuracy and probability quality ask different questions. Never revise configuration after inspecting these test results and continue calling the same rows a final test. A new hypothesis requires new validation and test evidence.
+
+A subtle failure: a perfectly balanced four-point XOR dataset has zero immediate Gini gain at each first axis split. This greedy tree stops before seeing the useful two-level interaction, even though a depth-2 tree could express it. The test suite demonstrates this limitation. On the noisy finite sample above, an immediate gain exists, permitting deeper splits. Expressiveness and a greedy training procedure are not identical.

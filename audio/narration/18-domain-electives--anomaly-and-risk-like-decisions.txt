@@ -1,0 +1,7 @@
+Chapter 18: Domain electives: time, recommendations and anomalies. Anomaly and risk-like decisions.
+
+An anomaly score measures departure from a reference distribution or learned pattern. A synthetic transaction stream can illustrate rare-event detection, but a rare merchant or unusual spending pattern is not proof of fraud. Labels may be delayed, selected by prior review policy or incomplete. Decisions can change observed labels, creating feedback loops.
+
+Use temporal evaluation, calibrated probabilities where appropriate, precision and recall under a review budget, and explicit false-positive costs. If only investigated cases get labels, observed accuracy may not represent the whole population. Introduce a carefully governed sampling and audit plan to estimate missed cases, rather than silently treating unreviewed negatives as true negatives.
+
+Reusable transaction embeddings can support multiple tasks, but require separate downstream tests and entity and time leakage audits. Changes in representation version can break score calibration and historical comparisons. Keep the example nonproprietary; no employer-specific dataset, architecture or result is implied.

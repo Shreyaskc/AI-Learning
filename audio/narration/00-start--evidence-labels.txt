@@ -1,0 +1,5 @@
+Chapter 0: Start here: learn, build, explain. Evidence labels.
+
+Foundation means a mathematical identity or well-established mechanism under stated assumptions. Empirical means a finding on a particular dataset, model or experimental setup; it may not transfer. Design judgment means a recommendation whose merit depends on requirements. Open question means unsettled evidence. Primary-source references are collected in Sources; they are learning evidence, not a live model leaderboard.
+
+See coverage and remaining depth before treating the course as an exhaustive specialization. Begin with 01 dot What A.I. systems learn.

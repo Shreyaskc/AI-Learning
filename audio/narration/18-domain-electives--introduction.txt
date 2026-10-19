@@ -1,0 +1,5 @@
+Chapter 18: Domain electives: time, recommendations and anomalies. Introduction and prerequisites.
+
+Prerequisites: 03, 05 to 06 and 13. Outcomes: avoid common domain-specific leakage, compute a baseline ranking and forecast, and define when a task needs deeper specialization. These are worked orientations, not complete courses in causal inference, forecasting or reinforcement learning.
+
+Forecasting tomorrow’s load and ranking a recommendation list are both prediction tasks, but they expose different information and feedback. Use familiar baselines to see why the split and success measure must change. The later bandit and causal terms are an orientation, not assumed expertise.

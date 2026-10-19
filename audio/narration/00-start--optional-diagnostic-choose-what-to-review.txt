@@ -1,0 +1,27 @@
+Chapter 0: Start here: learn, build, explain. Optional diagnostic: choose what to review.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+Score one point only if you can explain the reasoning, not just name the term.
+
+Question 1. Why can fitting a scaler before the training and test split contaminate evaluation? Pause now and try your answer. When you are ready, continue. Solution: test distribution statistics influence the fitted pipeline; fitting belongs within each training fold.
+
+Question 2. Compute the dot product of (1,2) and (3,4). Pause now and try your answer. When you are ready, continue. Solution: 11, a weighted sum, not a distance.
+
+Question 3. A rare fault has prevalence 1%; a detector has 90% sensitivity and 10% false-positive rate. Is a positive result usually correct? Pause now and try your answer. When you are ready, continue. Solution: no; 90 divided by (90 plus 990), about 8.3% precision in 10,000 cases.
+
+Question 4. Differentiate One half of the squared difference between w times x and y with respect to w. Pause now and try your answer. When you are ready, continue. Solution: The quantity w times x minus y, multiplied by x; the x comes from the chain rule.
+
+Question 5. Why is 99% accuracy weak evidence on a 1% positive problem? Pause now and try your answer. When you are ready, continue. Solution: predicting every case negative achieves it.
+
+Question 6. What does a causal attention mask prohibit? Pause now and try your answer. When you are ready, continue. Solution: using later positions while predicting the next token.
+
+Question 7. Why does adding retrieval not guarantee truth? Pause now and try your answer. When you are ready, continue. Solution: retrieval may miss evidence; evidence may be false or outdated; the generator may not follow it.
+
+Question 8. What must a retried payment-like tool call carry? Pause now and try your answer. When you are ready, continue. Solution: an enforced idempotency key and authorization context; a prompt instruction is insufficient.
+
+Question 9. Why is event time alone insufficient for historical feature construction? Pause now and try your answer. When you are ready, continue. Solution: an event may have arrived after the historical decision.
+
+Question 10. What differs between a latency average and a ninety ninth percentile latency? Pause now and try your answer. When you are ready, continue. Solution: mean measures overall average, ninety ninth percentile marks the slow-tail boundary for 99% of observed requests.
+
+0 to 4: full path. 5 to 7: target weak prerequisites. 8 to 10: prove the answers with a lab or design before skipping. This tiny diagnostic does not measure all competence.

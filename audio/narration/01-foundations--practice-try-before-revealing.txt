@@ -1,0 +1,19 @@
+Chapter 1: What A.I. systems learn. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Run foundations.py. Trace the synthetic split and confusion-count example. The tiny labels are instructional, not a benchmark.
+
+Basic: training versus inference. Answer anchor: parameter selection versus applying selected parameters; show an example.
+
+Deeper: why might a random split overestimate future performance? Answer anchor: repeated entities, temporal dependencies, policy changes, or post-decision information.
+
+Senior: a stakeholder asks for “A.I.” What do you do? Answer anchor: clarify decision, action, measurable value, data availability, risks, baseline and stop criteria before choosing model complexity.
+
+Question 1. Is clustering unlabeled support tickets a classifier? Pause now and try your answer. When you are ready, continue. Solution: not by itself; it produces groups without supervised urgency labels. A human mapping groups to categories adds a separate decision step.
+
+Question 2. A model predicts churn using account closed at. What is wrong? Pause now and try your answer. When you are ready, continue. Solution: closure is likely the target or a future consequence. Remove it and audit timestamps and feature lineage.
+
+Question 3. Why retain a test set if cross-validation exists? Pause now and try your answer. When you are ready, continue. Solution: repeated choices using CV scores can overfit those scores; a held-out final set gives a less selection-biased estimate if truly untouched.

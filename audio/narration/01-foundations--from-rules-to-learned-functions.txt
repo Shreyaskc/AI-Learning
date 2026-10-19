@@ -1,0 +1,15 @@
+Chapter 1: What A.I. systems learn. From rules to learned functions.
+
+A support ticket arrives. A hand-written rule might say: “If its text contains outage, put it in the urgent queue.” The program follows that rule exactly. A learned model instead uses labeled past tickets to adjust a scoring function. It may use several clues, such as prior contacts and words in the message, rather than one fixed rule.
+
+A feature is an input measurement available when the ticket arrives. The target is the outcome we want to predict: urgent or not urgent, as later adjudicated. One example pairs an input x with its target y; a dataset collects many examples. The model's adjustable numbers are its parameters, written together as theta in the function with parameters theta applied to input x. This notation means “apply the scoring function with these currently chosen parameters.” It does not explain or guarantee what the model learned.
+
+Training selects parameters using examples and a loss that measures prediction error. Inference applies the selected parameters to new input. Using a model does not automatically keep training it. A product may collect feedback for later retraining under its data policy.
+
+A hyperparameter configures the procedure rather than being fitted in the same way as the ordinary model weights: examples include tree depth or learning rate. We will use validation data to choose such settings. For now, keep the distinction between the numbers learned inside a model and the settings used to train it.
+
+Now place this example in the larger vocabulary. Artificial intelligence includes methods for tasks such as search, planning and learning. Machine learning is the family that improves a behavior using data. Deep learning uses neural networks with multiple learned transformations. A generative model describes or samples a data distribution; a discriminative model predicts a target or decision boundary. These categories overlap: a language model can generate a reply and also be used to classify a ticket.
+
+The way training targets arise gives us another distinction. Supervised learning uses supplied labels, like our urgent and not-urgent judgments. Regression predicts a numeric target such as delay; classification predicts a category. Unsupervised learning seeks structure without that supervised target, such as groups of similar tickets. Self-supervised learning derives targets from the data itself, such as predicting the next token. Reinforcement learning learns actions using rewards across interactions; a reward is a chosen proxy, not a direct measurement of human benefit. These are names to recognize now; later chapters develop their mechanisms.
+
+Transfer the same reasoning to library returns. An exact overdue rule checks whether today is after the due date. Predicting at checkout whether a patron will return late is uncertain: it needs a target defined later and features available at checkout. That change in decision time leads to the most important contract below.

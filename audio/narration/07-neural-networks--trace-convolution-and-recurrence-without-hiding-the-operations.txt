@@ -1,0 +1,5 @@
+Chapter 7: Neural networks and representation learning. Trace convolution and recurrence without hiding the operations.
+
+Run representations.py. A 3 by 3 array containing rows [1,2,3], [4,5,6], [7,8,9] with a 2 by 2 kernel [[1,0],[0,negative 1]], valid padding and stride 1 produces a 2 by 2 result of negative 4 everywhere. The top-left output is 1 minus 5 equals negative 4; moving the kernel reuses the same weights. This uses the cross-correlation convention common in neural-network software, where the kernel is not flipped. It illustrates weight sharing and shape, not a trained image recognizer.
+
+The recurrent trace uses The hidden state at time t is the hyperbolic tangent of current input x plus one half of the previous hidden state, starting at zero. Inputs [1,0] end near zero point three six three four; reversing them to [0,1] ends near zero point seven six one six. A shared recurrence can observe order, unlike simply summing the inputs. Training this recurrence would require propagating derivatives through time; that full implementation is not claimed here.

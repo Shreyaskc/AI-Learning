@@ -1,0 +1,5 @@
+Chapter 16: Security, privacy and responsible A.I. Introduction and prerequisites.
+
+Prerequisites: 06 and 10 to 15. Outcomes: identify trust boundaries, test concrete controls, and reason about harm beyond aggregate accuracy. This is engineering guidance, not legal advice or a claim of compliance with any jurisdiction.
+
+A document is relevant to a question but belongs to another tenant. Returning it would still be a failure, even if every answer word were correct. Begin with that attack path, then identify the boundaries that prevent it and the harms aggregate accuracy can hide.

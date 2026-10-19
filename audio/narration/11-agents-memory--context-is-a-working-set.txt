@@ -1,0 +1,9 @@
+Chapter 11: Workflows, tools, context, memory and graphs. Context is a working set.
+
+Context is the information supplied for a model invocation, constrained by a token budget. It can include system instructions, user turns, tool schemas, retrieved passages, summaries and recent outputs. Context selection decides what is useful now. It does not change model parameters.
+
+For example, remember that incident 42 was inspected at a particular time, with a pointer to the incident record and an expiry. Keep an unverified guess separate from that observation. The storage serves the workflow; it does not retrain the model.
+
+Short-term state tracks the current interaction. Long-term memory stores information across interactions. Episodic memory records specific events; semantic memory stores extracted general facts; procedural memory describes reusable procedures. These terms are design categories, not proof that a product has human-like memory.
+
+A memory record should include subject, statement, source, timestamp, owner, tenant and access scope, confidence or verification status, expiry, and deletion linkage. If the assistant writes an unsupported generated claim into memory, later retrieval can make that claim look like evidence: a feedback contamination loop. Separate observations from hypotheses and require provenance. Summaries compress history but can omit caveats; keep pointers to original records and measure summary-induced errors.

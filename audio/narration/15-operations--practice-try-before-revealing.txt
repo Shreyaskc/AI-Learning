@@ -1,0 +1,11 @@
+Chapter 15: MLOps, observability and release discipline. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. A new prompt passes every unit test but doubles output length. Is release safe? Pause now and try your answer. When you are ready, continue. Solution: evaluate cost, latency, truncation, user usefulness and quality under realistic workload; unit tests cover only stated invariants.
+
+Question 2. A drift alarm fires while labeled performance is stable. Retrain automatically? Pause now and try your answer. When you are ready, continue. Solution: investigate cause and sample coverage first; retraining has risk and cost, and drift alone is not sufficient evidence.
+
+Question 3. What belongs in a runbook? Pause now and try your answer. When you are ready, continue. Solution: symptom, severity, owner and on-call, diagnostic queries, safe mitigation, rollback and kill-switch instructions, escalation and recovery verification.

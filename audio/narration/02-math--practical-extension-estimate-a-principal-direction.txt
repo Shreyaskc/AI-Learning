@@ -1,0 +1,7 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Practical extension: estimate a principal direction.
+
+representations.py now implements a tiny P C A direction estimator by power iteration. Center the rows, form covariance Covariance entry C sub i j is the mean product of centered coordinate i and centered coordinate j, then repeatedly normalize C times a candidate direction. If the largest eigenvalue is separated and the initial vector has a nonzero component in its direction, repeated multiplication magnifies that component relative to smaller ones. This is not a complete numerically robust eigensolver or S V D implementation.
+
+For rows (negative 2,0),(negative 1,0),(1,0),(2,0), the mean is (0,0), covariance is [[2.5,0],[0,0]], and the leading direction is (1,0), up to sign. Projection preserves these points exactly along the x axis. The test checks both direction and eigenvalue. An initial vector orthogonal to the leading direction can fail; equal leading eigenvalues make the principal direction nonunique. These assumptions matter when moving from a hand example to a robust library.
+
+The same lab fits k means on these points with two centers initialized at opposite endpoints. It converges to centers (negative 1.5,0) and (1.5,0), assignments [0,0,1,1] and within-cluster squared distance 1. The objective describes geometry only; it does not establish that the clusters correspond to real categories. Try a new initialization and rescaled coordinates, and distinguish optimizer behavior from the meaning of the resulting groups.

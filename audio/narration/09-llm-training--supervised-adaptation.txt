@@ -1,0 +1,5 @@
+Chapter 9: large language model pretraining, adaptation and alignment. Supervised adaptation.
+
+Supervised fine-tuning (supervised fine tuning) trains on desired input and output demonstrations. It teaches formats and behaviors, but can also add knowledge and alter existing behavior. Mask prompt tokens as appropriate when optimizing assistant responses; avoid accidentally teaching the model to reproduce hidden or irrelevant fields. Full fine-tuning updates all selected model weights; parameter-efficient methods update a smaller subset or added components.
+
+low rank adaptation represents a weight update as The weight update delta W equals matrix B times matrix A with rank at most r. For a 1024 by 1024 matrix, full tuning has 1,048,576 coefficients; r equals 8 adapters have 2 by 1024 by 8 equals 16,384, excluding other trainable components. Lower trainable parameter count reduces optimizer and gradient storage for the update, but the base model still occupies memory. low rank adaptation's primary paper motivates and evaluates this parameterization. Quantized adapter training adds numerical and implementation choices; evaluate quality and memory in your workload.

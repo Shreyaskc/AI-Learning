@@ -21,11 +21,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - run: python3 tools/audio.py check
       - run: python3 tools/build.py --check
       - run: python3 tools/check.py
       - run: python3 -m unittest discover -s labs -p 'test_*.py' -v
       - run: python3 -m unittest discover -s tools -p 'test_*.py' -v
-      - run: node --check app.js && node --check sw.js && node tools/test_reader.js && node --check practice.js && node tools/test_practice.js
+      - run: node --check app.js && node --check sw.js && node tools/test_reader.js && node --check practice.js && node tools/test_practice.js && node --check terms.js && node tools/test_terms.js && node --check podcast.js && node tools/test_podcast.js
       - name: Run all offline examples
         run: python3 tools/run_labs.py
 

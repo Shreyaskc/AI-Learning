@@ -1,0 +1,11 @@
+Chapter 3: Probability, statistics and uncertainty. Information and loss.
+
+A model predicts a positive event with probability zero point nine, and the event occurs. Its negative log loss is -natural logarithm of zero point nine approximately zero point one zero five. If it had assigned only zero point zero one, the loss would be -natural logarithm of zero point zero one approximately 4.605. Both predictions named the same possible event, but the confident miss receives a much larger penalty.
+
+For binary target y (0 or 1) and predicted positive probability p, the general form is The negative of y times the natural logarithm of p, plus one minus y times the natural logarithm of one minus p. When y equals 1 only -natural logarithm of p remains; when y equals 0 only -natural logarithm of 1 minus p remains. This scores a probability prediction. Choosing an action threshold is a separate decision.
+
+The same idea extends to a distribution over many possible outcomes. Let P describe the outcome frequencies and Q the predicted probabilities. Entropy Entropy of P is the negative sum over outcomes x of P of x times the natural logarithm of P of x averages surprise when using P itself. Cross-entropy Cross-entropy from P to Q is the negative sum over x of P of x times the natural logarithm of Q of x averages surprise using Q. In each expression, sum over possible outcomes x means add over possible outcomes, weighted by P(x).
+
+Their difference is K L divergence: K L divergence from P to Q sums, over x, P of x times the natural logarithm of the ratio P of x to Q of x. It is nonnegative when defined, but asymmetric: swapping P and Q changes it. It is not a geometric distance metric. These definitions will help distinguish language-model and preference objectives later; start by being able to reproduce the binary loss example.
+
+Keep demonstration probabilities away from exact zero when a logarithm requires positive input, while documenting any clipping: clipping changes the score. The later implementations use stable formulas rather than blindly exponentiating large values.

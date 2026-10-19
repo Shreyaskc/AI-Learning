@@ -1,0 +1,11 @@
+Chapter 8: Tokens, embeddings and transformers. Text becomes identifiers, then vectors.
+
+A tokenizer maps text to discrete identifiers from a vocabulary. Word, subword, byte-level and character tokenizers make different tradeoffs in vocabulary size, length, rare strings and multilingual coverage. Byte-pair encoding repeatedly merges frequent symbol pairs in its training corpus; production variants differ in preprocessing and special-token rules. A token is not necessarily a word, character or fixed number of bytes. Token counts require the actual tokenizer and message formatting.
+
+Start with a toy corpus containing low and lower, represented as characters plus an end marker. If a learned merge joins l plus o, low becomes the tokens l o, w, and a word-boundary marker; if another joins lo plus w, it becomes the token low and a word-boundary marker, while lower becomes the tokens low, e, r, and a word-boundary marker. This shows the merge mechanism; production byte pair encoding requires corpus-wide pair counts, deterministic tie-breaking, normalization and special-token handling. It is not legitimate to infer exact provider token identifiers from this toy.
+
+An embedding table E with V sub vocab rows (one per vocabulary identifier) and d columns looks up a d-dimensional vector for each identifier. These coordinates are learned to serve an objective; they are not literal containers of meaning. Similarity depends on model, layer, pooling, normalization and training. A document embedding often pools many contextual token representations; it is not automatically the same artifact as a vocabulary embedding table.
+
+Define three toy token identifiers 0, 1 and 2, with embedding rows E0 equals (1,0), E1 equals (0,1), E2 equals (1,1). Use the input sequence [0,1], so X is [[1,0],[0,1]], shape 2 by 2.
+
+Position information matters because pure attention without a position mechanism does not encode sequence order by itself. Original transformers used position encodings; modern architectures may use learned positions or rotations such as RoPE. Position mechanisms and length extrapolation require empirical evaluation rather than assuming unlimited context.

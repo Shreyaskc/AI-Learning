@@ -1,0 +1,5 @@
+Chapter 4: Optimization: how learning changes parameters. Introduction and prerequisites.
+
+Prerequisites: 02 to 03. Outcomes: derive a training update, diagnose optimization versus generalization failure, and understand regularization.
+
+Suppose a model predicts a delay of two days and the observed delay is five. Which number inside the model should change, in which direction, and by how much? The gradient from 02 supplies direction; a loss supplies the quantity we want to reduce.

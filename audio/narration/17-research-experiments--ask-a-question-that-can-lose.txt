@@ -1,0 +1,5 @@
+Chapter 17: Experiments and reading research. Ask a question that can lose.
+
+“Reranking improves our assistant” is underspecified. A testable claim is: on a frozen set of support queries, adding reranker R to the same candidate generator improves relevant-document reciprocal rank, without exceeding a declared latency budget. Keep corpus, query labels, candidate count and evaluation protocol fixed. If changes include better chunking and a different embedding model, the result does not isolate reranking.
+
+State hypothesis, primary metric, sampling unit, minimum effect worth acting on, sample-size rationale, stopping rule and failure criteria before observing the final test. Exploratory analysis is valuable, but identify it as exploratory and validate promising findings on new evidence. Reusing a final test after many iterations makes it a development set.

@@ -1,0 +1,7 @@
+Chapter 12: Multimodal and generative modeling. Vision-language and speech systems.
+
+A vision-language model can project visual representations into a language model's input space or use cross-attention between modalities. It may answer questions, describe images or ground text in visual content. optical character recognition is extraction of text from pixels; a model may confidently misread a serial number. Verify exact identifiers against dedicated checks and route low-quality scans for review.
+
+Speech recognition maps audio to text; text-to-speech maps text to audio. Word error rate The total substitutions, deletions and insertions, divided by the number of reference words summarizes transcription errors but not all semantic harm. One wrong medication name can matter more than several missed filler words. Diarization asks who spoke when; it is a separate task from recognition. Noise, accents, channel conditions and code-switching require explicit evaluation slices. Voice identity and private conversations introduce consent, access and retention concerns.
+
+Worked word error rate: a 10 minus word reference has one substitution, one deletion and no insertion. word error rate equals zero point two. That scalar cannot tell whether the changed word reversed a safety instruction. Add task-level semantic checks and human review where justified.

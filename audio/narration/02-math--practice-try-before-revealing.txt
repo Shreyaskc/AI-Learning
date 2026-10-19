@@ -1,0 +1,13 @@
+Chapter 2: Vectors, matrices, logs and derivatives. Practice: try before revealing.
+
+This section includes questions and worked answers. Pause when prompted to try each question before listening to its solution.
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
+
+Question 1. X is 20 by 3; W is 3 by 7. What shape is XW? Pause now and try your answer. When you are ready, continue. Solution: 20 by 7. W X is undefined because the inner dimensions differ.
+
+Question 2. Why can raw Euclidean distance be misleading for age in years plus income in dollars? Pause now and try your answer. When you are ready, continue. Solution: unit scale can dominate geometry. Standardization is one option, selected for the task and fit on train only.
+
+Question 3. Derive d[(w times x minus y) squared] divided by dw. Pause now and try your answer. When you are ready, continue. Solution: 2(w times x minus y)x. Removing the one-half multiplies the gradient by two, which interacts with learning rate.
+
+Question 4. A vector has zero norm. What should cosine code do? Pause now and try your answer. When you are ready, continue. Solution: reject or define a documented fallback; dividing by zero has no mathematical cosine interpretation.

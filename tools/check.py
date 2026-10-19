@@ -6,7 +6,7 @@ import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import unquote, urlsplit, parse_qs
 import build
 
 ROOT = build.ROOT
@@ -43,6 +43,14 @@ for path,parser in parsers.items():
         resolved=(path.parent/unquote(url.path)).resolve() if url.path else path
         if not resolved.is_relative_to(ROOT):errors.append(f'link escapes repo: {path}: {target}');continue
         if not resolved.exists():errors.append(f'broken link: {path.relative_to(ROOT)}: {target}');continue
+        if url.fragment and resolved == ROOT/'practice.html' and '=' in url.fragment:
+            import practice
+            bank=practice.questions(build.LESSONS); by_id={q['id']:q for q in bank}
+            params=parse_qs(url.fragment)
+            topic=params.get('topic',['all'])[0]; question=params.get('q',[None])[0]
+            if topic!='all' and topic not in {q['topic'] for q in bank}:errors.append('unknown practice topic: '+target)
+            if question and (question not in by_id or (topic!='all' and by_id[question]['topic']!=topic)):errors.append('unknown/mismatched practice question: '+target)
+            continue
         if url.fragment and resolved in parsers and unquote(url.fragment) not in parsers[resolved].ids:
             errors.append(f'broken anchor: {path.relative_to(ROOT)}: {target}')
 for path in (ROOT/'course').glob('*.md'):

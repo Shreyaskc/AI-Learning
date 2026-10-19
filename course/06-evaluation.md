@@ -2,6 +2,8 @@
 
 Prerequisites: 01, 03 and 05. Outcomes: select metrics from actions, quantify uncertainty, detect contamination, and define abstention.
 
+Imagine an urgency detector flags 170 tickets: 80 are genuinely urgent and 90 are not. It also misses 20 urgent tickets. Is that useful for a team with limited review time? We will calculate several views of the same outcomes before choosing a metric.
+
 ## Count outcomes before naming scores
 
 With 100 truly urgent tickets, a system catches 80 and misses 20. Among 900 non-urgent tickets it flags 90. True positives TP=80, false negatives FN=20, false positives FP=90, true negatives TN=810. Precision is TP/(TP+FP)=80/170≈.471. Recall is TP/(TP+FN)=.8. Accuracy is (TP+TN)/1000=.89. F1 is the harmonic mean of precision and recall, about .593. It ignores true negatives and assumes a particular balance; it is not the objective for every workflow.
@@ -30,7 +32,9 @@ Evaluate retrieval recall against known relevant documents, ranking quality such
 
 Abstention sends uncertain or unsupported cases to another path. Plot coverage (fraction automatically handled) against error among handled cases. A model's self-reported confidence is not automatically calibrated. Use validation evidence and an explicit fallback. Human review itself has latency, cost and error rates.
 
-## Practice and solutions
+## Practice: try before revealing
+
+On a phone, work through a question mentally or use the optional notes in Practice Q&A. On a computer, you can also run the linked lab. Compare your reasoning before marking a self-check.
 
 Run [learning.py](../labs/learning.py) for threshold metrics and Brier score.
 
@@ -38,4 +42,10 @@ Run [learning.py](../labs/learning.py) for threshold metrics and Brier score.
 2. A subgroup has 3/3 correct outputs. Can you call it solved? Solution: no; interval uncertainty and sampling selection remain large.
 3. Give a release gate for a support assistant. Example solution: no unauthorized cross-tenant retrieval on adversarial tests, lower confidence bound on supported-answer correctness above an agreed target, p95 latency within budget, escalation path exercised, and staged online rollout. Targets must come from product risk and capacity, not this example.
 
+## Interview rehearsal and vocabulary
+
 Interview: compute metrics; explain calibration versus discrimination; design a test strategy including leakage audit, slices, uncertainty, failure severity and rollback. Vocabulary: precision, recall, ROC, PR, calibration, Brier, contamination, drift, coverage, abstention.
+
+## What to carry forward
+
+A score is meaningful only with its population, split, uncertainty and action threshold. Keep ranking quality, probability accuracy and decision value separate. Next, [learn how a neural network builds its own features](07-neural-networks.md), while retaining this evaluation contract.

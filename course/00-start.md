@@ -1,6 +1,16 @@
 # 00 · Start here: learn, build, explain
 
-AI Fluency is a self-study course for a software engineer learning AI from first principles. Its destination is the ability to reason about models, build and evaluate small systems, and defend production architecture choices. Interview readiness requires practice and feedback; no course guarantees every interview.
+New to AI? [Start with the first lesson](01-foundations.md), where a support-ticket example introduces a learned prediction. You do not need to pass a quiz or install anything first.
+
+Already familiar with some ideas? Use the optional diagnostic below to find topics to revisit. It includes concepts taught later, so an unfamiliar question is a route into learning, not a failed entrance exam.
+
+You can begin on your phone: read the explanation, think through the question, reveal the answer and compare the reasoning. When you have a computer, run the small lab to inspect the same mechanism in code. Browser study checkboxes and Q&A self-checks are stored separately in that browser; they do not sync across devices or certify mastery.
+
+The destination is the ability to explain, implement, evaluate and design AI systems. Interview practice helps reveal weak reasoning; no course guarantees every interview result.
+
+## Follow the story
+
+First define a decision and the information available for it (01). Turn examples into numbers, express uncertainty and learn from error (02–05). Check whether the result works for the real decision (06). Then understand neural/language models (07–09), build evidence and controlled actions around them (10–13), and operate/challenge the system (14–18). Use projects and changing interview scenarios to demonstrate the learning (19).
 
 ## How to use the course
 
@@ -10,21 +20,7 @@ The fourteen offline labs include trained logistic/tree/MLP and character models
 
 The examples use invented support tickets, libraries and equipment. They contain no employer data or claimed personal achievements. Python labs require only the standard library and make no network calls. They demonstrate mechanisms on tiny data; they are not trained production models or evidence of real-world accuracy.
 
-From the repository root:
 
-```sh
-python3 labs/foundations.py
-python3 labs/learning.py
-python3 labs/attention.py
-python3 labs/retrieval.py
-python3 labs/platform.py
-python3 tools/run_labs.py
-python3 -m unittest discover -s labs -p 'test_*.py'
-python3 tools/build.py
-python3 tools/check.py
-```
-
-Open `index.html` for the generated reader. Markdown in `course/` is the source of truth. No GPU, paid API, external library or account is needed. A web server is optional: `python3 -m http.server 8000` and visit localhost port 8000. Browser progress is local to that browser and is not an assessment credential.
 
 ## Three learning paths
 
@@ -34,7 +30,7 @@ Open `index.html` for the generated reader. Markdown in `course/` is the source 
 
 **Architect interview rehearsal:** after the first pass, use 06, 10, 11 and 13–19. Spend 45 minutes on a design, 15 on a capacity estimate, and 15 on a failure analysis. Ask another person to challenge assumptions. Keep a log of errors rather than memorizing polished scripts.
 
-## Diagnostic with answers
+## Optional diagnostic: choose what to review
 
 Score one point only if you can explain the reasoning, not just name the term.
 
@@ -51,7 +47,7 @@ Score one point only if you can explain the reasoning, not just name the term.
 
 0–4: full path. 5–7: target weak prerequisites. 8–10: prove the answers with a lab or design before skipping. This tiny diagnostic does not measure all competence.
 
-## Dependencies and review rhythm
+## Review rhythm and dependency reference
 
 01 defines the problem and splitting contract. 02 → 03 → 04 supplies math. Those plus 01 feed 05 → 06 → 07 → 08 → 09. Then 06+08+09 → 10 → 11; 07+08+09 → 12. 06+10+11 → 13 → 14 → 15. Chapter 16 deepens security. Chapter 17 uses 03+06 for experiments; 03+05+06+13 → 18 covers electives and 19 integrates projects/interviews. Chapter 16's threat modeling should also be revisited while building 10 and 11.
 
@@ -62,3 +58,23 @@ After every chapter, close the page and explain its mechanism in 90 seconds. Rev
 **Foundation** means a mathematical identity or well-established mechanism under stated assumptions. **Empirical** means a finding on a particular dataset, model or experimental setup; it may not transfer. **Design judgment** means a recommendation whose merit depends on requirements. **Open question** means unsettled evidence. Primary-source references are collected in [Sources](sources.md); they are learning evidence, not a live model leaderboard.
 
 See [coverage and remaining depth](coverage.md) before treating the course as an exhaustive specialization. Begin with [01 · What AI systems learn](01-foundations.md).
+
+## Computer labs: when you are ready
+
+These commands are for a terminal on a computer, opened in the downloaded repository folder. They are not needed to begin reading on a phone. The examples use synthetic data and need no paid API or GPU.
+
+From the repository root:
+
+```sh
+python3 labs/foundations.py
+python3 labs/learning.py
+python3 labs/attention.py
+python3 labs/retrieval.py
+python3 labs/platform.py
+python3 tools/run_labs.py
+python3 -m unittest discover -s labs -p 'test_*.py'
+python3 tools/build.py
+python3 tools/check.py
+```
+
+Open `index.html` for the generated reader. Markdown in `course/` is the source of truth. No GPU, paid API, external library or account is needed. A web server is optional: `python3 -m http.server 8000` and visit localhost port 8000. Browser progress is local to that browser and is not an assessment credential.

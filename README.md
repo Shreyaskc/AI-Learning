@@ -2,7 +2,7 @@
 
 A rebuilt self-study course for software engineers learning AI from zero, with a path toward ML, LLM application and senior AI-platform interviews. Twenty authored chapters combine explanations, derivations, worked numbers, exercises with solutions, fourteen small offline labs, and four capstone assignments. It does not guarantee interview results or claim uniform specialist depth.
 
-**Start:** [Learning contract and diagnostic](course/00-start.md). **Read in a browser:** open [index.html](index.html), or serve the directory locally. **Inspect actual scope:** [coverage ledger and remaining gaps](course/coverage.md). **Audit every original module:** [29-module crosswalk](course/module-crosswalk.md). **Look up terms:** [glossary](course/glossary.md).
+**New to AI?** [Start with the first lesson](course/01-foundations.md)—no quiz or setup required. **Practice:** [69 questions, one at a time](practice.html). **Plan your path:** [Learning map and optional diagnostic](course/00-start.md). **Read in a browser:** open [index.html](index.html), or serve the directory locally. **Inspect actual scope:** [coverage ledger and remaining gaps](course/coverage.md). **Audit every original module:** [29-module crosswalk](course/module-crosswalk.md). **Look up terms:** [glossary](course/glossary.md).
 
 ## Run locally
 
@@ -11,6 +11,8 @@ Python 3.10+ is required; validated in this workspace with the Python version re
 ```sh
 python3 tools/build.py
 python3 tools/check.py
+python3 -m unittest discover -s tools -p 'test_*.py'
+node tools/test_practice.js
 python3 -m unittest discover -s labs -p 'test_*.py'
 python3 tools/run_labs.py
 python3 labs/foundations.py
@@ -24,7 +26,7 @@ python3 labs/electives.py
 python3 -m http.server 8000
 ```
 
-Visit `http://localhost:8000`. Opening `index.html` directly also works. The reader has lesson search, previous/next navigation and local study checkboxes. Progress belongs to your browser; it does not score mastery. No analytics or external scripts are loaded. Print a lesson for a clean paper copy.
+Visit `http://localhost:8000`. Opening `index.html` directly also works. The reader has lesson search, previous/next navigation and local study checkboxes. Practice Q&A has topic/search controls, optional session-only notes, answer reveal, three self-ratings and per-topic resume. Its progress is separate from lesson study checkboxes. Both belong to your browser and do not sync across devices or score mastery. Questions and full solutions are generated from the Markdown source, not separately authored copies. Native closed answer disclosures retain no-JavaScript reading/practice fallbacks. No analytics or external scripts are loaded. Print a lesson for a clean paper copy.
 
 ## Course map
 

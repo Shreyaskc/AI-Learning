@@ -1,0 +1,19 @@
+{
+  "attempts": 1,
+  "audit": [
+    "SUBMITTED",
+    "DISPATCH_ATTEMPT",
+    "RECONCILED_PROVIDER_EFFECT"
+  ],
+  "crash_process_exit": 73,
+  "kind": "two SQLite stores; separate worker processes; simulated provider effects",
+  "limits": "serial recovery; no distributed leases or real external API; provider status is definitive and provider idempotency is atomic in this simulator",
+  "memory_counts": {
+    "after_source_delete": 0,
+    "expired": 0,
+    "valid": 1
+  },
+  "provider_effect_count": 1,
+  "state_after_crash": "RUNNING",
+  "state_after_recovery": "SUCCEEDED"
+}

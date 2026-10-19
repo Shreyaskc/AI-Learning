@@ -1,0 +1,51 @@
+{
+  "pca": {
+    "mean": [
+      0.0,
+      0.0
+    ],
+    "direction": [
+      1.0,
+      0.0
+    ],
+    "eigenvalue": 2.5
+  },
+  "kmeans": [
+    [
+      [
+        -1.5,
+        0.0
+      ],
+      [
+        1.5,
+        0.0
+      ]
+    ],
+    [
+      0,
+      0,
+      1,
+      1
+    ],
+    1.0
+  ],
+  "valid_convolution": [
+    [
+      -4,
+      -4
+    ],
+    [
+      -4,
+      -4
+    ]
+  ],
+  "recurrent_forward": [
+    0.7615941559557649,
+    0.36339948438905245
+  ],
+  "recurrent_reversed": [
+    0.0,
+    0.7615941559557649
+  ],
+  "limits": "PCA power iteration can miss a leading direction with orthogonal initialization; kmeans can find local minima; convolution/RNN operations are traced, not trained"
+}

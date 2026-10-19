@@ -1,0 +1,25 @@
+{
+  "alpha": 0.1,
+  "decoding_example": [
+    0.7310585786300048,
+    0.26894142136999516,
+    0.0
+  ],
+  "dpo_toy_losses": {
+    "chosen_more_likely": 0.626232806408696,
+    "reference_policy": 0.6931471805599453
+  },
+  "generated_seed_7": "cat og og a ma cathemat cand on og can og san.",
+  "kind": "trained smoothed character bigram; not an LLM",
+  "limitations": "tiny repetitive corpus; mapped UNK loses character identity; held-out tiny examples are not a language capability benchmark",
+  "selection": "alpha chosen on validation NLL; vocabulary/counts fit training only",
+  "sft_masked_example_nll": 0.2899092476264711,
+  "test": {
+    "nll_per_token": 1.3990356582556955,
+    "perplexity": 4.051291253205919,
+    "tokens_including_eos": 37,
+    "unknown_tokens": 2
+  },
+  "unigram_test_nll": 2.874793605074065,
+  "vocabulary_size": 17
+}

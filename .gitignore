@@ -3,3 +3,7 @@
 .hosting-original-hostname
 /tmp/
 *.log
+__pycache__/
+*.py[cod]
+.venv/
+.env

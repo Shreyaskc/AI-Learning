@@ -1,0 +1,321 @@
+{
+  "dataset": "synthetic XOR quadrants with 3% independent label flips",
+  "implementation_sha256": "71fcc65041f6ab32da64a861a3787a5afc2c963c6369eb9d7645e29dd76db3e7",
+  "limitations": "one synthetic split; unequal family tuning/compute budgets; no universal ranking or efficiency claim",
+  "models": {
+    "constant": {
+      "artifact": {
+        "family": "constant",
+        "feature_order": [
+          "x1",
+          "x2"
+        ],
+        "scaler": {
+          "means": [
+            0.005736127854069334,
+            -2.047772429139707
+          ],
+          "scales": [
+            0.5792783917321777,
+            55.71740844679783
+          ]
+        },
+        "schema_version": 1,
+        "state": {
+          "p": 0.46875
+        }
+      },
+      "selected_config": {},
+      "test": {
+        "accuracy": 0.475,
+        "brier": 0.2525390625,
+        "log_loss": 0.6982332087943636,
+        "n": 80,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "training_loss_trace": null,
+      "validation": {
+        "accuracy": 0.475,
+        "brier": 0.2525390625,
+        "log_loss": 0.6982332087943636,
+        "n": 80,
+        "precision": 0.0,
+        "recall": 0.0
+      }
+    },
+    "logistic": {
+      "artifact": {
+        "family": "logistic",
+        "feature_order": [
+          "x1",
+          "x2"
+        ],
+        "scaler": {
+          "means": [
+            0.005736127854069334,
+            -2.047772429139707
+          ],
+          "scales": [
+            0.5792783917321777,
+            55.71740844679783
+          ]
+        },
+        "schema_version": 1,
+        "state": {
+          "b": -0.12523023486475096,
+          "w": [
+            0.022886723323507666,
+            0.038106252026800166
+          ]
+        }
+      },
+      "selected_config": {
+        "l2": 0.001,
+        "rate": 0.1,
+        "steps": 500
+      },
+      "test": {
+        "accuracy": 0.475,
+        "brier": 0.2536260629982301,
+        "log_loss": 0.7004019458096079,
+        "n": 80,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "training_loss_trace": [
+        0.6930362684087712,
+        0.6909228491535255
+      ],
+      "validation": {
+        "accuracy": 0.475,
+        "brier": 0.2513219164638675,
+        "log_loss": 0.6957699921087829,
+        "n": 80,
+        "precision": 0.0,
+        "recall": 0.0
+      }
+    },
+    "mlp": {
+      "artifact": {
+        "family": "mlp",
+        "feature_order": [
+          "x1",
+          "x2"
+        ],
+        "scaler": {
+          "means": [
+            0.005736127854069334,
+            -2.047772429139707
+          ],
+          "scales": [
+            0.5792783917321777,
+            55.71740844679783
+          ]
+        },
+        "schema_version": 1,
+        "state": {
+          "dimensions": 2,
+          "params": [
+            0.00483404801643289,
+            0.47995860036078314,
+            1.6246778366019765,
+            -1.466824615582364,
+            1.4356488281542807,
+            1.0475994154206596,
+            0.5068572540092559,
+            -0.47765342997661625,
+            -1.2413678528919687,
+            -0.8785254633646323,
+            1.3273480792168517,
+            -1.1812508600676268,
+            -0.013842007672269193,
+            -0.191480550654061,
+            1.503256901501178,
+            1.682377936591078,
+            0.04654384773929589,
+            -1.2012953601637422,
+            -1.2860678373530947,
+            -0.3691832563114243,
+            1.0934274617018342,
+            1.606030738641512,
+            -0.0057125207963285955,
+            1.1539737919569617,
+            0.2714613790789427,
+            2.4433629083669803,
+            -1.9623666919075704,
+            0.2765589132819025,
+            1.5221518947708785,
+            -2.3986495764441353,
+            -0.022420414430722808,
+            2.713688095137559,
+            -0.24365501488388389
+          ],
+          "width": 8
+        }
+      },
+      "selected_config": {
+        "l2": 0.001,
+        "rate": 0.15,
+        "steps": 700,
+        "width": 8
+      },
+      "test": {
+        "accuracy": 0.925,
+        "brier": 0.08569294062742401,
+        "log_loss": 0.3234872125749537,
+        "n": 80,
+        "precision": 0.9285714285714286,
+        "recall": 0.9285714285714286
+      },
+      "training_loss_trace": [
+        0.706401355779971,
+        0.21353383147020238
+      ],
+      "validation": {
+        "accuracy": 0.95,
+        "brier": 0.05111187827857831,
+        "log_loss": 0.20430022887888172,
+        "n": 80,
+        "precision": 0.975,
+        "recall": 0.9285714285714286
+      }
+    },
+    "tree": {
+      "artifact": {
+        "family": "tree",
+        "feature_order": [
+          "x1",
+          "x2"
+        ],
+        "scaler": {
+          "means": [
+            0.005736127854069334,
+            -2.047772429139707
+          ],
+          "scales": [
+            0.5792783917321777,
+            55.71740844679783
+          ]
+        },
+        "schema_version": 1,
+        "state": {
+          "root": {
+            "feature": 1,
+            "left": {
+              "feature": 0,
+              "left": {
+                "feature": 1,
+                "left": {
+                  "feature": -1,
+                  "left": null,
+                  "probability": 0.02564102564102564,
+                  "right": null,
+                  "threshold": 0.0
+                },
+                "probability": 0.3870967741935484,
+                "right": {
+                  "feature": -1,
+                  "left": null,
+                  "probability": 0.96,
+                  "right": null,
+                  "threshold": 0.0
+                },
+                "threshold": 0.14370828954951748
+              },
+              "probability": 0.487012987012987,
+              "right": {
+                "feature": 1,
+                "left": {
+                  "feature": 0,
+                  "left": {
+                    "feature": -1,
+                    "left": null,
+                    "probability": 0.2,
+                    "right": null,
+                    "threshold": 0.0
+                  },
+                  "probability": 0.803921568627451,
+                  "right": {
+                    "feature": -1,
+                    "left": null,
+                    "probability": 0.9302325581395349,
+                    "right": null,
+                    "threshold": 0.0
+                  },
+                  "threshold": 0.021407653361248127
+                },
+                "probability": 0.5531914893617021,
+                "right": {
+                  "feature": 0,
+                  "left": {
+                    "feature": -1,
+                    "left": null,
+                    "probability": 0.8571428571428571,
+                    "right": null,
+                    "threshold": 0.0
+                  },
+                  "probability": 0.26666666666666666,
+                  "right": {
+                    "feature": -1,
+                    "left": null,
+                    "probability": 0.030303030303030304,
+                    "right": null,
+                    "threshold": 0.0
+                  },
+                  "threshold": 0.020259512010349437
+                },
+                "threshold": 0.01968207210958584
+              },
+              "threshold": -0.4091484444085718
+            },
+            "probability": 0.4691358024691358,
+            "right": {
+              "feature": -1,
+              "left": null,
+              "probability": 0.2,
+              "right": null,
+              "threshold": 0.0
+            },
+            "threshold": 1.584060647979489
+          }
+        }
+      },
+      "selected_config": {
+        "depth": 4,
+        "min_leaf": 8
+      },
+      "test": {
+        "accuracy": 0.8625,
+        "brier": 0.10099470990745225,
+        "log_loss": 0.3196534212030703,
+        "n": 80,
+        "precision": 0.9696969696969697,
+        "recall": 0.7619047619047619
+      },
+      "training_loss_trace": null,
+      "validation": {
+        "accuracy": 0.95,
+        "brier": 0.043824764807039306,
+        "log_loss": 0.18273061237167293,
+        "n": 80,
+        "precision": 1.0,
+        "recall": 0.9047619047619048
+      }
+    }
+  },
+  "scaler_fit": "train only",
+  "seed": 31,
+  "selection": "lowest validation log loss within each family; test never selects",
+  "split_counts": [
+    160,
+    80,
+    80
+  ],
+  "split_fingerprints": {
+    "test": "4e06659ae53b1edf773f284b36bfe0a8e90223198c2f37111f1e70e170d55c03",
+    "train": "095a2a8dfdc1cb6de01602f22f86ceee35d262d973164311220631ba18c445a4",
+    "validation": "af4e82cc4d55b7c10c207e63b767c3a3f3c3c288b141a4223a5cd0a3e33dbd85"
+  },
+  "threshold": 0.5
+}

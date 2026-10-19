@@ -1,4 +1,4 @@
-"""Assemble a personal local preview without adding restricted voice audio to Git."""
+"""Assemble a local review player; keep restricted personal recordings outside Git."""
 import argparse
 import copy
 import html
@@ -22,10 +22,10 @@ def main():
             item['src']=quote(sample.name)
             item['status']='Private local voice preview; not a public recording'
     body=listen.page(items)
-    body=body.replace('Published recordings: 1 of 20 chapters.','Published recordings: 0 of 20 chapters. This local preview attaches one private sample.')
+    body=body.replace('href="audio/ATTRIBUTION.md"','href="https://github.com/Shreyaskc/AI-Learning/blob/audio/podcast-player/audio/ATTRIBUTION.md"')
     body=body.replace('<script src="podcast.js" defer></script>','<script>'+ (build.ROOT/'podcast.js').read_text()+'</script>')
     output=sample.parent/'listen-preview.html'
-    content='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Private Foundations audio preview</title><style>'+(build.ROOT/'style.css').read_text()+'</style></head><body><main id="main">'+body+'<p>Private personal preview only. <a download href="'+html.escape(quote(sample.name),quote=True)+'">Download local sample</a></p></main></body></html>'
+    content='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Local Foundations audio preview</title><style>'+(build.ROOT/'style.css').read_text()+'</style></head><body><main id="main">'+body+'<p>Local review preview. <a download href="'+html.escape(quote(sample.name),quote=True)+'">Download local sample</a></p></main></body></html>'
     output.write_text(content)
     print(output)
 

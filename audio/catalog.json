@@ -1,1 +1,9 @@
-{}
+{
+  "01-foundations-core": {
+    "src": "audio/samples/foundations-kokoro-af-heart-v1.m4a",
+    "kind": "sample",
+    "sha256": "6c7ed091c57b1b4af35a8af619129656d2e3b87a95b08f5248d6792daa4220c6",
+    "transcript_sha256": "5a82e2e0a93a65a19e84bc60a037b799906af637013f4acf6212e1e956126bef",
+    "redistribution_basis": "Original course script; local synthetic narration with hexgrad/Kokoro-82M v1.0 af_heart. Official model and engine Apache-2.0 declarations; no model-card output-publication restriction found. See audio/ATTRIBUTION.md."
+  }
+}

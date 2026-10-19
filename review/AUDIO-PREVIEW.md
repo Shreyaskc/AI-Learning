@@ -1,33 +1,40 @@
 # Audio preview and continuous listening — draft review
 
-## Delivered and not yet delivered
+## Current sample
 
-One real narration sample was generated locally from the public Foundations course:
-Samantha (installed en_US System Voice), 165 words/minute, 94.61 seconds. The original
-transcript is audio/transcripts/01-foundations-core.txt. ffmpeg converted the on-device
-AIFF to AAC in M4A at requested 64 kbit/s with fast-start metadata. The file is 812 KiB;
-decoding/volume checks found 2,086,231 samples, mean -15.8 dB and peak -1.7 dB. This
-verifies a decodable non-silent recording, not a human listening-quality review.
+One shareable candidate was generated locally from original Foundations text:
+Kokoro-82M v1.0, af_heart, official kokoro package 0.9.4. It has 208 words and lasts
+89.8 seconds, with a matching transcript at audio/transcripts/01-foundations-core.txt.
+The draft includes the 800160-byte M4A as a single section sample, not a complete
+chapter. The other 19 chapter slots have no recording; full chapter narrations are
+0/20. Voice and pacing still need user review before expansion.
 
-The private sample and standalone local player are in the sibling audio-preview
-folder, outside this public Git repository. No audio bytes were uploaded. No paid
-API, account setup, cloned voice or cloud speech service was used. The sandboxed say
-attempt returned only an empty audio header; the explicitly scoped local speech-service
-execution succeeded. No expensive model was loaded.
+Generation used an isolated Python 3.12 environment, official PyPI wheels, the
+vendor's official spaCy English model and official Hugging Face model files. There
+was no paid API, account setup, credential use, cloud inference or custom voice
+cloning. The source text stayed on-device during synthesis. Model weights matched
+the author-published SHA-256. Paragraph-sized chunks ran with two CPU threads; the
+six paragraphs took about 8.7 seconds of synthesis after model initialization.
 
-Apple's macOS Tahoe 26 license section 2F permits original System Voice projects for
-personal, noncommercial use and restricts publishing/public sharing, including nonprofit
-contexts: https://www.apple.com/legal/sla/docs/macOSTahoe.pdf. Therefore the public
-recording catalog is empty. The local recording can be reviewed privately; it must
-not be committed to Pages or uploaded to a shared Library. A voice with verified
-redistribution rights is needed before public recordings are added. No cloud Library
-capability is currently available, and no Library upload was attempted.
+The encoded sample is 24 kHz mono AAC with fast-start metadata. Decoding, finite
+waveform and duration checks passed; raw PCM had no near-clipped samples. ffmpeg
+loudness processing targeted -19 LUFS and -1.5 dBTP; encoded analysis measured
+-19.13 LUFS and -1.48 dBTP. These are signal checks, not a human listening review.
+Metadata/provenance is in review/evidence/kokoro-sample.json; visible synthetic
+narration credit and upstream references are in audio/ATTRIBUTION.md.
 
-The draft includes an honest Listen preview with 20 chapter slots and one authored
-sample transcript, not 20 recorded chapters. The Foundations section has a direct
-Listen link. A local-file picker can attach a personal recording without upload; its
-blob URL remains in memory, requiring file reselection after reopening. The private
-standalone preview directly attaches the sample for convenient voice/pacing review.
+The official model and engine declare Apache-2.0; af_heart is listed in the supplied
+voice repository. No output-publication restriction was found in those upstream
+materials. That is the documented basis for this review candidate, not a blanket
+warranty about all upstream rights. An engine license copy is retained. No model
+weights or voice tensors are distributed in Git.
+
+The earlier 94.61-second Samantha/System Voice test stays private in the sibling
+workspace folder, outside Git, Pages and Library, because Apple's macOS Tahoe 26
+license section 2F restricts public sharing: https://www.apple.com/legal/sla/docs/macOSTahoe.pdf.
+Its original separate transcript is preserved there. The new Kokoro sample was
+successfully saved to the user's Library for native review, with its Library identity
+retained locally; the restricted sample was never uploaded.
 
 ## Playback and resume contract
 
@@ -86,13 +93,12 @@ voice binaries. Existing glossary/Q&A/reader checks and offline labs also pass.
 Actual browser interactions remain blocked: no browser is connected, and the Mac is
 locked with automatic unlock unavailable. No rendered/mobile, audible listening,
 screen-reader, real media-policy or background playback pass is claimed. The sample
-is ready for the user's private voice/pacing review. This is a draft PR only; no merge
-or deployment is authorized.
+is ready for voice/pacing review. This remains a draft PR only; merge and deployment are pending user approval.
 
-Recreate the local preview after obtaining the private sample:
+Recreate the local preview with the local Kokoro review sample:
 
 ```
-python3 tools/make_audio_preview.py --sample ../audio-preview/foundations-samantha.m4a
+python3 tools/make_audio_preview.py --sample ../audio-preview/foundations-kokoro-af-heart.m4a
 node tools/test_podcast.js
 ```
 

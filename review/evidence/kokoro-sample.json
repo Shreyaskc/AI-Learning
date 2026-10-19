@@ -1,0 +1,62 @@
+{
+  "backend": "Kokoro-82M v1.0",
+  "voice": "af_heart",
+  "synthetic": true,
+  "sample_rate": 24000,
+  "speed": 1.0,
+  "device": "cpu",
+  "threads": 2,
+  "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "model_sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+  "voice_sha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+  "transcript_sha256": "5a82e2e0a93a65a19e84bc60a037b799906af637013f4acf6212e1e956126bef",
+  "duration_seconds": 89.775,
+  "generation_seconds": 8.738136084051803,
+  "segments": [
+    {
+      "paragraph": 1,
+      "seconds": 5.2,
+      "text": "Let's distinguish four basic terms: feature, target, training, and inference."
+    },
+    {
+      "paragraph": 2,
+      "seconds": 19.65,
+      "text": "Imagine predicting a parcel's delivery duration. A feature is an input variable available when we make that prediction. Package weight and route distance could be features. The target is the outcome we want to predict: delivery duration. One parcel's inputs and observed outcome form a labeled example."
+    },
+    {
+      "paragraph": 3,
+      "seconds": 20.95,
+      "text": "Training fits a model's parameters from examples according to a learning objective. In a simple linear model, parameters include the coefficient multiplying package weight and an intercept. A hyperparameter, such as a tree's maximum depth, configures the model or fitting procedure rather than being a weight fitted by that procedure."
+    },
+    {
+      "paragraph": 4,
+      "seconds": 19.975,
+      "text": "Inference applies the fitted model to a new parcel, usually without updating its parameters. Think of training as adjusting a recipe and inference as using the current recipe. The analogy has a limit: the algorithm optimizes a specified objective; it does not understand the task as a person does."
+    },
+    {
+      "paragraph": 5,
+      "seconds": 12.325,
+      "text": "The key boundary is prediction time. A parcel's actual arrival time cannot be an input to a prediction made before dispatch. That would leak the answer and make evaluation misleading."
+    },
+    {
+      "paragraph": 6,
+      "seconds": 10.425,
+      "text": "Features are inputs. The target is the outcome. Training fits; inference uses. Next, study generalization: whether the model works on new cases."
+    }
+  ],
+  "versions": {
+    "kokoro": "0.9.4",
+    "misaki": "0.9.4",
+    "torch": "2.14.1",
+    "soundfile": "0.14.0",
+    "transformers": "5.20.1",
+    "en-core-web-sm": "3.8.0"
+  },
+  "license_source": "hexgrad/Kokoro-82M",
+  "license": "Apache-2.0",
+  "encoded_sha256": "6c7ed091c57b1b4af35a8af619129656d2e3b87a95b08f5248d6792daa4220c6",
+  "encoded_bytes": 800160,
+  "normalization": "ffmpeg loudnorm: target -19 LUFS, -1.5 dBTP, LRA 7; 24 kHz mono AAC",
+  "encoded_integrated_lufs": -19.13,
+  "encoded_true_peak_dbtp": -1.48
+}

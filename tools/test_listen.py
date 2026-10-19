@@ -13,13 +13,14 @@ class ListeningTests(unittest.TestCase):
         items=listen.tracks(build.LESSONS)
         self.assertEqual(len(items),20)
         self.assertEqual(len({q['id'] for q in items}),20)
-        self.assertFalse(any(q['src'] for q in items))
+        self.assertEqual(sum(bool(q['src']) for q in items),1)
+        self.assertEqual(next(q for q in items if q['src'])['kind'],'sample')
         self.assertEqual(sum(bool(q['transcript']) for q in items),1)
         sample=next(q for q in items if q['chapter']=='01-foundations')
         self.assertIn('feature',sample['transcript'])
         self.assertIn('inference',sample['transcript'].lower())
         self.assertEqual(sample['transcript'],(build.ROOT/'audio/transcripts/01-foundations-core.txt').read_text())
-        self.assertEqual(json.loads((build.ROOT/'audio/catalog.json').read_text()),{})
+        self.assertEqual(set(json.loads((build.ROOT/'audio/catalog.json').read_text())),{'01-foundations-core'})
     def test_single_media_element_no_autoplay_and_labeled_controls(self):
         content=build.outputs()[build.ROOT/'listen.html']
         parser=Markup();parser.feed(content)
@@ -34,7 +35,9 @@ class ListeningTests(unittest.TestCase):
         labels={attrs.get('for') for tag,attrs in parser.elements if tag=='label'}
         self.assertTrue({'audio-track','audio-speed','audio-file'}.issubset(labels))
         self.assertIn('<noscript>',content)
-        self.assertIn('Published recordings: 0 of 20',content)
+        self.assertIn('Section samples available: 1',content)
+        self.assertIn('Full chapter recordings: 0 of 20',content)
+        self.assertIn('Synthetic narration sample: Kokoro-82M',content)
     def test_safe_data_and_separate_state(self):
         self.assertNotIn('<script>',listen.safe_json({'value':'<script>&'}))
         js=(build.ROOT/'podcast.js').read_text()
@@ -60,7 +63,8 @@ class ListeningTests(unittest.TestCase):
         self.assertIn('Technical definition',listening)
 
     def test_private_voice_binary_not_in_repository(self):
-        self.assertFalse(list((build.ROOT/'audio').rglob('*.m4a')))
+        self.assertEqual([p.name for p in (build.ROOT/'audio').rglob('*.m4a')],['foundations-kokoro-af-heart-v1.m4a'])
+        self.assertFalse(list((build.ROOT/'audio').rglob('*samantha*')))
         self.assertFalse(list((build.ROOT/'audio').rglob('*.aiff')))
 
 if __name__=='__main__':unittest.main()

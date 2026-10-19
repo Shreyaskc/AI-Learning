@@ -1,0 +1,11 @@
+Let's start with four terms: feature, target, training, and inference.
+
+Imagine predicting how long a parcel will take to arrive. A feature is an input variable the model is allowed to observe when it makes that prediction. Package weight and route distance could be features. The target is the outcome we want to predict: delivery duration.
+
+One historical parcel, with its measurements and observed delivery duration, is a labeled example. Many examples form a training dataset. Training estimates the model's parameters from those examples according to an objective. For a simple linear model, the parameters include a coefficient multiplying package weight and an intercept. A hyperparameter, such as a decision tree's maximum depth, configures the model or fitting procedure rather than being one of the weights fitted by that procedure.
+
+Inference means applying the fitted model to a new parcel. Usually, this does not update its learned parameters. Think of training as adjusting the recipe and inference as using the current recipe. That analogy has a limit: a learning algorithm optimizes a specified objective; it does not understand the task in the human sense.
+
+The important boundary is what you can know at prediction time. The parcel's actual arrival time is not a valid input for a prediction made before dispatch. Using it would leak the answer and make an evaluation misleading.
+
+Pause here and explain the distinction in your own words: features are the available inputs; the target is the outcome; training fits the model; inference uses it. In the written lesson, continue with generalization: how we find out whether a fitted model works on new cases.

@@ -14,3 +14,14 @@
 #term-dialog a {color:#a6d4ff}
 #term-close {float:right;min-width:48px;min-height:48px;padding:.5rem .75rem;border:1px solid #95aabd;border-radius:.5rem;background:#243444;color:#fff;cursor:pointer}
 #term-close:focus-visible,#term-glossary:focus-visible {outline:3px solid #a6d4ff;outline-offset:3px}
+#listen-interactive {max-width:48rem}
+#listen-interactive select,#audio-file {max-width:100%;min-height:44px;box-sizing:border-box}
+#course-audio {display:block;width:100%;margin:1rem 0}
+.audio-actions,.audio-settings {display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin:1rem 0}
+.audio-actions button {min-height:48px;padding:.6rem .9rem;border:1px solid #617080;border-radius:.5rem;cursor:pointer}
+.audio-actions button:disabled {cursor:default;opacity:.6}
+#audio-transcript {white-space:pre-line;max-width:70ch}
+#listen-interactive details {margin:1rem 0}
+#listen-interactive summary {cursor:pointer;min-height:44px}
+#listen-interactive label {display:inline-block}
+@media(max-width:600px){.mode-nav{flex-wrap:wrap}#audio-track{width:100%}.audio-actions{gap:.5rem}}

@@ -2,14 +2,14 @@ const assert = require('assert');
 const mount = require('../terms.js');
 function element(extra={}) { return Object.assign({textContent:'',attrs:{},isConnected:true,parentElement:null,handlers:{},dataset:{},setAttribute(k,v){this.attrs[k]=v;},getAttribute(k){return this.attrs[k];},closest(){return null;},focus(){focused=this;},addEventListener(k,v){this.handlers[k]=v;}},extra); }
 let focused;
-const ids = Object.fromEntries(['term-dialog','term-data','term-close','term-title','term-definition','term-example-text','term-glossary','main'].map(id=>[id,element()]));
-ids['term-data'].textContent=JSON.stringify({feature:{name:'Feature',definition:'Input measurement.',example:'Package weight.'},target:{name:'Target',definition:'Outcome.',example:'Duration.'}});
+const ids = Object.fromEntries(['term-dialog','term-data','term-close','term-title','term-definition','term-plain','term-analogy','term-analogy-disclosure','term-example-text','term-glossary','main'].map(id=>[id,element()]));
+ids['term-data'].textContent=JSON.stringify({feature:{name:'Feature',definition:'Input measurement.',plain:'Allowed inputs.',analogy:'Clues. Limit: clues can mislead.',example:'Package weight.'},target:{name:'Target',definition:'Outcome.',plain:'What to predict.',analogy:'Destination. Limit: labels can be wrong.',example:'Duration.'}});
 const d=ids['term-dialog']; let shown=0;
 d.showModal=()=>{d.open=true;shown++;};d.close=()=>{d.open=false;d.handlers.close();};d.getBoundingClientRect=()=>({left:10,right:100,top:10,bottom:100});
 const doc=element({getElementById:id=>ids[id]});const win=element();const api=mount(doc,win);
 const a=element({dataset:{term:'feature'},attrs:{href:'course/glossary.html#term-feature'}}), b=element({dataset:{term:'target'},attrs:{href:'course/glossary.html#term-target'}});
 assert(api.open(a));assert(d.open);assert.equal(focused,ids['term-close']);assert.equal(a.attrs['aria-expanded'],'true');
-api.open(a);api.open(b);assert.equal(shown,1);assert.equal(a.attrs['aria-expanded'],'false');assert.equal(ids['term-title'].textContent,'Target');
+ids['term-analogy-disclosure'].open=true;api.open(a);assert.equal(ids['term-analogy-disclosure'].open,false);api.open(b);assert.equal(ids['term-plain'].textContent,'What to predict.');assert(ids['term-analogy'].textContent.includes('Limit:'));assert.equal(shown,1);assert.equal(a.attrs['aria-expanded'],'false');assert.equal(ids['term-title'].textContent,'Target');
 d.handlers.cancel({preventDefault(){}});assert(!d.open);assert.equal(focused,b);
 api.open(a);d.handlers.click({target:d,clientX:50,clientY:50});assert(d.open);d.handlers.click({target:d,clientX:0,clientY:0});assert(!d.open);
 assert.equal(api.open(element({dataset:{term:'missing'}})),false);

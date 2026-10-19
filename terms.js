@@ -23,13 +23,16 @@
   }
   function open(trigger) {
     const entry = entries[trigger.dataset.term];
-    if (!entry || !entry.definition || !entry.example || trigger.closest('[hidden]')) return false;
+    if (!entry || !entry.definition || !entry.plain || !entry.analogy || !entry.example || trigger.closest('[hidden]')) return false;
     for (let parent = trigger.parentElement; parent; parent = parent.parentElement) {
       if (parent.tagName === 'DETAILS' && !parent.open && !parent.querySelector('summary')?.contains(trigger)) return false;
     }
     if (active) active.setAttribute('aria-expanded', 'false');
     doc.getElementById('term-title').textContent = entry.name;
     doc.getElementById('term-definition').textContent = entry.definition;
+    doc.getElementById('term-plain').textContent = entry.plain;
+    doc.getElementById('term-analogy').textContent = entry.analogy;
+    doc.getElementById('term-analogy-disclosure').open = false;
     doc.getElementById('term-example-text').textContent = entry.example;
     doc.getElementById('term-glossary').setAttribute('href', trigger.getAttribute('href'));
     active = trigger;
